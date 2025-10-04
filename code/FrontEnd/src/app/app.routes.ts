@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { SearchComponent } from './pages/search/search.component';
+
 import { ReserveComponent } from './pages/reserve/reserve.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -22,6 +23,7 @@ export const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'about', component: AboutComponent },
       { path: 'search', component: SearchComponent },
+      
       { path: 'reserve', component: ReserveComponent },
       { path: 'history', component: HistoryComponent },
       { path: 'reports', component: ReportsComponent },
@@ -38,7 +40,8 @@ export const routes: Routes = [
         ]
       }
     ],
-  },
+  }
+ 
   // {
   //   path: 'admin',
   //   component: AdminLayoutComponent,
