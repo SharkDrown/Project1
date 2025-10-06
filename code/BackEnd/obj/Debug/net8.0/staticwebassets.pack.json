@@ -1,0 +1,345 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\1.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\1.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\10.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\10.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\11.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\11.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\12.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\12.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\13.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\13.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\14.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\14.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\15.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\15.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\16.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\16.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\17.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\17.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\18.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\18.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\19.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\19.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\2.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\2.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\20.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\20.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\21.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\21.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\22.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\22.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\23.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\23.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\24.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\24.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\25.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\25.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\26.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\26.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\27.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\27.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\28.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\28.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\29.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\29.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\3.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\3.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\30.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\30.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\31.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\31.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\32.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\32.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\33.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\33.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\34.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\34.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\35.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\35.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\36.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\36.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\37.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\37.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\38.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\38.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\39.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\39.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\4.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\4.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\40.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\40.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\41.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\41.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\42.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\42.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\43.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\43.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\44.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\44.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\45.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\45.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\46.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\46.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\47.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\47.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\48.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\48.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\49.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\49.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\5.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\5.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\50.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\50.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\51.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\51.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\52.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\52.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\53.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\53.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\54.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\54.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\55.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\55.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\56.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\56.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\57.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\57.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\58.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\58.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\59.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\59.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\6.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\6.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\60.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\60.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\61.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\61.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\62.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\62.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\63.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\63.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\64.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\64.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\65.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\65.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\66.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\66.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\67.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\67.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\68.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\68.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\69.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\69.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\7.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\7.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\70.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\70.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\71.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\71.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\72.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\72.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\73.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\73.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\74.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\74.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\75.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\75.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\76.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\76.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\77.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\77.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\78.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\78.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\79.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\79.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\8.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\8.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\80.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\80.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\ki1nam4\\Project1\\Project\\Project1\\code\\BackEnd\\wwwroot\\image\\books\\9.jpg",
+      "PackagePath": "staticwebassets\\image\\books\\9.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BackEnd.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BackEnd.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BackEnd.props",
+      "PackagePath": "build\\BackEnd.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BackEnd.props",
+      "PackagePath": "buildMultiTargeting\\BackEnd.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BackEnd.props",
+      "PackagePath": "buildTransitive\\BackEnd.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
