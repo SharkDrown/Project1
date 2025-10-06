@@ -1,0 +1,121 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USER\\Downloads\\Project1-main\\Project1-main\\code\\BackEnd\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|c:\\users\\user\\downloads\\project1-main\\project1-main\\code\\backend\\backend\\backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|c:\\users\\user\\downloads\\project1-main\\project1-main\\code\\backend\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|c:\\users\\user\\downloads\\project1-main\\project1-main\\code\\backend\\backend\\backend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\backend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|c:\\users\\user\\downloads\\project1-main\\project1-main\\code\\backend\\backend\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|c:\\users\\user\\downloads\\project1-main\\project1-main\\code\\backend\\backend\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|c:\\users\\user\\downloads\\project1-main\\project1-main\\code\\backend\\backend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BackEnd.csproj",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\Project1-main\\Project1-main\\code\\BackEnd\\BackEnd\\BackEnd.csproj",
+              "RelativeDocumentMoniker": "BackEnd\\BackEnd.csproj",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\Project1-main\\Project1-main\\code\\BackEnd\\BackEnd\\BackEnd.csproj",
+              "RelativeToolTip": "BackEnd\\BackEnd.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-29T15:47:47.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\Project1-main\\Project1-main\\code\\BackEnd\\BackEnd\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\Project1-main\\Project1-main\\code\\BackEnd\\BackEnd\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "BackEnd\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T13:35:05.768Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\Project1-main\\Project1-main\\code\\BackEnd\\BackEnd\\Program.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Program.cs",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\Project1-main\\Project1-main\\code\\BackEnd\\BackEnd\\Program.cs",
+              "RelativeToolTip": "BackEnd\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T13:34:58.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\Project1-main\\Project1-main\\code\\BackEnd\\BackEnd\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "BackEnd\\WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\Project1-main\\Project1-main\\code\\BackEnd\\BackEnd\\WeatherForecast.cs",
+              "RelativeToolTip": "BackEnd\\WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T13:34:56.964Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BackEnd.http",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\Project1-main\\Project1-main\\code\\BackEnd\\BackEnd\\BackEnd.http",
+              "RelativeDocumentMoniker": "BackEnd\\BackEnd.http",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\Project1-main\\Project1-main\\code\\BackEnd\\BackEnd\\BackEnd.http",
+              "RelativeToolTip": "BackEnd\\BackEnd.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-09-22T13:34:52.423Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\Project1-main\\Project1-main\\code\\BackEnd\\BackEnd\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "BackEnd\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\Project1-main\\Project1-main\\code\\BackEnd\\BackEnd\\Properties\\launchSettings.json",
+              "RelativeToolTip": "BackEnd\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-22T13:34:46.957Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
