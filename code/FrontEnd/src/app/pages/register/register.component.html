@@ -1,136 +1,150 @@
 <main class="main">
+  <div class="page-title light-background">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+      <h1 class="mb-2 mb-lg-0">Đăng ký</h1>
+      <nav class="breadcrumbs">
+        <ol>
+          <li><a routerLink="/">Trang chủ</a></li>
+          <li class="current">Đăng ký</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
 
-    <!-- Page Title -->
-    <div class="page-title light-background">
-      <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Register</h1>
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Register</li>
-          </ol>
-        </nav>
-      </div>
-    </div><!-- End Page Title -->
+  <section id="register" class="register section">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="registration-form-wrapper">
+            <div class="form-header text-center">
+              <h2>Đăng ký thẻ</h2>
+            </div>
 
-    <!-- Register Section -->
-    <section id="register" class="register section">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
 
-      <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="registration-form-wrapper">
-              <div class="form-header text-center">
-                <h2>Create Your Account</h2>
-                <p>Create your account and start shopping with us</p>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-8 mx-auto">
-                  <form action="register.php" method="post">
-                    <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" required="" autocomplete="name">
-                      <label for="fullName">Full Name</label>
-                    </div>
-
-                    <div class="form-floating mb-3">
-                      <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required="" autocomplete="email">
-                      <label for="email">Email Address</label>
-                    </div>
-
-                    <div class="row mb-3">
-                      <div class="col-md-6">
-                        <div class="form-floating">
-                          <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="" minlength="8" autocomplete="new-password">
-                          <label for="password">Password</label>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-floating">
-                          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required="" minlength="8" autocomplete="new-password">
-                          <label for="confirmPassword">Confirm Password</label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="form-floating mb-4">
-                      <select class="form-select" id="country" name="country" required="">
-                        <option value="" selected="" disabled="">Select your country</option>
-                        <option value="us">United States</option>
-                        <option value="ca">Canada</option>
-                        <option value="uk">United Kingdom</option>
-                        <option value="au">Australia</option>
-                        <option value="de">Germany</option>
-                        <option value="fr">France</option>
-                        <option value="jp">Japan</option>
-                        <option value="other">Other</option>
-                      </select>
-                      <label for="country">Country</label>
-                    </div>
-
-                    <div class="form-check mb-4">
-                      <input class="form-check-input" type="checkbox" id="termsCheck" name="termsCheck" required="">
-                      <label class="form-check-label" for="termsCheck">
-                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-                      </label>
-                    </div>
-
-                    <div class="form-check mb-4">
-                      <input class="form-check-input" type="checkbox" id="marketingCheck" name="marketingCheck">
-                      <label class="form-check-label" for="marketingCheck">
-                        I would like to receive marketing communications about products, services, and promotions
-                      </label>
-                    </div>
-
-                    <div class="d-grid mb-4">
-                      <button type="submit" class="btn btn-register">Create Account</button>
-                    </div>
-
-                    <div class="login-link text-center">
-                      <p>Đã có tài khoản? <a routerLink="/login">Đăng nhập</a></p>
-                    </div>
-                  </form>
-                </div>
-              </div>
-
-              <div class="social-login">
-                <div class="row">
-                  <div class="col-lg-8 mx-auto">
-                    <div class="divider">
-                      <span>or sign up with</span>
-                    </div>
-                    <div class="social-buttons">
-                      <a href="#" class="btn btn-social">
-                        <i class="bi bi-google"></i>
-                        <span>Google</span>
-                      </a>
-                      <a href="#" class="btn btn-social">
-                        <i class="bi bi-facebook"></i>
-                        <span>Facebook</span>
-                      </a>
-                      <a href="#" class="btn btn-social">
-                        <i class="bi bi-apple"></i>
-                        <span>Apple</span>
-                      </a>
-                    </div>
+                  <!-- Tên đăng nhập -->
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="tenDangNhap"
+                      name="tenDangNhap"
+                      [(ngModel)]="model.TenDangNhap"
+                      placeholder="Tên đăng nhập"
+                      required
+                      #tenDangNhap="ngModel"
+                    />
+                    <label for="tenDangNhap">Tên đăng nhập</label>
                   </div>
-                </div>
-              </div>
+                  <div class="text-danger small" *ngIf="tenDangNhap.invalid && tenDangNhap.touched">
+                    ⚠️ Vui lòng nhập tên đăng nhập.
+                  </div>
 
-              <div class="decorative-elements">
-                <div class="circle circle-1"></div>
-                <div class="circle circle-2"></div>
-                <div class="circle circle-3"></div>
-                <div class="square square-1"></div>
-                <div class="square square-2"></div>
+                  <!-- Password -->
+                  <div class="form-floating mb-3">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="matKhau"
+                      name="matKhau"
+                      [(ngModel)]="model.MatKhau"
+                      placeholder="Mật khẩu"
+                      required
+                      minlength="8"
+                      #matKhau="ngModel"
+                    />
+                    <label for="matKhau">Mật khẩu</label>
+                  </div>
+                  <div class="text-danger small" *ngIf="matKhau.invalid && matKhau.touched">
+                    ⚠️ Mật khẩu phải có ít nhất 8 ký tự.
+                  </div>
+
+                  <!-- Xác nhận mật khẩu -->
+                  <div class="form-floating mb-3">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      [(ngModel)]="confirmPassword"
+                      placeholder="Xác nhận mật khẩu"
+                      required
+                      minlength="8"
+                      #confirmPasswordCtrl="ngModel"
+                    />
+                    <label for="confirmPassword">Xác nhận mật khẩu</label>
+                  </div>
+                  <div class="text-danger small" *ngIf="confirmPasswordCtrl.invalid && confirmPasswordCtrl.touched">
+                    ⚠️ Vui lòng nhập lại mật khẩu (ít nhất 8 ký tự).
+                  </div>
+                  <div class="text-danger small" *ngIf="model.MatKhau && confirmPassword && model.MatKhau !== confirmPassword">
+                    ⚠️ Mật khẩu xác nhận không khớp.
+                  </div>
+
+                  <!-- Vai trò -->
+                  <div class="form-floating mb-4">
+                    <select
+                      class="form-select"
+                      id="vaiTro"
+                      name="vaiTro"
+                      [(ngModel)]="model.VaiTro"
+                      required
+                      #vaiTro="ngModel"
+                    >
+                      <option value="" disabled selected>-- Chọn vai trò --</option>
+                      <option value="DocGia">Độc giả</option>
+                      <option value="NhanVien">Nhân viên</option>
+                      <option value="Admin">Admin</option>
+                    </select>
+                    <label for="vaiTro">Vai trò</label>
+                  </div>
+                  <div class="text-danger small" *ngIf="vaiTro.invalid && vaiTro.touched">
+                    ⚠️ Vui lòng chọn vai trò.
+                  </div>
+
+                  <!-- Điều khoản -->
+                  <div class="form-check mb-4">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="termsCheck"
+                      name="termsCheck"
+                      [(ngModel)]="model.TermsAccepted"
+                      required
+                      #termsCheck="ngModel"
+                    />
+                    <label class="form-check-label" for="termsCheck">
+                      Tôi đồng ý với <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a>
+                    </label>
+                  </div>
+                  <div class="text-danger small" *ngIf="termsCheck.invalid && termsCheck.touched">
+                    ⚠️ Bạn phải đồng ý với điều khoản.
+                  </div>
+
+                  <!-- Nút đăng ký -->
+                  <div class="d-grid mb-4">
+                    <button
+                      type="submit"
+                      class="btn btn-register"
+                      [disabled]="registerForm.invalid || loading"
+                    >
+                      {{ loading ? 'Đang tạo...' : 'Tạo thẻ' }}
+                    </button>
+                  </div>
+
+                  <!-- Thông báo tổng quát -->
+                  <div *ngIf="message" class="alert alert-info mt-3 text-center">
+                    {{ message }}
+                  </div>
+                </form>
+
               </div>
             </div>
           </div>
         </div>
-
       </div>
-
-    </section><!-- /Register Section -->
-
-  </main>
+    </div>
+  </section>
+</main>

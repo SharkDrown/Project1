@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { SearchComponent } from './pages/search/search.component';
@@ -7,7 +8,6 @@ import { ReportsComponent } from './pages/reports/reports.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { InfoComponent } from './pages/info/info.component';
 import { ReviewComponent } from './pages/info/review/review.component';
 import { SettingComponent } from './pages/info/setting/setting.component';
@@ -34,29 +34,10 @@ export const routes: Routes = [
         children: [
           { path: '', component: ContentComponent },
           { path: 'review', component: ReviewComponent },
-          { path: 'setting', component: SettingComponent }
-        ]
-      }
+          { path: 'setting', component: SettingComponent },
+        ],
+      },
     ],
   },
-  // {
-  //   path: 'admin',
-  //   component: AdminLayoutComponent,
-  //   children: [
-  //     {
-  //       path: '',
-  //       loadComponent: () =>
-  //         import('./pages/admin/dashboard/dashboard.component').then(
-  //           (m) => m.DashboardComponent
-  //         ),
-  //     },
-  //     {
-  //       path: 'users',
-  //       loadComponent: () =>
-  //         import('./pages/admin/users/users.component').then(
-  //           (m) => m.UsersComponent
-  //         ),
-  //     },
-  //   ],
-  // },
+  { path: '**', redirectTo: '' },
 ];
