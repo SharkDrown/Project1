@@ -1,0 +1,45 @@
+<div class="dropdown account-dropdown">
+    <button class="header-action-btn" (click)="toggleMenu()">
+        <i class="bi bi-person"></i>
+    </button>
+    <div class="dropdown-menu" [class.show]="isMenuOpen">
+        <!-- Logged in state -->
+        <div *ngIf="isLoggedIn()">
+            <div class="dropdown-header">
+                <h6>Xin chào, <span class="sitename">{{ getDisplayName() }}</span></h6>
+                <p class="mb-0 text-muted">{{ getRoleDisplayName() }}</p>
+            </div>
+            <div class="dropdown-body">
+                <a class="dropdown-item d-flex align-items-center" routerLink="/info" (click)="toggleMenu()">
+                    <i class="bi bi-person-circle me-2"></i>
+                    <span>Thông tin cá nhân</span>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" routerLink="/history" (click)="toggleMenu()">
+                    <i class="bi bi-clock-history me-2"></i>
+                    <span>Lịch sử mượn sách</span>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" routerLink="/info/setting" (click)="toggleMenu()">
+                    <i class="bi bi-gear me-2"></i>
+                    <span>Cài đặt</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item d-flex align-items-center text-danger" (click)="logout()">
+                    <i class="bi bi-box-arrow-right me-2"></i>
+                    <span>Đăng xuất</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Not logged in state -->
+        <div *ngIf="!isLoggedIn()">
+            <div class="dropdown-header">
+                <h6>Chào mừng đến <span class="sitename">Thư viện</span></h6>
+                <p class="mb-0">Truy cập tài khoản</p>
+            </div>
+            <div class="dropdown-footer">
+                <a routerLink="/login" class="btn btn-primary w-100 mb-2" (click)="toggleMenu()">Đăng nhập</a>
+                <a routerLink="/register" class="btn btn-outline-primary w-100" (click)="toggleMenu()">Đăng ký làm thẻ</a>
+            </div>
+        </div>
+    </div>
+</div>

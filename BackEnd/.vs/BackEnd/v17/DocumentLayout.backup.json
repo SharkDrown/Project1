@@ -1,0 +1,335 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Project1-main\\code\\BackEnd\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\dtos\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\dtos\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\dtos\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\dtos\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\models\\sach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\sach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\models\\phieumuon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\phieumuon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\models\\docgium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\docgium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\models\\dattruoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\dattruoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\models\\cuonsach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\cuonsach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\models\\baocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\baocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\models\\chitietphieumuon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\chitietphieumuon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\models\\thongbao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\thongbao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\backend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\backend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Project1-main\\code\\BackEnd\\BackEnd\\DTOs\\AuthResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BackEnd\\DTOs\\AuthResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|d:\\project1-main\\code\\backend\\backend\\models\\quanlythuviencontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\quanlythuviencontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RegisterRequest.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\DTOs\\RegisterRequest.cs",
+              "RelativeDocumentMoniker": "BackEnd\\DTOs\\RegisterRequest.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\DTOs\\RegisterRequest.cs",
+              "RelativeToolTip": "BackEnd\\DTOs\\RegisterRequest.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T01:16:44.838Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoginRequest.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\DTOs\\LoginRequest.cs",
+              "RelativeDocumentMoniker": "BackEnd\\DTOs\\LoginRequest.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\DTOs\\LoginRequest.cs",
+              "RelativeToolTip": "BackEnd\\DTOs\\LoginRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T01:16:41.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AuthResponse.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\DTOs\\AuthResponse.cs",
+              "RelativeDocumentMoniker": "BackEnd\\DTOs\\AuthResponse.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\DTOs\\AuthResponse.cs",
+              "RelativeToolTip": "BackEnd\\DTOs\\AuthResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T01:16:32.252Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Services\\AuthService.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Services\\AuthService.cs",
+              "RelativeToolTip": "BackEnd\\Services\\AuthService.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T01:07:53.282Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Sach.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\Sach.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Models\\Sach.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\Sach.cs",
+              "RelativeToolTip": "BackEnd\\Models\\Sach.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T01:07:49.533Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PhieuMuon.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\PhieuMuon.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Models\\PhieuMuon.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\PhieuMuon.cs",
+              "RelativeToolTip": "BackEnd\\Models\\PhieuMuon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T01:07:48.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DocGium.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\DocGium.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Models\\DocGium.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\DocGium.cs",
+              "RelativeToolTip": "BackEnd\\Models\\DocGium.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T01:07:48.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "BackEnd\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Properties\\launchSettings.json",
+              "RelativeToolTip": "BackEnd\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAqwCkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-22T13:34:46.957Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DatTruoc.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\DatTruoc.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Models\\DatTruoc.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\DatTruoc.cs",
+              "RelativeToolTip": "BackEnd\\Models\\DatTruoc.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T01:07:47.262Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CuonSach.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\CuonSach.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Models\\CuonSach.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\CuonSach.cs",
+              "RelativeToolTip": "BackEnd\\Models\\CuonSach.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T01:07:46.022Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BaoCao.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\BaoCao.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Models\\BaoCao.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\BaoCao.cs",
+              "RelativeToolTip": "BackEnd\\Models\\BaoCao.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T01:07:45.04Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ChiTietPhieuMuon.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\ChiTietPhieuMuon.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Models\\ChiTietPhieuMuon.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\ChiTietPhieuMuon.cs",
+              "RelativeToolTip": "BackEnd\\Models\\ChiTietPhieuMuon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T01:07:44.154Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ThongBao.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\ThongBao.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Models\\ThongBao.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\ThongBao.cs",
+              "RelativeToolTip": "BackEnd\\Models\\ThongBao.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T01:07:41.796Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "QuanLyThuVienContext.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\QuanLyThuVienContext.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Models\\QuanLyThuVienContext.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Models\\QuanLyThuVienContext.cs",
+              "RelativeToolTip": "BackEnd\\Models\\QuanLyThuVienContext.cs",
+              "ViewState": "AgIAANYAAAAAAAAAAAAewOYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T01:03:15.959Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "BackEnd.csproj",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\BackEnd.csproj",
+              "RelativeDocumentMoniker": "BackEnd\\BackEnd.csproj",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\BackEnd.csproj",
+              "RelativeToolTip": "BackEnd\\BackEnd.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-29T15:47:47.265Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "BackEnd\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T13:35:05.768Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Program.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Program.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\Program.cs",
+              "RelativeToolTip": "BackEnd\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T13:34:58.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "BackEnd\\WeatherForecast.cs",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\WeatherForecast.cs",
+              "RelativeToolTip": "BackEnd\\WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T13:34:56.964Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BackEnd.http",
+              "DocumentMoniker": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\BackEnd.http",
+              "RelativeDocumentMoniker": "BackEnd\\BackEnd.http",
+              "ToolTip": "D:\\Project1-main\\code\\BackEnd\\BackEnd\\BackEnd.http",
+              "RelativeToolTip": "BackEnd\\BackEnd.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-09-22T13:34:52.423Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
