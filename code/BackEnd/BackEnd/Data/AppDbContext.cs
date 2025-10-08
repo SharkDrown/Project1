@@ -1,12 +1,12 @@
-using BackEnd.Models;
-using Microsoft.EntityFrameworkCore;
+// using BackEnd.Models;
+// using Microsoft.EntityFrameworkCore;
 
-namespace BackEnd.Data
-{
-    public class AppDbContext : DbContext
-    {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+// namespace BackEnd.Data
+// {
+//     public class AppDbContext : DbContext
+//     {
+//         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<TaiKhoan> TaiKhoan { get; set; }
-    }
-}
+//         public DbSet<TaiKhoan> TaiKhoan { get; set; }
+//     }
+// }

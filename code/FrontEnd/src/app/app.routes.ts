@@ -7,7 +7,6 @@ import { ReserveComponent } from './pages/reserve/reserve.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
 import { InfoComponent } from './pages/info/info.component';
 import { ReviewComponent } from './pages/info/review/review.component';
 import { SettingComponent } from './pages/info/setting/setting.component';
@@ -27,7 +26,17 @@ export const routes: Routes = [
       { path: 'reports', component: ReportsComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
+
+     
+      {
+        path: 'register',
+        loadComponent: () =>
+          import('./pages/register/register.component').then(
+            (m) => m.RegisterComponent
+          ),
+      },
+
+      { path: '', redirectTo: '/register', pathMatch: 'full' },
       {
         path: 'info',
         component: InfoComponent,
