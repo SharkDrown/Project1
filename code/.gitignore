@@ -1,0 +1,129 @@
+# =========================
+# === BACKEND (.NET) ===
+# =========================
+
+# Build folders
+bin/
+obj/
+[Bb]uild/
+[Bb]in/
+[Oo]bj/
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# Visual Studio files
+.vs/
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+
+# NuGet
+*.nupkg
+**/packages/*
+!**/packages/build/
+!**/packages/repositories.config
+
+# ReSharper & JetBrains
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Publish
+publish/
+*.Publish.xml
+*.pubxml
+*.publishproj
+*.pubxml.user
+
+# Entity Framework
+migrations/
+Migrations/
+
+# Secrets & config
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.Development.json
+secrets.json
+
+# Logs
+[Ll]og/
+[Ll]ogs/
+
+# =========================
+# === FRONTEND (Angular) ===
+# =========================
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Angular build
+dist/
+tmp/
+out-tsc/
+.angular/
+.angular/cache/
+coverage/
+
+# Environment files
+src/environments/environment.ts
+src/environments/environment.*.ts
+
+# Cache / temporary
+*.swp
+*.bak
+*.tmp
+*.orig
+*.rej
+
+# Compiled output
+*.js
+*.js.map
+
+# Package managers lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# =========================
+# === COMMON SETTINGS ===
+# =========================
+
+# OS-specific
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.suo
+*.tmp
+*.bak
+*.swp
+*.user
+*.userprefs
+
+# Env
+.env
+.env.*
+
+# =========================
+# === OPTIONAL CLEANUP ===
+# =========================
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.ncrunchsolution
+*.ncrunchproject
