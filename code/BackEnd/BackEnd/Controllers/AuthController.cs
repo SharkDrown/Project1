@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-using BackEnd.Dtos;
 using BackEnd.Models;
-=======
->>>>>>> 747593f6ae838f4802ecd495ff64bbb98b6ef230
 using Microsoft.AspNetCore.Mvc;
-using BackEnd.Models;
 
 namespace BackEnd.Controllers
 {
@@ -22,16 +17,9 @@ namespace BackEnd.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterDto dto)
         {
-<<<<<<< HEAD
-            if (!ModelState.IsValid)
-                return BadRequest(new { message = "Dữ liệu không hợp lệ" });
-
-            if (_context.TaiKhoans.Any(x => x.TenDangNhap == dto.TenDangNhap))
-=======
             // 1. Kiểm tra tên đăng nhập đã tồn tại chưa
             if (_context.TaiKhoans.Any(x => x.TenDangNhap == dto.TenDangNhap))
             {
->>>>>>> 747593f6ae838f4802ecd495ff64bbb98b6ef230
                 return BadRequest(new { message = "Tên đăng nhập đã tồn tại" });
             }
 
@@ -50,11 +38,7 @@ namespace BackEnd.Controllers
                 TrangThai = true
             };
 
-<<<<<<< HEAD
-            _context.TaiKhoans.Add(user);
-=======
             _context.TaiKhoans.Add(taiKhoan);
->>>>>>> 747593f6ae838f4802ecd495ff64bbb98b6ef230
             _context.SaveChanges();
 
             // 4. Tạo mới độc giả liên kết với tài khoản
