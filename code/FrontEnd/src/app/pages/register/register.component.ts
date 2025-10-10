@@ -1,22 +1,26 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { Injectable } from '@angular/core';
+import { CommonModule } from '@angular/common';   
+import { FormsModule } from '@angular/forms';     
 import { AuthService } from '../../services/auth.service';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
+  standalone: true,                              
+  imports: [CommonModule, FormsModule],          
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
-  standalone: true, // quan trọng: standalone component
-  imports: [FormsModule, CommonModule, RouterModule] // để dùng ngModel, ngIf, ngForm
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
   model: any = {
     TenDangNhap: '',
     MatKhau: '',
-    VaiTro: '',
+    HoTen: '',
+    NgaySinh: '',
+    DiaChi: '',
+    Email: '',
+    SoDT: '',
+    VaiTro: 'DocGia',
     TermsAccepted: false
   };
 
@@ -24,24 +28,25 @@ export class RegisterComponent {
   message: string = '';
   loading: boolean = false;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private authService: AuthService) {}
 
   onSubmit() {
     if (this.model.MatKhau !== this.confirmPassword) {
-      this.message = '❌ Mật khẩu xác nhận không khớp!';
+      this.message = '⚠️ Mật khẩu xác nhận không khớp.';
       return;
     }
 
     this.loading = true;
-    this.auth.register(this.model).subscribe({
+    this.message = '';
+
+    this.authService.register(this.model).subscribe({
       next: (res) => {
-        this.message = res?.message ?? '✅ Đăng ký thành công!';
         this.loading = false;
-        this.router.navigate(['/login']);
+        this.message = res.message || 'Đăng ký thành công!';
       },
       error: (err) => {
-        this.message = err?.error?.message || '❌ Đăng ký thất bại!';
         this.loading = false;
+        this.message = err.error?.message || 'Đăng ký thất bại, vui lòng thử lại.';
       }
     });
   }

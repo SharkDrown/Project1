@@ -1,8 +1,10 @@
+<<<<<<< HEAD
 using BackEnd.Dtos;
 using BackEnd.Models;
+=======
+>>>>>>> 747593f6ae838f4802ecd495ff64bbb98b6ef230
 using Microsoft.AspNetCore.Mvc;
-using BCrypt.Net;
-using Microsoft.EntityFrameworkCore;
+using BackEnd.Models;
 
 namespace BackEnd.Controllers
 {
@@ -10,9 +12,9 @@ namespace BackEnd.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly QuanLyThuVienContext _context;
 
-        public AuthController(AppDbContext context)
+        public AuthController(QuanLyThuVienContext context)
         {
             _context = context;
         }
@@ -20,50 +22,56 @@ namespace BackEnd.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterDto dto)
         {
+<<<<<<< HEAD
             if (!ModelState.IsValid)
                 return BadRequest(new { message = "Dữ liệu không hợp lệ" });
 
             if (_context.TaiKhoans.Any(x => x.TenDangNhap == dto.TenDangNhap))
+=======
+            // 1. Kiểm tra tên đăng nhập đã tồn tại chưa
+            if (_context.TaiKhoans.Any(x => x.TenDangNhap == dto.TenDangNhap))
+            {
+>>>>>>> 747593f6ae838f4802ecd495ff64bbb98b6ef230
                 return BadRequest(new { message = "Tên đăng nhập đã tồn tại" });
+            }
 
-            //string hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.MatKhau);
-            string hashedPassword = dto.MatKhau;
-            var user = new TaiKhoan
+            // 2. Kiểm tra email đã tồn tại chưa
+            if (_context.DocGia.Any(x => x.Email == dto.Email))
+            {
+                return BadRequest(new { message = "Email đã được sử dụng" });
+            }
+
+            // 3. Tạo mới tài khoản
+            var taiKhoan = new TaiKhoan
             {
                 TenDangNhap = dto.TenDangNhap,
-                MatKhau = hashedPassword,
-                VaiTro = dto.VaiTro,
+                MatKhau = dto.MatKhau, 
+                VaiTro = "DocGia",
                 TrangThai = true
             };
 
+<<<<<<< HEAD
             _context.TaiKhoans.Add(user);
+=======
+            _context.TaiKhoans.Add(taiKhoan);
+>>>>>>> 747593f6ae838f4802ecd495ff64bbb98b6ef230
             _context.SaveChanges();
 
-            return Ok(new { message = "Tạo tài khoản thành công!" });
+            // 4. Tạo mới độc giả liên kết với tài khoản
+            var docGia = new DocGium
+            {
+                HoTen = dto.HoTen,
+                NgaySinh = dto.NgaySinh,
+                DiaChi = dto.DiaChi,
+                Email = dto.Email,
+                SoDt = dto.SoDT,
+                MaTk = taiKhoan.MaTk
+            };
+
+            _context.DocGia.Add(docGia);
+            _context.SaveChanges();
+
+            return Ok(new { message = "Đăng ký thành công", MaDocGia = docGia.MaDg });
         }
-
-
-        // // ✅ API Đăng nhập (Login)
-        // [HttpPost("login")]
-        // public async Task<IActionResult> Login([FromBody] LoginDto dto)
-        // {
-        //     var user = await _context.TaiKhoan.FirstOrDefaultAsync(u => u.TenDangNhap == dto.TenDangNhap);
-
-        //     if (user == null)
-        //         return Unauthorized(new { message = "Sai tên đăng nhập hoặc mật khẩu" });
-
-        //     // Verify mật khẩu
-        //     bool isPasswordValid = BCrypt.Net.BCrypt.Verify(dto.MatKhau, user.MatKhau);
-
-        //     if (!isPasswordValid)
-        //         return Unauthorized(new { message = "Sai tên đăng nhập hoặc mật khẩu" });
-
-        //     // Nếu đúng -> trả thông tin cơ bản (sau này có thể trả JWT)
-        //     return Ok(new
-        //     {
-        //         message = "Đăng nhập thành công",
-        //         user = new { user.MaTK, user.TenDangNhap, user.VaiTro }
-        //     });
-        // }
     }
 }

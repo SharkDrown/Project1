@@ -9,7 +9,7 @@ public partial class DocGium
 
     public string HoTen { get; set; } = null!;
 
-    public DateOnly? NgaySinh { get; set; }
+    public DateTime? NgaySinh { get; set; }
 
     public string? DiaChi { get; set; }
 
