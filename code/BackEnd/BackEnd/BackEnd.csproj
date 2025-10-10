@@ -19,6 +19,7 @@
   <ItemGroup>
     <Folder Include="image\books\" />
     <Folder Include="image\readers\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

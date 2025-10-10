@@ -3,28 +3,36 @@
   "WorkspaceRootPath": "E:\\BaiTap\\Project1\\code\\BackEnd\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\models\\taikhoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\taikhoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\models\\quanlythuviencontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\quanlythuviencontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\backend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\backend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\models\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\models\\tacgium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\tacgium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\models\\sach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\models\\sach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\backend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\backend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -33,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|e:\\baitap\\project1\\code\\backend\\backend\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC1DD6AC-D5F7-46DF-A7BC-0A7ADAC7E2EE}|BackEnd\\BackEnd.csproj|solutionrelative:backend\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,19 +50,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoginDto.cs",
+              "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Dtos\\LoginDto.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Dtos\\LoginDto.cs",
+              "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Dtos\\LoginDto.cs",
+              "RelativeToolTip": "BackEnd\\Dtos\\LoginDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T07:22:40.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Models\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Models\\AppDbContext.cs",
+              "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Models\\AppDbContext.cs",
+              "RelativeToolTip": "BackEnd\\Models\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T07:22:28.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "QuanLyThuVienContext.cs",
+              "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Models\\QuanLyThuVienContext.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Models\\QuanLyThuVienContext.cs",
+              "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Models\\QuanLyThuVienContext.cs",
+              "RelativeToolTip": "BackEnd\\Models\\QuanLyThuVienContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T07:22:19.494Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TacGium.cs",
+              "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Models\\TacGium.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Models\\TacGium.cs",
+              "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Models\\TacGium.cs",
+              "RelativeToolTip": "BackEnd\\Models\\TacGium.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T07:22:17.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BookController.cs",
+              "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Controllers\\BookController.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Controllers\\BookController.cs",
+              "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Controllers\\BookController.cs",
+              "RelativeToolTip": "BackEnd\\Controllers\\BookController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCMAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T07:14:38.62Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\appsettings.json",
-              "RelativeDocumentMoniker": "BackEnd\\appsettings.json",
-              "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\appsettings.json",
-              "RelativeToolTip": "BackEnd\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-10-07T04:24:23.386Z",
+              "Title": "Sach.cs",
+              "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Models\\Sach.cs",
+              "RelativeDocumentMoniker": "BackEnd\\Models\\Sach.cs",
+              "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Models\\Sach.cs",
+              "RelativeToolTip": "BackEnd\\Models\\Sach.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T07:11:30.066Z",
               "EditorCaption": ""
             },
             {
@@ -67,98 +136,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "BackEnd\\Data\\AppDbContext.cs",
-              "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "BackEnd\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T04:21:21.514Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TaiKhoan.cs",
-              "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Models\\TaiKhoan.cs",
-              "RelativeDocumentMoniker": "BackEnd\\Models\\TaiKhoan.cs",
-              "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Models\\TaiKhoan.cs",
-              "RelativeToolTip": "BackEnd\\Models\\TaiKhoan.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T04:21:04.279Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BackEnd.csproj",
-              "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\BackEnd.csproj",
-              "RelativeDocumentMoniker": "BackEnd\\BackEnd.csproj",
-              "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\BackEnd.csproj",
-              "RelativeToolTip": "BackEnd\\BackEnd.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-09-29T15:47:47.265Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "WeatherForecastController.cs",
-              "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Controllers\\WeatherForecastController.cs",
-              "RelativeDocumentMoniker": "BackEnd\\Controllers\\WeatherForecastController.cs",
-              "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Controllers\\WeatherForecastController.cs",
-              "RelativeToolTip": "BackEnd\\Controllers\\WeatherForecastController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-22T13:35:05.768Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Program.cs",
               "RelativeDocumentMoniker": "BackEnd\\Program.cs",
               "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Program.cs",
               "RelativeToolTip": "BackEnd\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-22T13:34:58.688Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "WeatherForecast.cs",
-              "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\WeatherForecast.cs",
-              "RelativeDocumentMoniker": "BackEnd\\WeatherForecast.cs",
-              "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\WeatherForecast.cs",
-              "RelativeToolTip": "BackEnd\\WeatherForecast.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-22T13:34:56.964Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "BackEnd.http",
               "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\BackEnd.http",
               "RelativeDocumentMoniker": "BackEnd\\BackEnd.http",
               "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\BackEnd.http",
               "RelativeToolTip": "BackEnd\\BackEnd.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
               "WhenOpened": "2025-09-22T13:34:52.423Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
+              "Title": "BackEnd.csproj",
+              "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\BackEnd.csproj",
+              "RelativeDocumentMoniker": "BackEnd\\BackEnd.csproj",
+              "ToolTip": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\BackEnd.csproj",
+              "RelativeToolTip": "BackEnd\\BackEnd.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-29T15:47:47.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "launchSettings.json",
               "DocumentMoniker": "E:\\BaiTap\\Project1\\code\\BackEnd\\BackEnd\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "BackEnd\\Properties\\launchSettings.json",

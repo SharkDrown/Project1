@@ -1,4 +1,3 @@
-using BackEnd.Data;
 using BackEnd.Dtos;
 using BackEnd.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +23,7 @@ namespace BackEnd.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(new { message = "Dữ liệu không hợp lệ" });
 
-            if (_context.TaiKhoan.Any(x => x.TenDangNhap == dto.TenDangNhap))
+            if (_context.TaiKhoans.Any(x => x.TenDangNhap == dto.TenDangNhap))
                 return BadRequest(new { message = "Tên đăng nhập đã tồn tại" });
 
             //string hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.MatKhau);
@@ -37,7 +36,7 @@ namespace BackEnd.Controllers
                 TrangThai = true
             };
 
-            _context.TaiKhoan.Add(user);
+            _context.TaiKhoans.Add(user);
             _context.SaveChanges();
 
             return Ok(new { message = "Tạo tài khoản thành công!" });
