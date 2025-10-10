@@ -8,9 +8,9 @@ namespace BackEnd.Controllers
     [ApiController]
     public class SachesController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly QuanLyThuVienContext _context;
 
-        public SachesController(AppDbContext context)
+        public SachesController(QuanLyThuVienContext context)
         {
             _context = context;
         }
@@ -19,11 +19,20 @@ namespace BackEnd.Controllers
         // GET: api/Saches
         // ===============================
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Sach>>> GetAll()
+        public async Task<ActionResult<IEnumerable<object>>> GetAll()
         {
             var list = await _context.Saches
-                .Include(s => s.MaTlNavigation) // nếu muốn lấy thêm thể loại
+                .Select(s => new
+                {
+                    s.MaSach,
+                    s.MaTl,
+                    MaCuon = s.CuonSaches.Select(c => c.MaVach),
+                    MaDanhGia = s.DanhGiaSaches.Select(d => d.MaDg),
+                    MaDatTruoc = s.DatTruocs.Select(dt => dt.MaDat),
+                    MaTacGia = s.MaTgs.Select(tg => tg.MaTg)
+                })
                 .ToListAsync();
+
             return Ok(list);
         }
 
@@ -31,10 +40,20 @@ namespace BackEnd.Controllers
         // GET: api/Saches/5
         // ===============================
         [HttpGet("{id}")]
-        public async Task<ActionResult<Sach>> GetById(int id)
+        public async Task<ActionResult<object>> GetById(int id)
         {
             var sach = await _context.Saches
-                .FirstOrDefaultAsync(s => s.MaSach == id);
+                .Where(s => s.MaSach == id)
+                .Select(s => new
+                {
+                    s.MaSach,
+                    s.MaTl,
+                    MaCuon = s.CuonSaches.Select(c => c.MaVach),
+                    MaDanhGia = s.DanhGiaSaches.Select(d => d.MaDg),
+                    MaDatTruoc = s.DatTruocs.Select(dt => dt.MaDat),
+                    MaTacGia = s.MaTgs.Select(tg => tg.MaTg)
+                })
+                .FirstOrDefaultAsync();
 
             if (sach == null)
                 return NotFound(new { message = "Không tìm thấy sách" });
@@ -46,7 +65,7 @@ namespace BackEnd.Controllers
         // POST: api/Saches
         // ===============================
         [HttpPost]
-        public async Task<ActionResult<Sach>> Create([FromBody] Sach sach)
+        public async Task<ActionResult<object>> Create([FromBody] Sach sach)
         {
             if (sach == null)
                 return BadRequest(new { message = "Dữ liệu không hợp lệ" });
@@ -54,7 +73,7 @@ namespace BackEnd.Controllers
             _context.Saches.Add(sach);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetById), new { id = sach.MaSach }, sach);
+            return CreatedAtAction(nameof(GetById), new { id = sach.MaSach }, new { sach.MaSach, sach.MaTl });
         }
 
         // ===============================
@@ -81,7 +100,7 @@ namespace BackEnd.Controllers
             _context.Entry(existing).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Cập nhật sách thành công" });
+            return Ok(new { message = "Cập nhật sách thành công", existing.MaSach, existing.MaTl });
         }
 
         // ===============================
@@ -97,7 +116,7 @@ namespace BackEnd.Controllers
             _context.Saches.Remove(sach);
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Xóa sách thành công" });
+            return Ok(new { message = "Xóa sách thành công", sach.MaSach });
         }
     }
 }
