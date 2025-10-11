@@ -15,6 +15,8 @@ public partial class TaiKhoan
 
     public bool? TrangThai { get; set; }
 
+    public DateTime? LastActive { get; set; }
+
     public virtual DocGium? DocGium { get; set; }
 
     public virtual ICollection<LichSuCapNhatTaiKhoan> LichSuCapNhatTaiKhoans { get; set; } = new List<LichSuCapNhatTaiKhoan>();
@@ -22,6 +24,8 @@ public partial class TaiKhoan
     public virtual ICollection<LichSuDangNhap> LichSuDangNhaps { get; set; } = new List<LichSuDangNhap>();
 
     public virtual NhanVien? NhanVien { get; set; }
+
+    public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
 
     public virtual ICollection<ThongBao> ThongBaos { get; set; } = new List<ThongBao>();
 }

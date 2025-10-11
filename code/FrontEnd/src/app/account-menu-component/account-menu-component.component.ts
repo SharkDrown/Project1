@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -17,5 +17,14 @@ export class AccountMenuComponentComponent {
 
   closeDropdown() {
     this.dropdownOpen = false;
+  }
+
+  // Đóng dropdown khi click ra ngoài
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.account-dropdown')) {
+      this.closeDropdown();
+    }
   }
 }

@@ -1,0 +1,20 @@
+/* Dropdown mặc định ẩn */
+.account-dropdown .dropdown-menu {
+  display: block;       /* luôn block để tính toán vị trí */
+  visibility: hidden;   /* ẩn khi chưa mở */
+  opacity: 0;           /* ẩn mờ */
+  transform: translateX(0); /* chuẩn hóa vị trí */
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Dropdown khi mở */
+.account-dropdown.show .dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0); /* nếu muốn lệch thêm, chỉnh translateX(-20px) chẳng hạn */
+}
+
+.dropdown-menu-start {
+  right: 0;
+  left: auto;
+}
