@@ -1,25 +1,28 @@
-<div class="dropdown account-dropdown">
-    <button class="header-action-btn" data-bs-toggle="dropdown">
-        <i class="bi bi-person"></i>
-    </button>
-    <div class="dropdown-menu">
-        <div class="dropdown-header">
-            <h6>Chào mừng đến <span class="sitename">Nicebrary</span></h6>
-            <p class="mb-0">Truy cập tài khoản</p>
-        </div>
-        <div class="dropdown-body">
-            <a class="dropdown-item d-flex align-items-center" routerLink="/info">
-                <i class="bi bi-person-circle me-2"></i>
-                <span>Thông tin thẻ</span>
-            </a>
-            <a class="dropdown-item d-flex align-items-center" routerLink="/info">
-                <i class="bi bi-gear me-2"></i>
-                <span>Cài đặt</span>
-            </a>
-        </div>
-        <div class="dropdown-footer">
-            <a routerLink="/login" class="btn btn-primary w-100 mb-2">Đăng nhập</a>
-            <a routerLink="/register" class="btn btn-outline-primary w-100">Đăng ký làm thẻ</a>
-        </div>
+<div class="dropdown account-dropdown" [class.show]="dropdownOpen">
+  <button class="header-action-btn" (click)="toggleDropdown()">
+    <i class="bi bi-person"></i>
+  </button>
+
+  <div class="dropdown-menu" [class.show]="dropdownOpen">
+    <div class="dropdown-header">
+      <h6>Chào mừng đến <span class="sitename">Nicebrary</span></h6>
+      <p class="mb-0">Truy cập tài khoản</p>
     </div>
+
+    <div class="dropdown-body">
+      <a class="dropdown-item d-flex align-items-center" routerLink="/info" (click)="closeDropdown()">
+        <i class="bi bi-person-circle me-2"></i>
+        <span>Thông tin thẻ</span>
+      </a>
+      <a class="dropdown-item d-flex align-items-center" routerLink="/info" (click)="closeDropdown()">
+        <i class="bi bi-gear me-2"></i>
+        <span>Cài đặt</span>
+      </a>
+    </div>
+
+    <div class="dropdown-footer">
+      <a routerLink="/login" class="btn btn-primary w-100 mb-2" (click)="closeDropdown()">Đăng nhập</a>
+      <a routerLink="/register" class="btn btn-outline-primary w-100" (click)="closeDropdown()">Đăng ký làm thẻ</a>
+    </div>
+  </div>
 </div>

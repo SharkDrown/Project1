@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-find',
+  standalone: true,
   imports: [],
   templateUrl: './find.component.html',
-  styleUrl: './find.component.css'
+  styleUrls: ['./find.component.css']
 })
 export class FindComponent {
 

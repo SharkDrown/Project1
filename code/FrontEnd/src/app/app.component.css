@@ -1,0 +1,52 @@
+/* Scroll Top Button Styles */
+.scroll-top {
+  position: fixed;
+  right: 2rem;
+  bottom: -100px; /* Ẩn ban đầu dưới màn hình */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bs-primary); /* Dùng Bootstrap primary color, hoặc #007bff */
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out; /* Smooth animation */
+  z-index: 1000; /* Đảm bảo nổi lên trên */
+  opacity: 0; /* Ẩn ban đầu */
+  visibility: hidden;
+}
+
+.scroll-top.show {
+  bottom: 2rem; /* Hiện lên khi có class 'show' */
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-top:hover {
+  background: var(--bs-primary); /* Darker on hover nếu cần */
+  transform: translateY(-2px); /* Nhẹ nhàng nâng lên */
+}
+
+/* Preloader styles (thêm nếu chưa có trong global CSS) */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease-out;
+}
+
+#preloader.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Đảm bảo body có smooth scroll */
+body {
+  scroll-behavior: smooth;
+}
