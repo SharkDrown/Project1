@@ -91,6 +91,8 @@ src/environments/environment.*.ts
 # Compiled output
 *.js
 !src/**/*.js
+!frontend/src/assets/vendor/**/*.js
+!frontend/src/assets/js/**/*.js
 *.js.map
 
 # Package managers lock files
