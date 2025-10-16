@@ -27,5 +27,7 @@ public partial class Sach
 
     public virtual TheLoai? MaTlNavigation { get; set; }
 
-    public virtual ICollection<TacGium> MaTgs { get; set; } = new List<TacGium>();
+    public virtual ICollection<TacGium> TacGia { get; set; } = new List<TacGium>();
+
+    
 }

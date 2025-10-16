@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AccountMenuComponentComponent } from "../account-menu-component/account-menu-component.component"
-import { FindComponent } from "../find/find.component";
+//import { FindComponent } from "../find/find.component";
 import { NavMenuComponent } from "../nav-menu/nav-menu.component";
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
@@ -9,7 +9,7 @@ declare var Swiper: any;
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [AccountMenuComponentComponent, FindComponent, NavMenuComponent, RouterModule, FormsModule],
+  imports: [AccountMenuComponentComponent, NavMenuComponent, RouterModule, FormsModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })

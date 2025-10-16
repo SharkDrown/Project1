@@ -9,5 +9,7 @@ public partial class TacGium
 
     public string TenTg { get; set; } = null!;
 
-    public virtual ICollection<Sach> MaSaches { get; set; } = new List<Sach>();
+    public virtual ICollection<Sach> MaSaches { get; set; }
+
+    
 }

@@ -33,7 +33,7 @@ namespace BackEnd.Controllers
             var taiKhoan = new TaiKhoan
             {
                 TenDangNhap = dto.TenDangNhap,
-                MatKhau = dto.MatKhau, 
+                MatKhau = dto.MatKhau,
                 VaiTro = "DocGia",
                 TrangThai = true
             };
