@@ -7,6 +7,9 @@
 */
 
 @charset "UTF-8";
+html {
+  overflow-y: scroll;
+}
 
 /*--------------------------------------------------------------
 # Font & Color Variables

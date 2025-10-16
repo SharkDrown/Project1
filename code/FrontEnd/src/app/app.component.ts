@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
+import AOS from 'aos';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +18,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    AOS.init({
+      duration: 1000, // thời gian chuyển động
+      easing: 'ease-in-out', // loại chuyển động
+      
+    });
     // Ẩn preloader sau khi app init
     setTimeout(() => {
       const preloader = document.getElementById('preloader');

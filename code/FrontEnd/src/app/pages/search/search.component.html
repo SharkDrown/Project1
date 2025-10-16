@@ -119,7 +119,7 @@
                 <div class="spinner-border text-primary" role="status">
                   <span class="visually-hidden">Đang tải...</span>
                 </div>
-                <p class="mt-2">Đang load sách...</p>
+                <p class="mt-2">Đang tải...</p>
               </div>
 
               <!-- No Results (khi không có data và đã search) -->
@@ -146,16 +146,26 @@
                     </div>
                   </div>
                   <div class="product-details">
+                  <!-- Tên sách -->
                     <div class="product-category">{{ sach.tuaSach }}</div>
-                    <h4 class="product-title"><a routerLink="/sach/{{ sach.maSach }}">{{ sach.nhaXb || 'Không có nhà XB' }}</a></h4>
+
+                  <!-- Tác giả (thay vì Nhà xuất bản) -->
+                    <h4 class="product-title">
+                      <a routerLink="/sach/{{ sach.maSach }}">
+                        {{ sach.tenTg || 'Không có tác giả' }}
+                      </a>
+                    </h4>
+
+                  <!-- Thông tin phụ -->
                     <div class="product-meta">
                       <div class="product-price">Số lượng: {{ sach.soLuong }}</div>
                       <div class="product-rating">
-                        <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
                         4.8 <span>(42)</span>
                       </div>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
