@@ -1,7 +1,7 @@
 export interface Sach {
   maSach: number;
   tuaSach: string;
-  nhaXb?: string; 
+  tenTg: string; 
   soLuong?: number;
  
 }

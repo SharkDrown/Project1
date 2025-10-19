@@ -9,7 +9,7 @@ import { PagedResult } from '../models/pagedresult.model';
   providedIn: 'root'
 })
 export class SachService {
-  private apiUrl = 'https://localhost:7299/api/quanlythuvien'; // ✅ URL BE
+  private apiUrl = 'https://localhost:7299/api/quanlythuvien'; 
 
   constructor(private http: HttpClient) {}
 
@@ -19,7 +19,7 @@ export class SachService {
     page: number = 1,
     size: number = 9,
     theLoaiIds: string[] = []
-  ): Observable<PagedResult<Sach>> {
+  ): Observable<PagedResult<Sach>> {   // 👈 sửa kiểu trả về
     let params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
@@ -38,7 +38,7 @@ export class SachService {
   }
 
   // 🔹 Lấy thông tin 1 sách cụ thể
-  getSachById(id: number): Observable<Sach> {
+  getSachById(id: number): Observable<Sach> {   
     return this.http.get<Sach>(`${this.apiUrl}/${id}`);
   }
 

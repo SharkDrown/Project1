@@ -16,7 +16,7 @@ namespace BackEnd.Controllers
             _context = context;
         }
 
-        [HttpGet("theloai/count")] // Route: api/quanlythuvien/theloai/count
+        [HttpGet("theloai/count")] 
         public async Task<ActionResult<IEnumerable<TheLoaiWithCount>>> GetTheLoaiWithCounts()
         {
             var result = await _context.TheLoais
@@ -24,7 +24,7 @@ namespace BackEnd.Controllers
                 {
                     MaTl = t.MaTl,
                     TenTl = t.TenTl,
-                    Count = _context.Saches.Count(s => s.MaTl == t.MaTl) // Đếm sách theo MaTL
+                    Count = _context.Saches.Count(s => s.MaTl == t.MaTl) 
                 })
                 .OrderBy(t => t.TenTl)
                 .ToListAsync();
@@ -34,36 +34,39 @@ namespace BackEnd.Controllers
 
         [HttpGet]
         public async Task<ActionResult<PagedResult<SachDto>>> GetSaches(
-    string? query = null,
-    int page = 1,
-    int size = 9,
-    [FromQuery] List<string>? theLoaiIds = null)
+      string? query = null,
+      int page = 1,
+      int size = 9,
+      [FromQuery] List<string>? theLoaiIds = null)
         {
             try
             {
-                // B1: Chuẩn bị query cơ sở
-                var saches = _context.Saches.AsQueryable();
+                
+                var saches = _context.Saches
+                 .Include(s => s.TacGia) 
+                 .AsQueryable();
 
-                // B2: Lọc theo từ khóa (tên sách hoặc nhà xuất bản)
+                
                 if (!string.IsNullOrEmpty(query))
                 {
                     string keyword = query.Trim().ToLower();
                     saches = saches.Where(s =>
                         EF.Functions.Like(s.TuaSach.ToLower(), $"%{keyword}%") ||
-                        EF.Functions.Like(s.NhaXb.ToLower(), $"%{keyword}%"));
+                        s.TacGia.Any(t => EF.Functions.Like(t.TenTg.ToLower(), $"%{keyword}%")));
                 }
 
-                // B3: Lọc theo thể loại (nếu có)
+               
                 if (theLoaiIds != null && theLoaiIds.Any())
                 {
                     saches = saches.Where(s => theLoaiIds.Contains(s.MaTl));
                 }
 
-                // B4: Đếm tổng số kết quả
+                
                 var totalCount = await saches.CountAsync();
 
-                // B5: Phân trang
+               
                 var result = await saches
+                    .Include(s => s.TacGia) 
                     .OrderBy(s => s.TuaSach)
                     .Skip((page - 1) * size)
                     .Take(size)
@@ -71,10 +74,13 @@ namespace BackEnd.Controllers
                     {
                         MaSach = s.MaSach,
                         TuaSach = s.TuaSach,
-                        NhaXb = s.NhaXb ?? "Không có nhà XB",
+                        TenTg = s.TacGia.Any()
+                            ? string.Join(", ", s.TacGia.Select(t => t.TenTg))
+                            : "Không có tác giả",
                         SoLuong = s.SoLuong
                     })
                     .ToListAsync();
+
 
                 // B6: Trả kết quả về FE
                 return Ok(new PagedResult<SachDto>
@@ -95,5 +101,6 @@ namespace BackEnd.Controllers
                 });
             }
         }
+
     }
 }
