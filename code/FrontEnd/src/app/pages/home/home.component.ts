@@ -1,3 +1,7 @@
+import { RecommendedBooksComponent } from "./recommended-books/recommended-books.component";
+import { FeatureBooksComponent } from "./feature-books/feature-books.component";
+import { LatestBooksComponent } from "./latest-books/latest-books.component";
+import { MostBorrowedBooksComponent } from "./most-borrowed-books/most-borrowed-books.component";
 import { Component, OnInit, AfterViewInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule} from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -5,7 +9,7 @@ import AOS from 'aos';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [RecommendedBooksComponent, FeatureBooksComponent, LatestBooksComponent, MostBorrowedBooksComponent,CommonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
