@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { Injectable } from '@angular/core';
-import { CommonModule } from '@angular/common';   
-import { FormsModule } from '@angular/forms';     
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';   // 👈 thêm import
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  standalone: true,                              
-  imports: [CommonModule, FormsModule],          
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -20,7 +21,6 @@ export class RegisterComponent {
     DiaChi: '',
     Email: '',
     SoDT: '',
-    VaiTro: 'DocGia',
     TermsAccepted: false
   };
 
@@ -28,7 +28,7 @@ export class RegisterComponent {
   message: string = '';
   loading: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {} // 👈 inject Router
 
   onSubmit() {
     if (this.model.MatKhau !== this.confirmPassword) {
@@ -43,6 +43,10 @@ export class RegisterComponent {
       next: (res) => {
         this.loading = false;
         this.message = res.message || 'Đăng ký thành công!';
+        
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 1000);
       },
       error: (err) => {
         this.loading = false;

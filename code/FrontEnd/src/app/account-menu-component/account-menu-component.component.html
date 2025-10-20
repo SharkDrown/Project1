@@ -14,15 +14,19 @@
         <i class="bi bi-person-circle me-2"></i>
         <span>Thông tin thẻ</span>
       </a>
-      <a class="dropdown-item d-flex align-items-center" routerLink="/info" (click)="closeDropdown()">
+      <!-- <a class="dropdown-item d-flex align-items-center" routerLink="/info/setting" (click)="closeDropdown()">
         <i class="bi bi-gear me-2"></i>
         <span>Cài đặt</span>
-      </a>
+      </a> -->
     </div>
 
     <div class="dropdown-footer">
-      <a routerLink="/login" class="btn btn-primary w-100 mb-2" (click)="closeDropdown()">Đăng nhập</a>
-      <a routerLink="/register" class="btn btn-outline-primary w-100" (click)="closeDropdown()">Đăng ký làm thẻ</a>
+      <!-- Nếu chưa login -->
+      <a *ngIf="!isLoggedIn()" routerLink="/login" class="btn btn-primary w-100 mb-2" (click)="closeDropdown()">Đăng nhập</a>
+      <a *ngIf="!isLoggedIn()" routerLink="/register" class="btn btn-outline-primary w-100" (click)="closeDropdown()">Đăng ký làm thẻ</a>
+
+      <!-- Nếu đã login -->
+      <a *ngIf="isLoggedIn()" (click)="onLogout()" class="btn btn-danger w-100">Đăng xuất</a>
     </div>
   </div>
 </div>
