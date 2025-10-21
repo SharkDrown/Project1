@@ -4,8 +4,8 @@ import { AppComponent } from './app/app.component';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import AOS from 'aos';
 
-import { provideRouter } from '@angular/router'; //
-import { routes } from './app/app.routes'; //
+// import { provideRouter } from '@angular/router'; //
+// import { routes } from './app/app.routes'; //
 
 bootstrapApplication(AppComponent, appConfig)
   .then(() => {
