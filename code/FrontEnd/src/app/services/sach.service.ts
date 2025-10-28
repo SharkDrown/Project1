@@ -19,7 +19,7 @@ export class SachService {
     page: number = 1,
     size: number = 9,
     theLoaiIds: string[] = []
-  ): Observable<PagedResult<Sach>> {   // 👈 sửa kiểu trả về
+  ): Observable<PagedResult<Sach>> {  
     let params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
@@ -37,12 +37,15 @@ export class SachService {
     return this.http.get<PagedResult<Sach>>(this.apiUrl, { params });
   }
 
-  // 🔹 Lấy thông tin 1 sách cụ thể
-  getSachById(id: number): Observable<Sach> {   
-    return this.http.get<Sach>(`${this.apiUrl}/${id}`);
-  }
+  // Lấy thông tin 1 sách cụ thể
+  getSachById(id: number): Observable<Sach> {
+  return this.http.get<Sach>(`${this.apiUrl}/${id}`);
+}
 
-  // 📚 Lấy danh sách thể loại + số lượng sách
+
+
+
+  //  Lấy danh sách thể loại + số lượng sách
   getTheLoaiWithCounts(): Observable<TheLoaiWithCount[]> {
     return this.http.get<TheLoaiWithCount[]>(`${this.apiUrl}/theloai/count`);
   }

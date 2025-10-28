@@ -1,0 +1,116 @@
+/* Ẩn mũi tên tăng/giảm mặc định trên Chrome, Edge, Safari */
+.no-arrow::-webkit-inner-spin-button,
+.no-arrow::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Ẩn trên Firefox */
+.no-arrow {
+  -moz-appearance: textfield;
+}
+/* Form bình luận */
+
+.write-review-form {
+  border-top: 1px solid #ddd;
+  padding-top: 1.2rem;
+}
+
+/* Ô nhập bình luận */
+.write-review-form textarea {
+  resize: none;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 12px 14px;
+  font-size: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Nhóm nút bấm */
+.write-review-form .button-group {
+  margin-top: 12px;
+  display: flex;
+  gap: 16px; /* khoảng cách giữa 2 nút */
+}
+
+/* Nút chung */
+.write-review-form button {
+  border-radius: 8px;
+  padding: 8px 20px;  /* làm nút rộng hơn */
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+/* Nút gửi */
+.write-review-form .btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.write-review-form .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Nút hủy */
+.write-review-form .btn-outline-secondary {
+  border: 1px solid #6c757d;
+  color: #6c757d;
+}
+
+.write-review-form .btn-outline-secondary:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+/*Css cho avatar hiển thị bình luận*/
+.user-avatar {
+  position: relative;
+  width: 55px;
+  height: 55px;
+  flex-shrink: 0;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.status-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #0d6efd;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+.comment-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+/* Tạo khoảng cách giữa form nhập và danh sách bình luận */
+.customer-reviews-list {
+  margin-top: 2rem; /* khoảng cách trên form nhập */
+}
+
+/* Tạo khoảng cách giữa từng bình luận */
+.review-card {
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+/* Nếu muốn tách rõ ràng hơn, có thể thêm khoảng cách dưới form nhập */
+.write-review-form {
+  margin-bottom: 2rem;
+}

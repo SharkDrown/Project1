@@ -15,7 +15,7 @@ public partial class DanhGiaSach
 
     public DateOnly? NgayDg { get; set; }
 
-    public virtual DocGium MaDgNavigation { get; set; } = null!;
+    public virtual DocGium? MaDgNavigation { get; set; }
 
-    public virtual Sach MaSachNavigation { get; set; } = null!;
+    public virtual Sach? MaSachNavigation { get; set; }
 }

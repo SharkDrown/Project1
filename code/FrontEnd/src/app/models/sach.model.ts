@@ -3,5 +3,5 @@ export interface Sach {
   tuaSach: string;
   tenTg: string; 
   soLuong?: number;
- 
+  gioiThieu?: string;
 }

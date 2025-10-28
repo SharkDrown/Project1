@@ -47,7 +47,7 @@
   </button>
 </div>
 
-<!-- 🔹 Khu vực giới thiệu 3 phần (dưới slide) -->
+<!-- Các item tròn (dưới slide) -->
 <div class="container text-center my-5" data-aos="fade-up">
   <div class="row justify-content-center">
     <!-- Cột 1 -->
@@ -80,18 +80,137 @@
 </div>
 <!--Tin tức -->
 <!-- Section Title -->
- <section id="best-sellers" class="best-sellers section">
+ <section id="news" class="news section">
   <div class="container section-title" data-aos="fade-up">
     <h2>Tin tức</h2>
   </div>
+    <div class="container" data-aos="fade-up" data-aos-delay="300">
+    <div class="row g-3 news-grid">
+      <!-- Tin nổi bật bên trái -->
+      <div class="col-lg-6 col-md-12">
+        <div class="news-item featured" *ngIf="newsList.length > 0">
+          <img [src]="newsList[0].image" alt="{{ newsList[0].title }}">
+          <div class="news-overlay">
+            <h4><a [href]="newsList[0].link" target="_blank">{{ newsList[0].title }}</a></h4>
+            <p>{{ newsList[0].source }} • {{ newsList[0].time }}</p>
+          </div>
+        </div>
+      </div>
 
-   <rssapp-imageboard id="aNkuaI04ild1I2BD" data-aos="fade-up" data-aos-delay="300"></rssapp-imageboard>
+      <!-- 4 tin nhỏ bên phải -->
+      <div class="col-lg-6 col-md-12">
+        <div class="row g-3">
+          <div class="col-6" *ngFor="let news of newsList.slice(1, 5)">
+            <div class="news-item small">
+              <img [src]="news.image" alt="{{ news.title }}">
+              <div class="news-overlay">
+                <h5><a [href]="news.link" target="_blank">{{ news.title }}</a></h5>
+                <p>{{ news.source }} • {{ news.time }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   <!-- <rssapp-imageboard id="aNkuaI04ild1I2BD" data-aos="fade-up" data-aos-delay="300"></rssapp-imageboard> -->
+</section>
+<!-- End Section Title -->
+<!-- Sách -->
+ <section id="books" class="books section">
+  <div class="container section-title" data-aos="fade-up" data-aos-delay="300">
+    <h2>Sách</h2>
+  </div>
+
+  <main class="main">
+    <section id="call-to-action" class="call-to-action section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row featured-products-row" data-aos="fade-up" data-aos-delay="500">
+          <!-- Lặp qua danh sách sách -->
+          <div *ngFor="let sach of pagedSaches" class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="product-showcase">
+              <div class="product-image">
+                <img [src]="getImageUrl(sach.maSach, 'jpg')" alt="{{ sach.tuaSach }}" class="img-fluid">
+                <!-- Hiệu ứng hover + icon mắt -->
+                <div class="product-overlay">
+                  <div class="product-actions">
+                    <a class="action-btn" [routerLink]="['/book-detail', sach.maSach]" data-bs-toggle="tooltip" title="Xem chi tiết">
+                      <i class="bi bi-eye"></i>
+                    </a>
+
+                  </div>
+                </div>
+              </div>
+              
+              <div class="product-details">
+                <h6>{{ sach.tuaSach }}</h6>
+                <div class="price-section">
+                  <span class="sale-price">{{ sach.tenTg }}</span>
+                </div>
+                  <div class="book-quantity text-muted" style="font-size: 0.9rem;">
+                         Số lượng: {{ sach.soLuong }}
+                  </div>
+                <div class="rating-stars">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-half"></i>
+                  <span class="rating-count">32</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Product Showcase -->
+
+          <!-- Nếu không có sách -->
+          <div *ngIf="pagedSaches.length === 0" class="text-center py-5">
+            <p>Không có sách nào để hiển thị.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+   <section id="category-pagination" class="category-pagination section">
+  <div class="container">
+    <nav class="d-flex justify-content-center" aria-label="Page navigation">
+      <ul>
+        <li>
+          <a href="#" (click)="prevPage(); $event.preventDefault()" aria-label="Previous page">
+            <i class="bi bi-arrow-left"></i>
+            <span class="d-none d-sm-inline">Previous</span>
+          </a>
+        </li>
+
+        <li *ngFor="let p of visiblePages">
+          <ng-container *ngIf="p !== '...'; else ellipsis">
+            <a href="#" [class.active]="p === currentPage"
+               (click)="onPageClick(p, $event)">
+              {{ p }}
+            </a>
+          </ng-container>
+          <ng-template #ellipsis>
+            <span class="ellipsis">...</span>
+          </ng-template>
+        </li>
+
+        <li>
+          <a href="#" (click)="nextPage(); $event.preventDefault()" aria-label="Next page">
+            <span class="d-none d-sm-inline">Next</span>
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </section>
 
 
 
+  </main>
+</section>
 
-  <!-- End Section Title -->
   
 
 

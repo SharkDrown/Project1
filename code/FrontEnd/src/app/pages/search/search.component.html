@@ -136,12 +136,10 @@
                     <img [src]="getImageUrl(sach.maSach, 'jpg')" class="main-image img-fluid" [alt]="sach.tuaSach">
                     <div class="product-overlay">
                       <div class="product-actions">
-                        <button type="button" class="action-btn" data-bs-toggle="tooltip" title="Quick View">
-                          <i class="bi bi-eye"></i>
-                        </button>
-                        <button type="button" class="action-btn" data-bs-toggle="tooltip" title="Add to Cart">
-                          <i class="bi bi-cart-plus"></i>
-                        </button>
+                         <a class="action-btn" [routerLink]="['/book-detail', sach.maSach]" data-bs-toggle="tooltip" title="Xem chi tiết">
+                           <i class="bi bi-eye"></i>
+                         </a>
+                      
                       </div>
                     </div>
                   </div>

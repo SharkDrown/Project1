@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
+ 
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,7 @@ export class LoginComponent {
 
   onLogin() {
     if (!this.username || !this.password) {
-      this.errorMessage = '⚠️ Vui lòng nhập đầy đủ thông tin';
+      this.errorMessage = 'Vui lòng nhập đầy đủ thông tin';
       return;
     }
 
@@ -30,21 +32,31 @@ export class LoginComponent {
       MatKhau: this.password
     }).subscribe({
       next: (res: any) => {
-        console.log('✅ Login success:', res);
+        console.log(' Login success:', res);
 
-        // ✅ Lưu access_token và refresh_token
+        // Lưu access_token và refresh_token
         if (res.access_token) {
           localStorage.setItem('access_token', res.access_token);
+           //  Giải mã token để lấy MaTk, VaiTro
+          const decodedToken: any = jwtDecode(res.access_token);
+          console.log('Decoded token:', decodedToken);
+
+          const maTK = decodedToken?.sub || decodedToken?.MaTk;
+          if (maTK) {
+            localStorage.setItem('maTK', maTK);
+          }
         }
+       
+       
         if (res.refresh_token) {
           localStorage.setItem('refresh_token', res.refresh_token);
         }
-
+        
         // ✅ Chuyển hướng sang trang chủ (hoặc trang lịch sử, đặt trước...)
         this.router.navigate(['/']);
       },
       error: (err) => {
-        console.error('❌ Login failed', err);
+        console.error('Login failed', err);
         this.errorMessage = 'Tên đăng nhập hoặc mật khẩu không đúng';
       }
     });
