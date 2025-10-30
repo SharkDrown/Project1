@@ -8,6 +8,9 @@ import { SachService } from '../../services/sach.service';
 import { Sach } from '../../models/sach.model';
 import { TheLoaiWithCount } from '../../models/theloaiwithcount.model';
 import { PagedResult } from '../../models/pagedresult.model';
+import { DanhGiaSachService, DanhGia } from '../../services/danhgiasach.service';
+
+
 
 declare var AOS: any;
 declare var GLightbox: any;
@@ -35,13 +38,18 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   pageSize = 9;
   totalPages = 0;
   totalCount = 0;
+  // Them vao
+  visiblePages: (number | string)[] = [];
+  averageRatings: { [maSach: number]: number } = {};
+  reviewCounts: { [maSach: number]: number } = {};
+
 
   loading = false;
   error: string | null = null;
   private destroy$ = new Subject<void>();
   private beBaseUrl = 'https://localhost:7299';
 
-  constructor(private sachService: SachService) {}
+  constructor(private sachService: SachService, private danhGiaSachService: DanhGiaSachService) {}
 
   ngOnInit() {
     AOS.init({ duration: 1000, once: true });
@@ -52,7 +60,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // Load trang đầu tiên (hiển thị toàn bộ sách)
     this.loadPage(1);
-
+    
     // Lắng nghe gõ từ khóa (tự động tìm sau 300ms)
     this.searchControl.valueChanges.pipe(
       startWith(''),
@@ -63,6 +71,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
         return this.loadPagedResult(query || '', this.currentPage);
       })
     ).subscribe();
+    
   }
 
   /** Gọi BE lấy dữ liệu sách (tên, phân trang, thể loại) */
@@ -77,6 +86,28 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
         this.totalPages = pagedResult.totalPages;
         this.currentPage = page;
         this.loading = false;
+        this.updateVisiblePages();
+        this.pagedSaches.forEach((sach) => {
+          this.danhGiaSachService.getDanhGiaTheoSach(sach.maSach).subscribe({
+            next: (danhGias: DanhGia[]) => {
+              if (danhGias && danhGias.length > 0) {
+                const total = danhGias.reduce((sum, dg) => sum + dg.soSao, 0);
+                const avg = total / danhGias.length;
+                this.averageRatings[sach.maSach] = parseFloat(avg.toFixed(1));
+                this.reviewCounts[sach.maSach] = danhGias.length;
+              } else {
+                this.averageRatings[sach.maSach] = 0;
+                this.reviewCounts[sach.maSach] = 0;
+              }
+            },
+            error: (err: any) => {
+              console.error('Lỗi tải đánh giá cho sách', sach.maSach, err);
+              this.averageRatings[sach.maSach] = 0;
+              this.reviewCounts[sach.maSach] = 0;
+            }
+          });
+        });
+
         return of(pagedResult);
       }),
       catchError((err) => {
@@ -87,12 +118,58 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
       })
     );
   }
-
   
-  changePage(page: number) {
+  //Them vao
+   prevPage(): void {
+    if (this.currentPage > 1) {
+      this.changePage(this.currentPage - 1);
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.changePage(this.currentPage + 1);
+    }
+  }
+
+  onPageClick(p: number | string, event: Event): void {
+    event.preventDefault();
+    if (typeof p === 'number') {
+      this.changePage(p);
+    }
+  }
+  // Them vao
+  changePage(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
       const query = this.searchControl.value || '';
       this.loadPagedResult(query, page, this.selectedTheLoaiIds).subscribe();
+    }
+  }
+  // Them vao
+  private updateVisiblePages(): void {
+    const total = this.totalPages;
+    const current = this.currentPage;
+
+    if (total <= 6) {
+      this.visiblePages = Array.from({ length: total }, (_, i) => i + 1);
+      return;
+    }
+
+    const firstBlock = [1, 2, 3];
+    const lastBlock = [total - 2, total - 1, total];
+
+    if (current <= 3) {
+      this.visiblePages = [...firstBlock, '...', ...lastBlock];
+    } else if (current >= total - 2) {
+      this.visiblePages = [...firstBlock, '...', ...lastBlock];
+    } else {
+      this.visiblePages = [
+        ...firstBlock,
+      
+        current,
+       
+        ...lastBlock
+      ];
     }
   }
 
@@ -184,4 +261,6 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
+  
+
 }

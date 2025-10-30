@@ -6,10 +6,10 @@ import { Component, OnInit, AfterViewInit, CUSTOM_ELEMENTS_SCHEMA } from '@angul
 import { CommonModule} from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import AOS from 'aos';
 import { SachService } from '../../services/sach.service';
 import { Sach } from '../../models/sach.model';
 import { PagedResult } from '../../models/pagedresult.model';
+import { DanhGiaSachService, DanhGia } from '../../services/danhgiasach.service';
 
 @Component({
   selector: 'app-home',
@@ -28,10 +28,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   totalCount = 0;
   totalPagesArray: number[] = [];
   visiblePages: (number | string)[] = [];
+  averageRatings: { [maSach: number]: number } = {};
   loading = false;
   private beBaseUrl = 'https://localhost:7299';
   newsList: any[] = [];
-  constructor(private http: HttpClient, private sachService: SachService) {}
+  constructor(private http: HttpClient, private sachService: SachService, private danhGiaSachService: DanhGiaSachService) {}
 
   ngOnInit() {
     // Nếu sau này muốn dùng lại RSS XML thì bật lại phần loadRSS()
@@ -68,6 +69,28 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.currentPage = page;
         this.loading = false;
         this.updateVisiblePages();
+        // Them vao
+         this.pagedSaches.forEach((sach) => {
+          this.danhGiaSachService.getDanhGiaTheoSach(sach.maSach).subscribe({
+            next: (danhGias: DanhGia[]) => {
+              if (danhGias && danhGias.length > 0) {
+                const total = danhGias.reduce((sum, dg) => sum + dg.soSao, 0);
+                const avg = total / danhGias.length;
+                this.averageRatings[sach.maSach] = parseFloat(avg.toFixed(1));
+               
+              } else {
+                this.averageRatings[sach.maSach] = 0;
+                
+              }
+            },
+            error: (err: any) => {
+              console.error('Lỗi tải đánh giá cho sách', sach.maSach, err);
+              this.averageRatings[sach.maSach] = 0;
+             
+            }
+          });
+        });
+        // Them vao
       },
       error: (err) => {
         console.error('Lỗi khi tải sách:', err);

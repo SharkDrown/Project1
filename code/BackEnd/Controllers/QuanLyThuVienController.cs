@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using BackEnd.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
@@ -132,12 +134,24 @@ namespace BackEnd.Controllers
         }
 
         // 📝 Thêm mới 1 đánh giá sách
+        [Authorize]
         [HttpPost("danhgia")]
         public async Task<IActionResult> PostDanhGia([FromBody] DanhGiaSach danhGia)
         {
-            Console.WriteLine("Dữ liệu nhận được:");
-            Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(danhGia));
-            if (danhGia == null || danhGia.MaSach <= 0 || danhGia.MaDg <= 0)
+            // Lấy MaDg từ token
+            
+            var maDgClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                             ?? User.FindFirst("sub")?.Value;
+
+            if (!int.TryParse(maDgClaim, out int maDg))
+            {
+                return Unauthorized(new { message = "Không thể xác định người dùng từ token." });
+            }
+
+            danhGia.MaDg = maDg;
+            //Console.WriteLine("Dữ liệu nhận được:");
+            //Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(danhGia));
+            if (danhGia == null || danhGia.MaSach <= 0)
             {
                 return BadRequest(new { message = "Dữ liệu đánh giá không hợp lệ." });
             }
@@ -163,24 +177,54 @@ namespace BackEnd.Controllers
             }
 
             await _context.SaveChangesAsync();
-
-            return Ok(new { message = "Đánh giá thành công!" });
+            var user = await _context.DocGia.FirstOrDefaultAsync(u => u.MaDg == danhGia.MaDg);
+            return Ok(
+                new { message = "Đánh giá thành công!",
+                    data = new
+                    {
+                        maSach = danhGia.MaSach,
+                        hoTen = user?.HoTen ?? "Ẩn danh",
+                        soSao = danhGia.SoSao,
+                        binhLuan = danhGia.BinhLuan,
+                        ngayDg = danhGia.NgayDg
+                    }
+                });
         }
+        [Authorize]
         [HttpDelete("danhgia/{maSach}/{maDg}")]
         public async Task<IActionResult> DeleteDanhGia(int maSach, int maDg)
         {
-            var review = await _context.DanhGiaSaches
-                .FirstOrDefaultAsync(d => d.MaSach == maSach && d.MaDg == maDg);
+           
 
-            if (review == null)
+           //Thử lấy ID người dùng từ token 
+            var maDgClaim =
+                User.FindFirst("sub")?.Value ??                                      // thường là ID user
+                User.FindFirst("nameid")?.Value ??
+                User.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value ??
+                User.FindFirst("unique_name")?.Value;                                // fallback (tên đăng nhập)
+
+            if (!int.TryParse(maDgClaim, out int currentUserMaDg))
             {
-                return NotFound(new { message = "Không tìm thấy đánh giá." });
+                return Unauthorized(new { message = "Không thể xác định người dùng từ token." });
             }
 
-            _context.DanhGiaSaches.Remove(review);
+            
+
+            // Tìm bình luận theo mã sách và mã người dùng
+            var danhGia = await _context.DanhGiaSaches
+                .FirstOrDefaultAsync(d => d.MaSach == maSach && d.MaDg == maDg);
+
+            if (danhGia == null)
+                return NotFound(new { message = "Không tìm thấy bình luận." });
+
+            // Chặn người khác xóa bình luận của người khác
+            if (danhGia.MaDg != currentUserMaDg)
+                return Forbid();
+
+            _context.DanhGiaSaches.Remove(danhGia);
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Đánh giá đã được xóa." });
+            return Ok(new { message = "Đã xóa bình luận thành công!" });
         }
 
     }

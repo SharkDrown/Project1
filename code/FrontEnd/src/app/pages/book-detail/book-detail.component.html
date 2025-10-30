@@ -67,16 +67,21 @@
           <div class="col-lg-5" data-aos="fade-left" data-aos-delay="200">
             <div class="product-details">
               <div class="product-badge-container">
-                <span class="badge-category">Audio Equipment</span>
+                <!-- <span class="badge-category">Audio Equipment</span> -->
                 <div class="rating-group">
                   <div class="stars">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-half"></i>
+                    <ng-container *ngFor="let i of [1,2,3,4,5]">
+                      <i
+                        class="bi"
+                        [ngClass]="{
+                          'bi-star-fill': i <= averageRating,
+                          'bi-star-half': i > averageRating && i - 0.5 <= averageRating,
+                          'bi-star': i-0.5 > averageRating
+                        }"
+                      ></i>
+                    </ng-container>
                   </div>
-                  <span class="review-text">(127 reviews)</span>
+                  <span class="review-text">({{ totalReviews }} đánh giá)</span>
                 </div>
               </div>
 
@@ -152,38 +157,39 @@
 
 
                 <div class="action-buttons">
-                  <button class="btn primary-action">
+                  <!-- <button class="btn primary-action">
                     <i class="bi bi-bag-plus"></i>
                     Mượn sách
-                  </button>
+                  </button> -->
                   <button class="btn secondary-action">
-                    <i class="bi bi-lightning"></i>
-                    Buy Now
+                    <i class="bi bi-book"></i>
+                    Đặt sách
                   </button>
-                  <button class="btn icon-action" title="Add to Wishlist">
+                  <!-- <button class="btn icon-action" title="Add to Wishlist">
                     <i class="bi bi-heart"></i>
-                  </button>
+                  </button> -->
                 </div>
               </div>
 
               <!-- Benefits List -->
               <div class="benefits-list">
                 <div class="benefit-item">
-                  <i class="bi bi-truck"></i>
-                  <span>Free delivery on orders over $75</span>
+                 <i class="bi bi-book"></i>
+                  <span>Đối tượng mượn là người có thẻ đa năng, sinh viên, giảng viên</span>
                 </div>
                 <div class="benefit-item">
-                  <i class="bi bi-arrow-clockwise"></i>
-                  <span>45-day hassle-free returns</span>
+                  <i class="bi bi-book"></i>
+                  <span>Kiểm tra kỹ tình trạng tài liệu và báo cáo cho cán bộ thư viện nếu tài liệu bị rách, bị bẩn… trước khi mượn </span>
                 </div>
                 <div class="benefit-item">
-                  <i class="bi bi-shield-check"></i>
-                  <span>3-year manufacturer warranty</span>
+                  <i class="bi bi-book"></i>
+                  <span>Trường hợp hết thời hạn mượn mà 
+                    vẫn cần mượn tài liệu để sử dụng thì bạn đọc đến làm thủ tục gia hạn; trường hợp trả sách quá thời hạn, làm mất sách bạn đọc phải tuân thủ quy định xử lý mượn trả của Nhà trường </span>
                 </div>
-                <div class="benefit-item">
+                <!-- <div class="benefit-item">
                   <i class="bi bi-headset"></i>
                   <span>24/7 customer support available</span>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -202,7 +208,7 @@
                       [class.active]="isReviewActive"
                       (click)="toggleReview()"
                       type="button">
-                      Reviews (127)
+                      Đánh giá ({{ totalReviews }})
                   </button>
               </nav>
 
@@ -375,69 +381,56 @@
                   <div class="reviews-content">
                     <div class="reviews-header">
                       <div class="rating-overview">
-                        <div class="average-score">
-                          <div class="score-display">4.6</div>
-                          <div class="score-stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-half"></i>
-                          </div>
-                          <div class="total-reviews">127 customer reviews</div>
+                          <div class="average-score">
+                            <div class="score-display">{{ averageRating || 0 }}</div>
+
+                            <div class="score-stars">
+                              <ng-container *ngFor="let i of [1,2,3,4,5]">
+                                <i
+                                  class="bi"
+                                  [ngClass]="{
+                                    'bi-star-fill': i <= averageRating,
+                                    'bi-star-half': i > averageRating && i - 0.5 <= averageRating,
+                                    'bi-star': i-0.5 > averageRating
+                                  }"
+                                ></i>
+                              </ng-container>
+                            </div>
+                           
+
+
+                            <div class="total-reviews"> Có {{ totalReviews }} người đánh giá</div>
                         </div>
 
                         <div class="rating-distribution">
-                          <div class="rating-row">
-                            <span class="stars-label">5★</span>
+                          <div class="rating-row" *ngFor="let star of [5,4,3,2,1]">
+                            <span class="stars-label">{{ star }}★</span>
                             <div class="progress-container">
-                              <div class="progress-fill" style="width: 68%;"></div>
+                              <div
+                                class="progress-fill"
+                                [style.width]="
+                                  totalReviews
+                                    ? (ratingCounts[star - 1] / totalReviews) * 100 + '%'
+                                    : '0%'
+                                "
+                              ></div>
                             </div>
-                            <span class="count-label">86</span>
-                          </div>
-                          <div class="rating-row">
-                            <span class="stars-label">4★</span>
-                            <div class="progress-container">
-                              <div class="progress-fill" style="width: 22%;"></div>
-                            </div>
-                            <span class="count-label">28</span>
-                          </div>
-                          <div class="rating-row">
-                            <span class="stars-label">3★</span>
-                            <div class="progress-container">
-                              <div class="progress-fill" style="width: 6%;"></div>
-                            </div>
-                            <span class="count-label">8</span>
-                          </div>
-                          <div class="rating-row">
-                            <span class="stars-label">2★</span>
-                            <div class="progress-container">
-                              <div class="progress-fill" style="width: 3%;"></div>
-                            </div>
-                            <span class="count-label">4</span>
-                          </div>
-                          <div class="rating-row">
-                            <span class="stars-label">1★</span>
-                            <div class="progress-container">
-                              <div class="progress-fill" style="width: 1%;"></div>
-                            </div>
-                            <span class="count-label">1</span>
+                            <span class="count-label">{{ ratingCounts[star - 1] }}</span>
                           </div>
                         </div>
                       </div>
 
+
+
                       <div class="write-review-cta">
-                        <h4>Share Your Experience</h4>
-                        <p>Help others make informed decisions</p>
+                        <h4>Đánh giá của bạn</h4>
+                        <p>Hãy cho mọi người biết cảm nhận của bạn về tài liệu này</p>
                          <!-- Dãy sao đánh giá -->
                         <div class="rating-stars mb-3">
                           <i *ngFor="let star of stars; let i = index"
                            class="bi"
-                           [ngClass]="{
-                            'bi-star-fill': i < rating,
-                            'bi-star': i >= rating
-                           }"
-                          (click)="setRating(i + 1)"
+                          [ngClass]="i < reviewRating ? 'bi-star-fill' : 'bi-star'"
+                          (click)="reviewRating = i + 1"
                           (mouseenter)="hoverRating(i + 1)"
                           (mouseleave)="hoverRating(0)"
                           style="
@@ -468,7 +461,7 @@
                         <!-- Ô nhập bình luận -->
                         <div class="flex-grow-1 position-relative">
                           <textarea
-                            [(ngModel)]="newReviewText"
+                            [(ngModel)]="reviewText"
                             class="form-control"
                             rows="3"
                             placeholder="Viết bình luận...">
@@ -501,10 +494,13 @@
 
                     <!--Code them vào-->
                     <div class="customer-reviews-list">
-                      <!--Them vao-->
+                      
                       <!-- Danh sách đánh giá -->
-                      <div *ngIf="danhSachDanhGia && danhSachDanhGia.length > 0; else khongCoDanhGia">
-                        <div *ngFor="let dg of danhSachDanhGia; index as idx" class="review-card mb-3">
+                     
+
+
+                      <div *ngIf="pagedReviews && pagedReviews.length > 0; else khongCoDanhGia">
+                        <div *ngFor="let dg of pagedReviews; index as idx" class="review-card mb-3">
                           <div class="reviewer-profile">
                             <div class="user-avatar">
                               <img src="assets/img/person/person-f-3.webp" alt="Profile">
@@ -529,28 +525,60 @@
                           <div class="review-text mt-2">
                             <p>{{ dg.binhLuan }}</p>
                           </div>
-                           <div class="review-actions mt-2">
+
+                          <div class="review-actions mt-2" *ngIf="dg.maDg === currentUserMaDg && isLoggedIn">
                             <button class="btn btn-sm btn-outline-primary me-2" (click)="editReview(idx)">Sửa</button>
                             <button class="btn btn-sm btn-outline-danger" (click)="deleteReview(idx)">Xóa</button>
                           </div>
                         </div>
-                      </div>
 
-                      <ng-template #khongCoDanhGia>
-                        <p class="text-muted fst-italic">Chưa có đánh giá nào cho cuốn sách này.</p>
-                      </ng-template>
-                      <!--Them vao-->
+                          <!--Phân trang-->
+                        <section id="category-pagination" class="category-pagination section" *ngIf="totalPages > 1">
+                          <div class="container">
+                            <nav class="d-flex justify-content-center" aria-label="Page navigation">
+                              <ul>
+                                <li>
+                                  <a href="#" (click)="prevPage(); $event.preventDefault()" aria-label="Previous page">
+                                    <i class="bi bi-arrow-left"></i>
+                                    <span class="d-none d-sm-inline">Previous</span>
+                                  </a>
+                                </li>
+
+                                <li *ngFor="let p of visiblePages">
+                                  <ng-container *ngIf="p !== '...'; else ellipsis">
+                                    <a href="#" [class.active]="p === currentPage"
+                                      (click)="onPageClick(p, $event)">
+                                      {{ p }}
+                                    </a>
+                                  </ng-container>
+                                  <ng-template #ellipsis>
+                                    <span class="ellipsis">...</span>
+                                  </ng-template>
+                                </li>
+
+                                <li>
+                                  <a href="#" (click)="nextPage(); $event.preventDefault()" aria-label="Next page">
+                                    <span class="d-none d-sm-inline">Next</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                  </a>
+                                </li>
+                              </ul>
+                            </nav>
+                          </div>
+                        </section>
+
+
+
+
+                        </div>
+
+                        <ng-template #khongCoDanhGia>
+                          <p class="text-muted fst-italic">Chưa có đánh giá nào cho sách này.</p>
+                        </ng-template>
+
+                          
                       
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      <div class="review-card">
+                      <!-- <div class="review-card">
                         <div class="reviewer-profile">
                           <div class="user-avatar">
                             <img src="assets/img/person/person-f-3.webp" alt="Profile">
@@ -581,15 +609,13 @@
                           <button class="action-btn"><i class="bi bi-hand-thumbs-up"></i> Helpful (12)</button>
                           <button class="action-btn"><i class="bi bi-chat-dots"></i> Reply</button>
                         </div>
-                      </div>
+                      </div> -->
 
                       
 
                       
 
-                      <div class="load-more-section">
-                        <button class="btn load-more-reviews">Show More Reviews</button>
-                      </div>
+                      
                     </div>
                   </div>
                 </div>

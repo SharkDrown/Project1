@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 export interface DanhGia {
-  maDg: number;
+  maDg?: number;
   maSach: number;
   hoTen: string;
   soSao: number;
@@ -24,14 +24,19 @@ export class DanhGiaSachService {
   }
  
   themDanhGia(danhGia: any) {
-    const url = `${this.apiUrl}/danhgia`;
-    return this.http.post(url, danhGia, {
-      headers: { 'Content-Type': 'application/json' }
-    });
-  }
+  const headers = { 'Content-Type': 'application/json' };
+  return this.http.post(`${this.apiUrl}/danhgia`, danhGia, { headers });
+}
    /** Xóa đánh giá */
-  deleteDanhGia(maDg: number, maSach: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/danhgia/${maSach}/${maDg}`);
+  deleteDanhGia(maSach: number, maDg: number) {
+     const token = localStorage.getItem('access_token');
+
+     let headers = new HttpHeaders();
+     if (token) {
+       headers = headers.set('Authorization', `Bearer ${token}`);
+  }
+
+  return this.http.delete(`${this.apiUrl}/danhgia/${maSach}/${maDg}`, { headers });
   }
 
 }
