@@ -38,11 +38,12 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   pageSize = 9;
   totalPages = 0;
   totalCount = 0;
-  // Them vao
+  
   visiblePages: (number | string)[] = [];
   averageRatings: { [maSach: number]: number } = {};
   reviewCounts: { [maSach: number]: number } = {};
-
+  
+  sortBy: string = 'asc'; // mặc định: Từ A -> Z
 
   loading = false;
   error: string | null = null;
@@ -75,11 +76,11 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /** Gọi BE lấy dữ liệu sách (tên, phân trang, thể loại) */
-  private loadPagedResult(query: string, page: number, theLoaiIds: string[] = []): Observable<PagedResult<Sach>> {
+  private loadPagedResult(query: string, page: number, theLoaiIds: string[] = [],sortBy: string = this.sortBy): Observable<PagedResult<Sach>> {
     this.loading = true;
     this.error = null;
 
-    return this.sachService.searchSaches(query, page, this.pageSize, theLoaiIds).pipe(
+    return this.sachService.searchSaches(query, page, this.pageSize, theLoaiIds, sortBy).pipe(
       switchMap((pagedResult: PagedResult<Sach>) => {
         this.pagedSaches = pagedResult.data;
         this.totalCount = pagedResult.totalCount;
@@ -87,6 +88,9 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
         this.currentPage = page;
         this.loading = false;
         this.updateVisiblePages();
+        if (this.sortBy === 'available') {
+        this.pagedSaches = this.pagedSaches.filter(sach => (sach.soLuong ?? 0) > 0);
+      }
         this.pagedSaches.forEach((sach) => {
           this.danhGiaSachService.getDanhGiaTheoSach(sach.maSach).subscribe({
             next: (danhGias: DanhGia[]) => {
@@ -118,7 +122,24 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
       })
     );
   }
-  
+  // Sắp xếp theo
+  onSortChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    this.sortBy = select.value;
+    this.currentPage = 1;
+
+    const query = this.searchControl.value || '';
+    if (this.sortBy === 'available') {
+    // Lọc sách có thể mượn (số lượng > 0)
+    this.pagedSaches = this.pagedSaches.filter(sach => (sach.soLuong ?? 0) > 0);
+
+  } else {
+    // 🔹 Các loại sort khác (A-Z, Z-A, Rating) gọi lại BE
+    this.loadPagedResult(query, this.currentPage, this.selectedTheLoaiIds, this.sortBy).subscribe();
+  }
+  }
+
+
   //Them vao
    prevPage(): void {
     if (this.currentPage > 1) {
@@ -142,7 +163,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   changePage(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
       const query = this.searchControl.value || '';
-      this.loadPagedResult(query, page, this.selectedTheLoaiIds).subscribe();
+      this.loadPagedResult(query, page, this.selectedTheLoaiIds, this.sortBy).subscribe();
     }
   }
   // Them vao
@@ -177,7 +198,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   onSearch() {
     const query = this.searchControl.value?.trim() || '';
     this.currentPage = 1;
-    this.loadPagedResult(query, this.currentPage, this.selectedTheLoaiIds).subscribe();
+    this.loadPagedResult(query, this.currentPage, this.selectedTheLoaiIds, this.sortBy).subscribe();
   }
 
   /**Xóa tìm kiếm */
@@ -195,7 +216,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   /*Load sách theo trang */
   loadPage(page: number) {
     const query = this.searchControl.value || '';
-    this.loadPagedResult(query, page, this.selectedTheLoaiIds).subscribe();
+    this.loadPagedResult(query, page, this.selectedTheLoaiIds, this.sortBy).subscribe();
   }
 
   /**Load thể loại */
@@ -232,7 +253,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   applyTheLoaiFilter() {
     const query = this.searchControl.value || '';
     this.currentPage = 1;
-    this.loadPagedResult(query, this.currentPage, this.selectedTheLoaiIds).subscribe();
+    this.loadPagedResult(query, this.currentPage, this.selectedTheLoaiIds, this.sortBy).subscribe();
   }
 
   /*Xóa toàn bộ thể loại */

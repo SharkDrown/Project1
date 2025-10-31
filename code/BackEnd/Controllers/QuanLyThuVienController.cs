@@ -46,6 +46,7 @@ namespace BackEnd.Controllers
         [HttpGet]
         public async Task<ActionResult<PagedResult<SachDto>>> GetSaches(
             string? query = null,
+            string? sortBy = "asc",
             int page = 1,
             int size = 9,
             [FromQuery] List<string>? theLoaiIds = null)
@@ -74,11 +75,25 @@ namespace BackEnd.Controllers
 
                 
                 var totalCount = await saches.CountAsync();
-
-               
+                // Sắp xếp
+                if (!string.IsNullOrEmpty(sortBy) && sortBy.ToLower() == "desc")
+                {
+                    saches = saches.OrderByDescending(s => s.TuaSach);
+                }
+                
+                else if (sortBy == "rating")
+                {
+                    saches = saches
+                        .OrderByDescending(s => s.DanhGiaSaches.Average(d => d.SoSao))
+                        .ThenBy(s => s.TuaSach);
+                }
+                else
+                {
+                    saches = saches.OrderBy(s => s.TuaSach);
+                }
                 var result = await saches
                     .Include(s => s.TacGia) 
-                    .OrderBy(s => s.TuaSach)
+                    //.OrderBy(s => s.TuaSach)
                     .Skip((page - 1) * size)
                     .Take(size)
                     .Select(s => new SachDto

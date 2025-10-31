@@ -97,11 +97,11 @@
                 <div class="col-12 col-md-4 col-lg-3">
                   <div class="filter-item d-flex flex-column align-items-end">
                     <label for="sortBy" class="form-label text-center w-100">Sắp xếp theo</label>
-                    <select class="form-select w-auto" id="sortBy">
-                      <option selected="">Từ A -> Z</option>
-                      <option>Từ Z -> A</option>
-                      <option>Đánh giá tốt nhất</option>
-                      <option>Có thể mượn</option>
+                    <select class="form-select w-auto" id="sortBy" [(ngModel)]="sortBy" (change)="onSortChange($event)">
+                      <option value="asc" selected>Từ A -> Z</option>
+                      <option value="desc">Từ Z -> A</option>
+                      <option value="rating">Đánh giá tốt nhất</option>
+                      <option value="available">Có thể mượn</option>
                     </select>
                   </div>
                 </div>

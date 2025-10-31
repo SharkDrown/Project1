@@ -13,17 +13,18 @@ export class SachService {
 
   constructor(private http: HttpClient) {}
 
-  // 🔍 Tìm kiếm sách theo từ khóa + thể loại + phân trang
+  //  Tìm kiếm sách theo từ khóa + thể loại + phân trang
   searchSaches(
     query: string = '',
     page: number = 1,
     size: number = 9,
-    theLoaiIds: string[] = []
+    theLoaiIds: string[] = [],
+    sortBy: string = 'asc'
   ): Observable<PagedResult<Sach>> {  
     let params = new HttpParams()
       .set('page', page.toString())
-      .set('size', size.toString());
-
+      .set('size', size.toString())
+      .set('sortBy', sortBy);
     if (query && query.trim() !== '') {
       params = params.set('query', query.trim());
     }
