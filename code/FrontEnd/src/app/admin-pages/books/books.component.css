@@ -1,0 +1,172 @@
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  outline: 0;
+}
+
+.modal.show {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-backdrop.show {
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+}
+
+.modal-dialog {
+  margin: 0;
+  position: relative;
+  width: auto;
+  max-width: 500px;
+  pointer-events: none;
+}
+
+.modal-dialog.modal-lg {
+  max-width: 800px;
+}
+
+.modal.show .modal-dialog {
+  pointer-events: auto;
+  transform: none;
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: none;
+  border-radius: 0.35rem;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+  outline: 0;
+}
+
+.modal-header {
+  border-bottom: 1px solid #e3e6f0;
+  padding: 1rem 1.5rem;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  border-top: 1px solid #e3e6f0;
+  padding: 1rem 1.5rem;
+}
+
+/* Table Styles */
+.table-hover tbody tr:hover {
+  background-color: #f8f9fc;
+}
+
+.table thead th {
+  background-color: #f8f9fc;
+  border-bottom: 2px solid #e3e6f0;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+/* Pagination Styles */
+.pagination {
+  margin-bottom: 0;
+}
+
+.page-link {
+  color: #5a5c69;
+  border: 1px solid #d1d3e2;
+  padding: 0.5rem 0.75rem;
+}
+
+.page-link:hover {
+  color: #3a3b45;
+  background-color: #eaecf4;
+  border-color: #d1d3e2;
+}
+
+.page-item.active .page-link {
+  background-color: #4e73df;
+  border-color: #4e73df;
+  color: white;
+}
+
+.page-item.disabled .page-link {
+  color: #858796;
+  background-color: #fff;
+  border-color: #d1d3e2;
+  cursor: not-allowed;
+}
+
+/* Badge Styles */
+.badge {
+  padding: 0.35em 0.65em;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control:focus {
+  border-color: #4e73df;
+  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+/* Delete Modal Styles */
+.modal-header.bg-danger {
+  background-color: #e74a3b !important;
+}
+
+.modal-header.bg-danger .close {
+  opacity: 0.9;
+}
+
+.modal-header.bg-danger .close:hover {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-dialog {
+    max-width: calc(100% - 1rem);
+    margin: 0.5rem;
+  }
+
+  .modal-dialog.modal-lg {
+    max-width: calc(100% - 1rem);
+  }
+
+  .modal.show {
+    padding: 0.5rem;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+  }
+
+  .page-item {
+    margin-bottom: 0.25rem;
+  }
+}
+
