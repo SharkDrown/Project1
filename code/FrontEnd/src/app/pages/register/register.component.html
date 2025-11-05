@@ -109,22 +109,42 @@
                   </div>
 
                   <!-- Email -->
+                  <!-- Email -->
                   <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="email"
-                      name="email" [(ngModel)]="model.Email"
-                      placeholder="Email" required #email="ngModel" />
-                    <label for="email">Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      name="email"
+                      [(ngModel)]="model.Email"
+                      placeholder="Email"
+                      required
+                      pattern="^[a-zA-Z0-9._%+-]+&#64;gmail\.com$"
+                      #email="ngModel"
+                    />
+                    <label for="email">Email (chỉ chấp nhận Gmail)</label>
                   </div>
                   <div class="text-danger small" *ngIf="email.invalid && email.touched">
-                    ⚠️ Vui lòng nhập email hợp lệ.
+                    <div *ngIf="email.errors?.['required']">⚠️ Vui lòng nhập email.</div>
+                    <div *ngIf="email.errors?.['pattern']">❌ Email phải là địa chỉ Gmail hợp lệ (vd: ten&#64;gmail.com).</div>
                   </div>
 
                   <!-- Số điện thoại -->
                   <div class="form-floating mb-4">
-                    <input type="text" class="form-control" id="soDT"
-                      name="soDT" [(ngModel)]="model.SoDT"
-                      placeholder="Số điện thoại" #soDT="ngModel" />
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="soDT"
+                      name="soDT"
+                      [(ngModel)]="model.SoDT"
+                      placeholder="Số điện thoại"
+                      pattern="^0[0-9]{9}$"
+                      #soDT="ngModel"
+                    />
                     <label for="soDT">Số điện thoại</label>
+                  </div>
+                  <div class="text-danger small" *ngIf="soDT.invalid && soDT.touched">
+                    ❌ Số điện thoại không hợp lệ. Vui lòng nhập 10 chữ số bắt đầu bằng 0.
                   </div>
 
                   <!-- Điều khoản -->

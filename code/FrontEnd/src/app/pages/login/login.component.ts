@@ -40,8 +40,17 @@ export class LoginComponent {
           localStorage.setItem('refresh_token', res.refresh_token);
         }
 
-        // ✅ Chuyển hướng sang trang chủ (hoặc trang lịch sử, đặt trước...)
-        this.router.navigate(['/']);
+        // Lưu role
+        if (res.role) {
+          localStorage.setItem('role', res.role);
+        }
+
+        // ✅ Kiểm tra role và điều hướng
+        if (res.role && (res.role.toLowerCase() === 'admin' || res.role.toLowerCase() === 'nhanvien')) {
+          this.router.navigate(['/admin'], { replaceUrl: true });
+        } else {
+          this.router.navigate(['/'], { replaceUrl: true });
+        }
       },
       error: (err) => {
         console.error('❌ Login failed', err);
@@ -49,4 +58,10 @@ export class LoginComponent {
       }
     });
   }
+  showPassword: boolean = false;
+
+togglePassword() {
+  this.showPassword = !this.showPassword;
+}
+
 }

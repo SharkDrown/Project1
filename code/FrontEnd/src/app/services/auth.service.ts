@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +13,30 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  // ===== Đăng ký tài khoản =====
+  // ===== Đăng ký tài khoản độc giả =====
   register(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, data);
   }
 
+  private getAuthHeader(): { headers: HttpHeaders } {
+  const token = this.getAccessToken();
+  const headersConfig: any = { 'Content-Type': 'application/json' };
+
+  if (token) {
+    headersConfig['Authorization'] = `Bearer ${token}`;
+  }
+
+  return { headers: new HttpHeaders(headersConfig) };
+}
+   // ===== Admin tạo tài khoản NHÂN VIÊN =====
+  createStaff(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/create-staff`, data, this.getAuthHeader());
+  }
+
+  // ===== Admin tạo tài khoản ADMIN khác =====
+  createAdmin(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/create-admin`, data,  this.getAuthHeader());
+  }
   // ===== Đăng nhập =====
   login(data: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, data).pipe(
@@ -58,6 +80,30 @@ export class AuthService {
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('user'); // nếu bạn có lưu thông tin user
   }
+
+  // lấy role từ token
+  getRole(): string | null {
+    const token = localStorage.getItem('access_token');
+    if (!token) return null;
+
+    try {
+      const decoded: any = jwtDecode(token);
+      return decoded.role || decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] || null;
+    } catch {
+      return null;
+    }
+  }
+
+  isAdmin(): boolean {
+    const role = this.getRole();
+    return role === 'Admin' || role === 'NhanVien';
+  }
+
+  isUser(): boolean {
+    const role = this.getRole();
+    return role === 'DocGia';
+  }
+
 
   // ===== Kiểm tra trạng thái đăng nhập =====
   isLoggedIn(): boolean {

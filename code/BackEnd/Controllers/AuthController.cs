@@ -1,5 +1,6 @@
 using BackEnd.Helpers;
 using BackEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,7 +34,7 @@ namespace BackEnd.Controllers
             {
                 return BadRequest(new { message = "Email đã được sử dụng" });
             }
-            
+
 
             var hashed = BCrypt.Net.BCrypt.HashPassword(dto.MatKhau);
             // 3. Tạo mới tài khoản
@@ -65,6 +66,121 @@ namespace BackEnd.Controllers
 
             return Ok(new { message = "Đăng ký thành công", MaDocGia = docGia.MaDg });
         }
+
+        //  Tạo tài khoản NHÂN VIÊN 
+
+        [HttpPost("create-staff")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult CreateStaff([FromBody] RegisterDto dto)
+        {
+            
+            if (string.IsNullOrWhiteSpace(dto.TenDangNhap) || string.IsNullOrWhiteSpace(dto.MatKhau))
+                return BadRequest(new { message = "Tên đăng nhập và mật khẩu là bắt buộc" });
+
+            if (dto.VaiTro != null && dto.VaiTro != "NhanVien")
+                return BadRequest(new { message = "API này chỉ được dùng để tạo tài khoản nhân viên" });
+
+            
+            if (_context.TaiKhoans.Any(x => x.TenDangNhap == dto.TenDangNhap))
+                return BadRequest(new { message = "Tên đăng nhập đã tồn tại" });
+
+            
+            if (!string.IsNullOrEmpty(dto.Email) && _context.NhanViens.Any(x => x.Email == dto.Email))
+                return BadRequest(new { message = "Email đã được sử dụng" });
+
+            
+            var hashed = BCrypt.Net.BCrypt.HashPassword(dto.MatKhau);
+
+            //  Tạo tài khoản
+            var taiKhoan = new TaiKhoan
+            {
+                TenDangNhap = dto.TenDangNhap,
+                MatKhau = hashed,
+                VaiTro = "NhanVien",
+                TrangThai = true,
+                LastActive = DateTime.UtcNow
+            };
+            _context.TaiKhoans.Add(taiKhoan);
+            _context.SaveChanges();
+
+            //  Tạo nhân viên liên kết
+            var nhanVien = new NhanVien
+            {
+                HoTen = dto.HoTen ?? "Chưa cập nhật",
+                ChucVu = dto.ChucVu ?? "Nhân viên",
+                Email = dto.Email,
+                SoDt = dto.SoDT,
+                MaTk = taiKhoan.MaTk
+            };
+            _context.NhanViens.Add(nhanVien);
+            _context.SaveChanges();
+
+            return Ok(new
+            {
+                message = "Tạo tài khoản nhân viên thành công",
+                MaNhanVien = nhanVien.MaNv,
+                VaiTro = "NhanVien"
+            });
+        }
+
+
+        // Tạo tài khoản ADMIN khác
+
+        [HttpPost("create-admin")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult CreateAdmin([FromBody] RegisterDto dto)
+        {
+           
+            if (string.IsNullOrWhiteSpace(dto.TenDangNhap) || string.IsNullOrWhiteSpace(dto.MatKhau))
+                return BadRequest(new { message = "Tên đăng nhập và mật khẩu là bắt buộc" });
+
+            if (dto.VaiTro != null && dto.VaiTro != "Admin")
+                return BadRequest(new { message = "API này chỉ được dùng để tạo tài khoản Admin" });
+
+          
+            if (_context.TaiKhoans.Any(x => x.TenDangNhap == dto.TenDangNhap))
+                return BadRequest(new { message = "Tên đăng nhập đã tồn tại" });
+
+    
+            if (!string.IsNullOrEmpty(dto.Email) && _context.NhanViens.Any(x => x.Email == dto.Email))
+                return BadRequest(new { message = "Email đã được sử dụng" });
+
+            
+
+            var hashed = BCrypt.Net.BCrypt.HashPassword(dto.MatKhau);
+
+            // Tạo tài khoản admin
+            var taiKhoan = new TaiKhoan
+            {
+                TenDangNhap = dto.TenDangNhap,
+                MatKhau = hashed,
+                VaiTro = "Admin",
+                TrangThai = true,
+                LastActive = DateTime.UtcNow
+            };
+            _context.TaiKhoans.Add(taiKhoan);
+            _context.SaveChanges();
+
+            // Tạo nhân viên liên kết (Admin cũng nằm trong bảng NhanVien)
+            var admin = new NhanVien
+            {
+                HoTen = dto.HoTen ?? "Quản trị viên mới",
+                ChucVu = dto.ChucVu ?? "Admin",
+                Email = dto.Email,
+                SoDt = dto.SoDT,
+                MaTk = taiKhoan.MaTk
+            };
+            _context.NhanViens.Add(admin);
+            _context.SaveChanges();
+
+            return Ok(new
+            {
+                message = "Tạo tài khoản Admin mới thành công",
+                MaNhanVien = admin.MaNv,
+                VaiTro = "Admin"
+            });
+        }
+    
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginDto dto)
         {
@@ -117,7 +233,8 @@ namespace BackEnd.Controllers
                 access_token = token,
                 refresh_token = refreshToken.Token,
                 token_type = "Bearer",
-                expires_in_minutes = 120
+                expires_in_minutes = 120,
+                role = user.VaiTro
             });
         }
         [HttpPost("refresh")]

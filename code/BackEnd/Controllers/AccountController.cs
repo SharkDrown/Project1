@@ -28,19 +28,52 @@ namespace BackEnd.Controllers
 
             var acc = await _context.TaiKhoans
                 .Include(d => d.DocGium)
+                .Include(n => n.NhanVien)   // navigation property đơn
                 .FirstOrDefaultAsync(x => x.MaTk == id);
 
             if (acc == null) return NotFound();
 
-            return Ok(new
+            if (acc.VaiTro == "DocGia" && acc.DocGium != null)
             {
-                TenDangNhap = acc.TenDangNhap,
-                HoTen = acc.DocGium?.HoTen,
-                NgaySinh = acc.DocGium?.NgaySinh,
-                DiaChi = acc.DocGium?.DiaChi,
-                Email = acc.DocGium?.Email,
-                SoDT = acc.DocGium?.SoDt
-            });
+                return Ok(new
+                {
+                    acc.TenDangNhap,
+                    acc.VaiTro,
+                    acc.DocGium.HoTen,
+                    acc.DocGium.NgaySinh,
+                    acc.DocGium.DiaChi,
+                    acc.DocGium.Email,
+                    SoDT = acc.DocGium.SoDt
+                });
+            }
+            else if (acc.VaiTro == "NhanVien" && acc.NhanVien != null)
+            {
+                return Ok(new
+                {
+                    acc.TenDangNhap,
+                    acc.VaiTro,
+                    acc.NhanVien.HoTen,
+                    acc.NhanVien.ChucVu,
+                    acc.NhanVien.Email,
+                    SoDT = acc.NhanVien.SoDt
+                });
+            }
+            else if (acc.VaiTro == "Admin")
+            {
+                var nv = acc.NhanVien;
+
+                return Ok(new
+                {
+                    acc.TenDangNhap,
+                    acc.VaiTro,
+                    HoTen = nv?.HoTen ?? "",
+                    Email = nv?.Email ?? "",
+                    SoDt = nv?.SoDt ?? "",
+                    ChucVu = nv?.ChucVu ?? ""
+                });
+            }
+
+            return BadRequest(new { message = "Không tìm thấy thông tin người dùng" });
         }
 
         // Update thông tin
@@ -54,12 +87,13 @@ namespace BackEnd.Controllers
 
             var acc = await _context.TaiKhoans
                 .Include(d => d.DocGium)
+                .Include(n => n.NhanVien)
                 .FirstOrDefaultAsync(x => x.MaTk == id);
 
             if (acc == null) return NotFound();
 
             // Kiểm tra nếu đổi tên đăng nhập
-            if (!string.IsNullOrEmpty(dto.TenDangNhap ) && dto.TenDangNhap != acc.TenDangNhap)
+            if (!string.IsNullOrEmpty(dto.TenDangNhap) && dto.TenDangNhap != acc.TenDangNhap)
             {
                 var exists = await _context.TaiKhoans.AnyAsync(x => x.TenDangNhap == dto.TenDangNhap);
                 if (exists)
@@ -67,37 +101,22 @@ namespace BackEnd.Controllers
 
                 acc.TenDangNhap = dto.TenDangNhap;
             }
-            // Kiểm tra Email
-            if (!string.IsNullOrEmpty(dto.Email) && dto.Email != acc.DocGium?.Email)
-            {
-                var emailExists = await _context.DocGia.AnyAsync(x => x.Email == dto.Email);
-                if (emailExists)
-                    return BadRequest(new { message = "Email đã được sử dụng" });
 
-                if (acc.DocGium != null)
-                    acc.DocGium.Email = dto.Email;
-            }
             // Đổi mật khẩu
             if (!string.IsNullOrEmpty(dto.MatKhauCu) || !string.IsNullOrEmpty(dto.MatKhauMoi))
             {
-                // Nếu chỉ nhập 1 trong 2 thì báo lỗi ngay
                 if (string.IsNullOrEmpty(dto.MatKhauCu) || string.IsNullOrEmpty(dto.MatKhauMoi))
-                {
                     return BadRequest(new { message = "Phải nhập đầy đủ cả mật khẩu cũ và mật khẩu mới" });
-                }
 
-                // Kiểm tra mật khẩu cũ có đúng không
                 var check = BCrypt.Net.BCrypt.Verify(dto.MatKhauCu, acc.MatKhau);
                 if (!check)
-                {
                     return BadRequest(new { message = "Mật khẩu cũ không đúng" });
-                }
 
-                // Nếu đúng thì gán mật khẩu mới
                 acc.MatKhau = BCrypt.Net.BCrypt.HashPassword(dto.MatKhauMoi);
             }
-            //Update thông tin độc giả
-            if (acc.DocGium != null)
+
+            // Cập nhật thông tin tuỳ theo vai trò
+            if (acc.VaiTro == "DocGia" && acc.DocGium != null)
             {
                 if (!string.IsNullOrEmpty(dto.HoTen)) acc.DocGium.HoTen = dto.HoTen;
                 if (dto.NgaySinh.HasValue) acc.DocGium.NgaySinh = dto.NgaySinh.Value;
@@ -105,13 +124,24 @@ namespace BackEnd.Controllers
                 if (!string.IsNullOrEmpty(dto.Email)) acc.DocGium.Email = dto.Email;
                 if (!string.IsNullOrEmpty(dto.SoDT)) acc.DocGium.SoDt = dto.SoDT;
             }
+            else if (acc.VaiTro == "NhanVien" && acc.NhanVien != null)
+            {
+                if (!string.IsNullOrEmpty(dto.HoTen)) acc.NhanVien.HoTen = dto.HoTen;
+                if (!string.IsNullOrEmpty(dto.Email)) acc.NhanVien.Email = dto.Email;
+                if (!string.IsNullOrEmpty(dto.SoDT)) acc.NhanVien.SoDt = dto.SoDT;
+                if (!string.IsNullOrEmpty(dto.ChucVu)) acc.NhanVien.ChucVu = dto.ChucVu;
+            }
+            else if(acc.VaiTro == "Admin" && acc.NhanVien != null)
+            {
+                if (!string.IsNullOrEmpty(dto.HoTen)) acc.NhanVien.HoTen = dto.HoTen;
+                if (!string.IsNullOrEmpty(dto.Email)) acc.NhanVien.Email = dto.Email;
+            }
 
             await _context.SaveChangesAsync();
-
             return Ok(new { message = "Cập nhật thành công" });
         }
 
-        //Vô hiệu hóa tài khoản
+        // Vô hiệu hóa tài khoản
         [HttpDelete("deactivate")]
         public async Task<IActionResult> DeactivateMyAccount()
         {

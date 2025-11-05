@@ -23,12 +23,28 @@ export class ContentComponent implements OnInit {
   oldPassword: string = '';
   newPassword: string = '';
   message: string = '';
+  isSuccess: boolean = true;
+  showToast: boolean = false;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.loadAccount();
   }
+
+  /** 🔹 Hiển thị toast (auto ẩn sau 3 giây) */
+  showMessage(msg: string, success: boolean = true) {
+  this.showToast = false;  
+  setTimeout(() => {       
+    this.message = msg;
+    this.isSuccess = success;
+    this.showToast = true;
+
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3000);
+  }, 50);
+}
 
   loadAccount() {
     const token = localStorage.getItem('access_token');
@@ -42,14 +58,14 @@ export class ContentComponent implements OnInit {
       },
       error: err => {
         console.error('❌ Lỗi tải thông tin tài khoản:', err);
+        this.showMessage('Không thể tải thông tin tài khoản', false);
       }
     });
   }
 
   onUpdate() {
-    // ✅ Nếu chỉ nhập 1 trong 2 ô mật khẩu
     if ((this.oldPassword && !this.newPassword) || (!this.oldPassword && this.newPassword)) {
-      this.message = "Vui lòng nhập cả mật khẩu cũ và mật khẩu mới.";
+      this.showMessage('⚠️ Vui lòng nhập cả mật khẩu cũ và mật khẩu mới.', false);
       return;
     }
 
@@ -62,7 +78,6 @@ export class ContentComponent implements OnInit {
       soDT: this.account.soDT
     };
 
-    // ✅ Nếu có nhập cả 2 mật khẩu
     if (this.oldPassword && this.newPassword) {
       body.matKhauCu = this.oldPassword;
       body.matKhauMoi = this.newPassword;
@@ -70,32 +85,38 @@ export class ContentComponent implements OnInit {
 
     this.http.put('/api/account/update', body).subscribe({
       next: (res: any) => {
-        this.message = res.message || "Cập nhật thành công";
+        this.showMessage(res.message || '✅ Cập nhật thành công', true);
         this.oldPassword = '';
         this.newPassword = '';
-        this.loadAccount(); // reload lại dữ liệu sau khi cập nhật
+        this.loadAccount();
       },
       error: (err) => {
-        this.message = err.error.message || "Có lỗi xảy ra khi cập nhật";
+        this.showMessage(err.error?.message || '❌ Có lỗi xảy ra khi cập nhật', false);
       }
     });
   }
 
   onDeactivate() {
-    if (!confirm('Bạn có chắc chắn muốn vô hiệu hóa tài khoản?')) return;
+    if (!confirm('⚠️ Bạn có chắc chắn muốn vô hiệu hóa tài khoản?')) return;
 
     this.http.delete('/api/account/deactivate', {
       headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}` }
     }).subscribe({
       next: () => {
-        alert('🚫 Tài khoản đã bị vô hiệu hóa');
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        window.location.href = '/login';
+        this.showMessage('🚫 Tài khoản đã bị vô hiệu hóa', true);
+        setTimeout(() => {
+          localStorage.removeItem('access_token');
+          localStorage.removeItem('refresh_token');
+          window.location.href = '/login';
+        }, 2000);
       },
       error: err => {
         console.error('❌ Lỗi vô hiệu hóa tài khoản:', err);
+        this.showMessage('❌ Không thể vô hiệu hóa tài khoản', false);
       }
     });
   }
+
+  
+  
 }
