@@ -41,9 +41,12 @@
               "src/assets/vendor/swiper/swiper-bundle.min.css",
               "src/assets/css/main.css",
               
-              "src/assets/vendor/fontawesome-free/css/all.min.css",
+              
               "src/assets/css/sb-admin-2.min.css",
-              "src/assets/vendor/datatables/dataTables.bootstrap4.min.css"
+              "src/assets/vendor/datatables/dataTables.bootstrap4.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+              
             ],
             "scripts": [
               "src/assets/vendor/aos/aos.js",
@@ -59,7 +62,8 @@
               "src/assets/js/sb-admin-2.min.js",
               "src/assets/vendor/chart.js/Chart.min.js",
               "src/assets/js/demo/chart-area-demo.js",
-              "src/assets/js/demo/chart-pie-demo.js"
+              "src/assets/js/demo/chart-pie-demo.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {

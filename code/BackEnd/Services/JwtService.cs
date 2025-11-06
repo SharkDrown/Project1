@@ -34,7 +34,9 @@ public class JwtService
             new Claim(JwtRegisteredClaimNames.UniqueName, user.TenDangNhap ?? string.Empty),
             new Claim("HoTen", hoTen),
             new Claim(ClaimTypes.NameIdentifier, user.MaTk.ToString()),
-            new Claim(ClaimTypes.Role, user.VaiTro ?? "DocGia")
+            new Claim(ClaimTypes.Name, user.TenDangNhap ?? string.Empty),
+            new Claim(ClaimTypes.Role, string.IsNullOrEmpty(user.VaiTro) ? "DocGia" : user.VaiTro),
+            new Claim("role", string.IsNullOrEmpty(user.VaiTro) ? "DocGia" : user.VaiTro)
         };
 
         var token = new JwtSecurityToken(

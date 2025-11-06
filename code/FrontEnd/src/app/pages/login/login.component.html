@@ -27,9 +27,9 @@
                 <p>Sign in to your account</p>
               </div>
 
-              <!-- ✅ Angular Form -->
               <form class="auth-form-content" (ngSubmit)="onLogin()" #loginForm="ngForm">
 
+                <!-- Tên đăng nhập -->
                 <div class="input-group mb-3">
                   <span class="input-icon">
                     <i class="bi bi-person"></i>
@@ -42,18 +42,29 @@
                     required>
                 </div>
 
-                <div class="input-group mb-3">
+                <!-- Mật khẩu có icon mắt -->
+                <div class="input-group mb-3 position-relative">
                   <span class="input-icon">
                     <i class="bi bi-lock"></i>
                   </span>
                   <input 
-                    type="password"
+                    [type]="showPassword ? 'text' : 'password'"
                     class="form-control"
                     name="password"
                     [(ngModel)]="password"
                     placeholder="Mật khẩu"
                     required
                     autocomplete="current-password">
+                  
+                  <!-- Biểu tượng mắt -->
+                  <button 
+                    type="button"
+                    class="btn btn-link position-absolute end-0 top-50 translate-middle-y pe-3"
+                    (click)="togglePassword()"
+                    style="color: #555;"
+                  >
+                    <i [ngClass]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                  </button>
                 </div>
 
                 <!-- Hiện thông báo lỗi -->
@@ -61,7 +72,7 @@
                   {{ errorMessage }}
                 </div>
 
-                <div class="form-options mb-4">
+                <div class="form-options mb-4 d-flex justify-content-between align-items-center">
                   <div class="remember-me">
                     <input type="checkbox" id="rememberLogin">
                     <label for="rememberLogin">Remember me</label>
@@ -69,7 +80,7 @@
                   <a href="#" class="forgot-password">Quên mật khẩu?</a>
                 </div>
 
-                <button type="submit" class="auth-btn primary-btn mb-3" [disabled]="loginForm.invalid">
+                <button type="submit" class="auth-btn primary-btn mb-3 w-100" [disabled]="loginForm.invalid">
                   Đăng nhập
                   <i class="bi bi-arrow-right"></i>
                 </button>
@@ -79,7 +90,6 @@
                   <a routerLink="/register" class="switch-btn text-primary fw-bold ms-1">Đăng ký</a>
                 </div>
 
-                
               </form>
             </div>
 

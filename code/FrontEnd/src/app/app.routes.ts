@@ -13,12 +13,16 @@ import { ReviewComponent } from './pages/info/review/review.component';
 import { SettingComponent } from './pages/info/setting/setting.component';
 import { ContentComponent } from './pages/info/content/content.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { UserGuard } from './guards/user.guard';
+import {LoginGuard} from './guards/login.guard'
 
 export const routes: Routes = [
   {
     path: '',
     component: UserLayoutComponent,
     children: [
+
       { path: '', component: HomeComponent },
       { path: 'about', component: AboutComponent },
       { path: 'search', component: SearchComponent },
@@ -30,28 +34,30 @@ export const routes: Routes = [
         import('./pages/book-detail/book-detail.component').then(m => m.BookDetailComponent)
       },
       // các trang yêu cầu đăng nhập
-      { path: 'reserve', component: ReserveComponent, canActivate: [AuthGuard] },
-      { path: 'history', component: HistoryComponent, canActivate: [AuthGuard] },
-      { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
       // { path: 'login', component: LoginComponent },
       // { path: 'register', component: RegisterComponent },
-
+      // ✅ các trang yêu cầu đăng nhập
+      { path: 'reserve', component: ReserveComponent, canActivate: [UserGuard] },
+      { path: 'history', component: HistoryComponent, canActivate: [UserGuard] },
+      { path: 'reports', component: ReportsComponent, canActivate: [UserGuard] },
       { path: 'contact', component: ContactComponent },
 
       // load lazy cho register & login
       {
         path: 'register',
+        canActivate: [LoginGuard],
         loadComponent: () =>
           import('./pages/register/register.component').then(m => m.RegisterComponent)
       },
       {
         path: 'login',
+        canActivate: [LoginGuard],
         loadComponent: () =>
           import('./pages/login/login.component').then(m => m.LoginComponent)
       },
       {
         path: 'info',
-        component: InfoComponent, canActivate: [AuthGuard],
+        component: InfoComponent, canActivate: [UserGuard],
         children: [
           { path: '', component: ContentComponent },
           { path: 'review', component: ReviewComponent },
@@ -63,6 +69,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
+    canActivate: [AdminGuard],
     children: [
       {
         path: '',
