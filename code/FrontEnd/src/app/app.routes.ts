@@ -12,7 +12,6 @@ import { InfoComponent } from './pages/info/info.component';
 import { ReviewComponent } from './pages/info/review/review.component';
 import { SettingComponent } from './pages/info/setting/setting.component';
 import { ContentComponent } from './pages/info/content/content.component';
-import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
 import {LoginGuard} from './guards/login.guard'

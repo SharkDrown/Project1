@@ -153,57 +153,104 @@ namespace BackEnd.Controllers
         [HttpPost("danhgia")]
         public async Task<IActionResult> PostDanhGia([FromBody] DanhGiaSach danhGia)
         {
-            // Lấy MaDg từ token
-            
-            var maDgClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value
-                             ?? User.FindFirst("sub")?.Value;
-
-            if (!int.TryParse(maDgClaim, out int maDg))
+            // 💡 KHUYẾN NGHỊ: Thêm kiểm tra validation của model state
+            if (!ModelState.IsValid)
             {
-                return Unauthorized(new { message = "Không thể xác định người dùng từ token." });
+                return BadRequest(ModelState);
             }
 
-            danhGia.MaDg = maDg;
-            //Console.WriteLine("Dữ liệu nhận được:");
-            //Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(danhGia));
-            if (danhGia == null || danhGia.MaSach <= 0)
+            try
             {
-                return BadRequest(new { message = "Dữ liệu đánh giá không hợp lệ." });
-            }
+                // 1. Lấy ID Tài khoản (MaTK) từ token
+                // ClaimTypes.NameIdentifier HOẶC "sub" đều đang chứa MaTK theo JwtService của bạn
+                var maTkClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                                     ?? User.FindFirst("sub")?.Value;
 
-            // Kiểm tra đã từng đánh giá chưa
-            var existing = await _context.DanhGiaSaches
-                .FirstOrDefaultAsync(d => d.MaSach == danhGia.MaSach && d.MaDg == danhGia.MaDg);
+                if (!int.TryParse(maTkClaim, out int maTk))
+                {
+                    return Unauthorized(new { message = "Không thể xác định tài khoản từ token." });
+                }
 
-            if (existing != null)
-            {
-                // Cập nhật nếu đã có
-                existing.SoSao = danhGia.SoSao;
-                existing.BinhLuan = danhGia.BinhLuan;
-                existing.NgayDg = DateOnly.FromDateTime(DateTime.Now);
+                // 2. 🚨 BƯỚC KHẮC PHỤC LỖI 547: Tìm MaDG từ MaTK
+                var docGia = await _context.DocGia
+                    .FirstOrDefaultAsync(dg => dg.MaTk == maTk);
 
-                _context.DanhGiaSaches.Update(existing);
-            }
-            else
-            {
-                // Thêm mới
-                danhGia.NgayDg = DateOnly.FromDateTime(DateTime.Now);
-                _context.DanhGiaSaches.Add(danhGia);
-            }
+                if (docGia == null)
+                {
+                    // Tài khoản có tồn tại nhưng không có bản ghi DocGia, gây lỗi FK
+                    return Forbid();
+                }
 
-            await _context.SaveChangesAsync();
-            var user = await _context.DocGia.FirstOrDefaultAsync(u => u.MaDg == danhGia.MaDg);
-            return Ok(
-                new { message = "Đánh giá thành công!",
-                    data = new
+                // 3. Gán MaDG chính xác (ID có trong bảng DocGia)
+                danhGia.MaDg = docGia.MaDg;
+
+                // Kiểm tra cơ bản
+                if (danhGia == null || danhGia.MaSach <= 0)
+                {
+                    return BadRequest(new { message = "Dữ liệu đánh giá không hợp lệ." });
+                }
+
+                // 4. Kiểm tra đã từng đánh giá chưa (Sử dụng MaDg đã tìm được)
+                var existing = await _context.DanhGiaSaches
+                    .FirstOrDefaultAsync(d => d.MaSach == danhGia.MaSach && d.MaDg == danhGia.MaDg);
+
+                if (existing != null)
+                {
+                    // Cập nhật nếu đã có
+                    existing.SoSao = danhGia.SoSao;
+                    existing.BinhLuan = danhGia.BinhLuan;
+                    existing.NgayDg = DateOnly.FromDateTime(DateTime.Now);
+                    _context.DanhGiaSaches.Update(existing);
+                }
+                else
+                {
+                    // Thêm mới
+                    danhGia.NgayDg = DateOnly.FromDateTime(DateTime.Now);
+                    _context.DanhGiaSaches.Add(danhGia);
+                }
+
+                // 5. Lưu vào DB (Lúc này MaDg đã hợp lệ)
+                await _context.SaveChangesAsync();
+
+                // 6. Trả về kết quả thành công
+                return Ok(
+                    new
                     {
-                        maSach = danhGia.MaSach,
-                        hoTen = user?.HoTen ?? "Ẩn danh",
-                        soSao = danhGia.SoSao,
-                        binhLuan = danhGia.BinhLuan,
-                        ngayDg = danhGia.NgayDg
+                        message = "Đánh giá thành công!",
+                        data = new
+                        {
+                            maSach = danhGia.MaSach,
+                            hoTen = docGia.HoTen, // Dùng HoTen của docGia đã tìm được
+                            soSao = danhGia.SoSao,
+                            binhLuan = danhGia.BinhLuan,
+                            ngayDg = danhGia.NgayDg
+                        }
+                    });
+            }
+            catch (Exception ex)
+            {
+                // ... (Khối catch để xử lý và log lỗi) ...
+                var errorMessage = ex.Message;
+                var innerEx = ex.InnerException;
+                while (innerEx != null)
+                {
+                    errorMessage = innerEx.Message;
+                    if (innerEx is Microsoft.Data.SqlClient.SqlException sqlEx)
+                    {
+                        errorMessage = $"SQL Error ({sqlEx.Number}): {sqlEx.Message}";
+                        break;
                     }
+                    innerEx = innerEx.InnerException;
+                }
+
+                Console.WriteLine($"[LỖI 500 DANHGIA] {errorMessage} - StackTrace: {ex.StackTrace}");
+
+                return StatusCode(500, new
+                {
+                    message = "Lỗi server khi thêm/cập nhật đánh giá. Vui lòng kiểm tra dữ liệu.",
+                    error = errorMessage
                 });
+            }
         }
         [Authorize]
         [HttpDelete("danhgia/{maSach}/{maDg}")]
