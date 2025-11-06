@@ -22,7 +22,14 @@ export const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'about', component: AboutComponent },
       { path: 'search', component: SearchComponent },
-      // ✅ các trang yêu cầu đăng nhập
+       
+      //  Trang chi tiết sách
+      { 
+       path: 'book-detail/:id', 
+      loadComponent: () =>
+        import('./pages/book-detail/book-detail.component').then(m => m.BookDetailComponent)
+      },
+      // các trang yêu cầu đăng nhập
       { path: 'reserve', component: ReserveComponent, canActivate: [AuthGuard] },
       { path: 'history', component: HistoryComponent, canActivate: [AuthGuard] },
       { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
@@ -31,7 +38,7 @@ export const routes: Routes = [
 
       { path: 'contact', component: ContactComponent },
 
-      // ✅ load lazy cho register & login
+      // load lazy cho register & login
       {
         path: 'register',
         loadComponent: () =>
