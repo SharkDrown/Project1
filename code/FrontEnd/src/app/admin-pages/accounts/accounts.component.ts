@@ -65,16 +65,20 @@ export class AccountsComponent implements OnInit {
 
   // Lấy thông tin tài khoản hiện tại 
   loadAccountInfo() {
-    this.http.get('/api/account/me').subscribe({
-      next: (res: any) => {
-        this.account = { ...this.account, ...res };
-      },
-      error: (err) => {
-        console.error('❌ Lỗi tải thông tin tài khoản:', err);
-        this.showMessage('Không thể tải thông tin tài khoản', false);
-      }
-    });
+  const token = localStorage.getItem('access_token');
+  const headers = { Authorization: `Bearer ${token}` };
+
+  this.http.get('https://localhost:7299/api/account/me', { headers }).subscribe({
+    next: (res: any) => {
+      this.account = { ...this.account, ...res };
+    },
+    error: (err) => {
+      console.error('❌ Lỗi tải thông tin tài khoản:', err);
+      this.showMessage('Không thể tải thông tin tài khoản', false);
+    }
+  });
   }
+
 
   //  Cập nhật thông tin cá nhân 
   onUpdate() {

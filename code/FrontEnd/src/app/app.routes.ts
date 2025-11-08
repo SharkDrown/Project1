@@ -71,7 +71,7 @@ export const routes: Routes = [
     canActivate: [AdminGuard],
     children: [
       {
-        path: '',
+        path: 'admin',
         loadComponent: () =>
           import('./admin-pages/dashboard/dashboard.component').then(
             (m) => m.DashboardComponent
@@ -89,6 +89,27 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./admin-pages/accounts/accounts.component').then(
             (m) => m.AccountsComponent
+          ),
+      },
+      {
+        path: 'admin/borrow',
+        loadComponent: () =>
+          import('./admin-pages/borrow/borrow.component').then(
+            (m) => m.BorrowComponent
+          ),
+      },
+      {
+        path: 'admin/return',
+        loadComponent: () =>
+          import('./admin-pages/return/return.component').then(
+            (m) => m.ReturnComponent
+          ),
+      },
+      {
+        path: 'admin/announcement',
+        loadComponent: () =>
+          import('./admin-pages/announcement/announcement.component').then(
+            (m) => m.AnnouncementComponent
           ),
       },
     ],

@@ -258,29 +258,6 @@ namespace BackEnd.Controllers
         }
         
 
-        [HttpPost("create-admin")]
-        public IActionResult CreateAdmin()
-        {
-            // Kiểm tra xem đã có admin chưa
-            if (_context.TaiKhoans.Any(x => x.VaiTro == "Admin"))
-            {
-                return BadRequest(new { message = "Admin đã tồn tại" });
-            }
-
-            // Tạo tài khoản admin
-            var admin = new TaiKhoan
-            {
-                TenDangNhap = "admin",
-                MatKhau = "admin123",
-                VaiTro = "Admin",
-                TrangThai = true
-            };
-
-            _context.TaiKhoans.Add(admin);
-            _context.SaveChanges();
-
-            return Ok(new { message = "Tạo admin thành công", taiKhoan = admin });
-        }
     }
 
     public class LoginDto
