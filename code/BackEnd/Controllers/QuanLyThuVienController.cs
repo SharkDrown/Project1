@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using BackEnd.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
@@ -15,8 +17,17 @@ namespace BackEnd.Controllers
         {
             _context = context;
         }
-
-        [HttpGet("theloai/count")] // Route: api/quanlythuvien/theloai/count
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var sach = _context.Saches.FirstOrDefault(s => s.MaSach == id);
+            if (sach == null)
+            {
+                return NotFound(new { message = $"Không tìm thấy sách có mã {id}" });
+            }
+            return Ok(sach);
+        }
+        [HttpGet("theloai/count")] 
         public async Task<ActionResult<IEnumerable<TheLoaiWithCount>>> GetTheLoaiWithCounts()
         {
             var result = await _context.TheLoais
@@ -24,7 +35,7 @@ namespace BackEnd.Controllers
                 {
                     MaTl = t.MaTl,
                     TenTl = t.TenTl,
-                    Count = _context.Saches.Count(s => s.MaTl == t.MaTl) // Đếm sách theo MaTL
+                    Count = _context.Saches.Count(s => s.MaTl == t.MaTl) 
                 })
                 .OrderBy(t => t.TenTl)
                 .ToListAsync();
@@ -34,49 +45,70 @@ namespace BackEnd.Controllers
 
         [HttpGet]
         public async Task<ActionResult<PagedResult<SachDto>>> GetSaches(
-    string? query = null,
-    int page = 1,
-    int size = 9,
-    [FromQuery] List<string>? theLoaiIds = null)
-        {
-            try
+            string? query = null,
+            string? sortBy = "asc",
+            int page = 1,
+            int size = 9,
+            [FromQuery] List<string>? theLoaiIds = null)
             {
-                // B1: Chuẩn bị query cơ sở
-                var saches = _context.Saches.AsQueryable();
+              try
+              {
+                
+                var saches = _context.Saches
+                 .Include(s => s.TacGia) 
+                 .AsQueryable();
 
-                // B2: Lọc theo từ khóa (tên sách hoặc nhà xuất bản)
+                
                 if (!string.IsNullOrEmpty(query))
                 {
                     string keyword = query.Trim().ToLower();
                     saches = saches.Where(s =>
                         EF.Functions.Like(s.TuaSach.ToLower(), $"%{keyword}%") ||
-                        EF.Functions.Like(s.NhaXb.ToLower(), $"%{keyword}%"));
+                        s.TacGia.Any(t => EF.Functions.Like(t.TenTg.ToLower(), $"%{keyword}%")));
                 }
 
-                // B3: Lọc theo thể loại (nếu có)
+               
                 if (theLoaiIds != null && theLoaiIds.Any())
                 {
                     saches = saches.Where(s => theLoaiIds.Contains(s.MaTl));
                 }
 
-                // B4: Đếm tổng số kết quả
+                
                 var totalCount = await saches.CountAsync();
-
-                // B5: Phân trang
+                // Sắp xếp
+                if (!string.IsNullOrEmpty(sortBy) && sortBy.ToLower() == "desc")
+                {
+                    saches = saches.OrderByDescending(s => s.TuaSach);
+                }
+                
+                else if (sortBy == "rating")
+                {
+                    saches = saches
+                        .OrderByDescending(s => s.DanhGiaSaches.Average(d => d.SoSao))
+                        .ThenBy(s => s.TuaSach);
+                }
+                else
+                {
+                    saches = saches.OrderBy(s => s.TuaSach);
+                }
                 var result = await saches
-                    .OrderBy(s => s.TuaSach)
+                    .Include(s => s.TacGia) 
+                    //.OrderBy(s => s.TuaSach)
                     .Skip((page - 1) * size)
                     .Take(size)
                     .Select(s => new SachDto
                     {
                         MaSach = s.MaSach,
                         TuaSach = s.TuaSach,
-                        NhaXb = s.NhaXb ?? "Không có nhà XB",
+                        TenTg = s.TacGia.Any()
+                            ? string.Join(", ", s.TacGia.Select(t => t.TenTg))
+                            : "Không có tác giả",
                         SoLuong = s.SoLuong
                     })
                     .ToListAsync();
 
-                // B6: Trả kết quả về FE
+
+               
                 return Ok(new PagedResult<SachDto>
                 {
                     Data = result,
@@ -87,13 +119,175 @@ namespace BackEnd.Controllers
                 });
             }
             catch (Exception ex)
-            {
+              {
                 return StatusCode(500, new
                 {
                     message = "Lỗi khi tìm kiếm sách",
                     error = ex.Message
                 });
+              }
+            }
+        // 📘 Lấy danh sách đánh giá của 1 cuốn sách
+        [HttpGet("danhgia/{maSach}")]
+        public async Task<IActionResult> GetDanhGiaTheoSach(int maSach)
+        {
+            var danhGias = await _context.DanhGiaSaches
+                .Include(d => d.MaDgNavigation)
+                .Where(d => d.MaSach == maSach)
+                .OrderByDescending(d => d.NgayDg)
+                .Select(d => new
+                {
+                    d.MaDg,
+                    HoTen = d.MaDgNavigation.HoTen,
+                    d.SoSao,
+                    d.BinhLuan,
+                    NgayDg = d.NgayDg,
+                })
+                .ToListAsync();
+
+            return Ok(danhGias);
+        }
+
+        // 📝 Thêm mới 1 đánh giá sách
+        [Authorize]
+        [HttpPost("danhgia")]
+        public async Task<IActionResult> PostDanhGia([FromBody] DanhGiaSach danhGia)
+        {
+            // 💡 KHUYẾN NGHỊ: Thêm kiểm tra validation của model state
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                // 1. Lấy ID Tài khoản (MaTK) từ token
+                // ClaimTypes.NameIdentifier HOẶC "sub" đều đang chứa MaTK theo JwtService của bạn
+                var maTkClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                                     ?? User.FindFirst("sub")?.Value;
+
+                if (!int.TryParse(maTkClaim, out int maTk))
+                {
+                    return Unauthorized(new { message = "Không thể xác định tài khoản từ token." });
+                }
+
+                // 2. 🚨 BƯỚC KHẮC PHỤC LỖI 547: Tìm MaDG từ MaTK
+                var docGia = await _context.DocGia
+                    .FirstOrDefaultAsync(dg => dg.MaTk == maTk);
+
+                if (docGia == null)
+                {
+                    // Tài khoản có tồn tại nhưng không có bản ghi DocGia, gây lỗi FK
+                    return Forbid();
+                }
+
+                // 3. Gán MaDG chính xác (ID có trong bảng DocGia)
+                danhGia.MaDg = docGia.MaDg;
+
+                // Kiểm tra cơ bản
+                if (danhGia == null || danhGia.MaSach <= 0)
+                {
+                    return BadRequest(new { message = "Dữ liệu đánh giá không hợp lệ." });
+                }
+
+                // 4. Kiểm tra đã từng đánh giá chưa (Sử dụng MaDg đã tìm được)
+                var existing = await _context.DanhGiaSaches
+                    .FirstOrDefaultAsync(d => d.MaSach == danhGia.MaSach && d.MaDg == danhGia.MaDg);
+
+                if (existing != null)
+                {
+                    // Cập nhật nếu đã có
+                    existing.SoSao = danhGia.SoSao;
+                    existing.BinhLuan = danhGia.BinhLuan;
+                    existing.NgayDg = DateOnly.FromDateTime(DateTime.Now);
+                    _context.DanhGiaSaches.Update(existing);
+                }
+                else
+                {
+                    // Thêm mới
+                    danhGia.NgayDg = DateOnly.FromDateTime(DateTime.Now);
+                    _context.DanhGiaSaches.Add(danhGia);
+                }
+
+                // 5. Lưu vào DB (Lúc này MaDg đã hợp lệ)
+                await _context.SaveChangesAsync();
+
+                // 6. Trả về kết quả thành công
+                return Ok(
+                    new
+                    {
+                        message = "Đánh giá thành công!",
+                        data = new
+                        {
+                            maSach = danhGia.MaSach,
+                            hoTen = docGia.HoTen, // Dùng HoTen của docGia đã tìm được
+                            soSao = danhGia.SoSao,
+                            binhLuan = danhGia.BinhLuan,
+                            ngayDg = danhGia.NgayDg
+                        }
+                    });
+            }
+            catch (Exception ex)
+            {
+                // ... (Khối catch để xử lý và log lỗi) ...
+                var errorMessage = ex.Message;
+                var innerEx = ex.InnerException;
+                while (innerEx != null)
+                {
+                    errorMessage = innerEx.Message;
+                    if (innerEx is Microsoft.Data.SqlClient.SqlException sqlEx)
+                    {
+                        errorMessage = $"SQL Error ({sqlEx.Number}): {sqlEx.Message}";
+                        break;
+                    }
+                    innerEx = innerEx.InnerException;
+                }
+
+                Console.WriteLine($"[LỖI 500 DANHGIA] {errorMessage} - StackTrace: {ex.StackTrace}");
+
+                return StatusCode(500, new
+                {
+                    message = "Lỗi server khi thêm/cập nhật đánh giá. Vui lòng kiểm tra dữ liệu.",
+                    error = errorMessage
+                });
             }
         }
+        [Authorize]
+        [HttpDelete("danhgia/{maSach}/{maDg}")]
+        public async Task<IActionResult> DeleteDanhGia(int maSach, int maDg)
+        {
+           
+
+           //Thử lấy ID người dùng từ token 
+            var maDgClaim =
+                User.FindFirst("sub")?.Value ??                                      // thường là ID user
+                User.FindFirst("nameid")?.Value ??
+                User.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value ??
+                User.FindFirst("unique_name")?.Value;                                // fallback (tên đăng nhập)
+
+            if (!int.TryParse(maDgClaim, out int currentUserMaDg))
+            {
+                return Unauthorized(new { message = "Không thể xác định người dùng từ token." });
+            }
+
+            
+
+            // Tìm bình luận theo mã sách và mã người dùng
+            var danhGia = await _context.DanhGiaSaches
+                .FirstOrDefaultAsync(d => d.MaSach == maSach && d.MaDg == maDg);
+
+            if (danhGia == null)
+                return NotFound(new { message = "Không tìm thấy bình luận." });
+
+            // Chặn người khác xóa bình luận của người khác
+            if (danhGia.MaDg != currentUserMaDg)
+                return Forbid();
+
+            _context.DanhGiaSaches.Remove(danhGia);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Đã xóa bình luận thành công!" });
+        }
+
     }
 }

@@ -7,15 +7,15 @@ public partial class DatTruoc
 {
     public int MaDat { get; set; }
 
-    public int MaDg { get; set; }
+    public int? MaDg { get; set; }
 
-    public int MaSach { get; set; }
+    public int? MaSach { get; set; }
 
     public DateOnly? NgayDat { get; set; }
 
     public string? TrangThai { get; set; }
 
-    public virtual DocGium MaDgNavigation { get; set; } = null!;
+    public virtual DocGium? MaDgNavigation { get; set; }
 
-    public virtual Sach MaSachNavigation { get; set; } = null!;
+    public virtual Sach? MaSachNavigation { get; set; }
 }

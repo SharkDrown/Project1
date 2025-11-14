@@ -1,3 +1,4 @@
+<<<<<<< HEAD
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -488,3 +489,260 @@
                             </div>
                         </div>
                     </div>
+=======
+<div class="container-fluid">
+  <!-- Tiêu đề -->
+  <h1 class="h3 mb-4 text-gray-800">Thông tin tài khoản</h1>
+
+  <div class="row">
+    <div class="col-lg-8">
+
+      <!-- 🌐 Thông tin tài khoản hiện tại -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+          <h6 class="m-0 font-weight-bold text-primary">Chi tiết tài khoản</h6>
+          <div>
+            <!-- Nút tạo tài khoản mới -->
+            <button
+              *ngIf="isAdmin"
+              class="btn btn-success btn-sm mr-2"
+              (click)="toggleCreateForm()"
+            >
+              <i class="fas fa-user-plus"></i>
+              {{ showCreateForm ? 'Đóng form' : 'Tạo tài khoản mới' }}
+            </button>
+
+            <!-- Nút đăng xuất -->
+            <button class="btn btn-danger btn-sm" (click)="onLogout()">
+              <i class="fas fa-sign-out-alt"></i> Đăng xuất
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <!-- FORM THÔNG TIN TÀI KHOẢN -->
+          <form (ngSubmit)="onUpdate()" #accountForm="ngForm">
+            <!-- Tên đăng nhập -->
+            <div class="form-group">
+              <label for="acc_username">Tên đăng nhập</label>
+              <input type="text" id="acc_username" class="form-control"
+                     [(ngModel)]="account.tenDangNhap" name="accTenDangNhap" required readonly />
+            </div>
+
+            <!-- Họ tên -->
+            <div class="form-group">
+              <label for="acc_fullname">Họ và tên</label>
+              <input type="text" id="acc_fullname" class="form-control"
+                     [(ngModel)]="account.hoTen" name="accHoTen" />
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="acc_email">Email </label>
+              <input
+                type="email"
+                id="acc_email"
+                class="form-control"
+                [(ngModel)]="account.email"
+                name="accEmail"
+                required
+                pattern="^[a-zA-Z0-9._%+-]+&#64;gmail\.com$"
+                placeholder="vd: example@gmail.com"
+                #accEmail="ngModel"
+              />
+              <div *ngIf="accEmail.invalid && (accEmail.dirty || accEmail.touched)" class="text-danger mt-1">
+                <!-- <div *ngIf="accEmail.errors?.['required']">⚠️ Email là bắt buộc.</div> -->
+                <div *ngIf="accEmail.errors?.['pattern']">❌ Email phải là địa chỉ Gmail hợp lệ.</div>
+              </div>
+            </div>
+
+            <!-- Vai trò -->
+            <div class="form-group">
+              <label for="acc_role">Vai trò</label>
+              <input type="text" id="acc_role" class="form-control"
+                     [(ngModel)]="account.vaiTro" name="accVaiTro" readonly />
+            </div>
+
+            <!-- Chức vụ (nếu là nhân viên) -->
+            <div class="form-group" *ngIf="account.vaiTro === 'NhanVien'">
+              <label for="acc_chucVu">Chức vụ</label>
+              <input type="text" id="acc_chucVu" class="form-control"
+                     [(ngModel)]="account.chucVu" name="accChucVu" />
+            </div>
+
+            <hr />
+            <h6 class="font-weight-bold text-secondary mb-3">Đổi mật khẩu</h6>
+
+            <!-- Mật khẩu cũ -->
+            <div class="form-group">
+              <label for="acc_oldPassword">Mật khẩu cũ</label>
+              <input type="password" id="acc_oldPassword" class="form-control"
+                     [(ngModel)]="account.matKhauCu" name="accMatKhauCu"
+                     placeholder="Nhập mật khẩu cũ" />
+            </div>
+
+            <!-- Mật khẩu mới -->
+            <div class="form-group">
+              <label for="acc_newPassword">Mật khẩu mới</label>
+              <input type="password" id="acc_newPassword" class="form-control"
+                     [(ngModel)]="account.matKhauMoi" name="accMatKhauMoi"
+                     placeholder="Nhập mật khẩu mới (≥ 8 ký tự)" minlength="8" />
+              <small class="form-text text-muted">
+                Mật khẩu phải có ít nhất 8 ký tự.
+              </small>
+            </div>
+
+            <!-- Cảnh báo -->
+            <div *ngIf="(account.matKhauCu && !account.matKhauMoi) || (!account.matKhauCu && account.matKhauMoi)"
+                 class="text-danger mb-2">
+              ❌ Phải nhập cả mật khẩu cũ và mật khẩu mới để đổi mật khẩu.
+            </div>
+
+            <div *ngIf="account.matKhauMoi && account.matKhauMoi.length < 8"
+                 class="text-danger mb-2">
+              ❌ Mật khẩu mới phải có ít nhất 8 ký tự.
+            </div>
+
+            <!-- Nút hành động -->
+            <div class="d-flex justify-content-end mt-3">
+              <button type="submit" class="btn btn-primary mr-2" [disabled]="accountForm.invalid">
+                Lưu thay đổi
+              </button>
+              <button type="button" class="btn btn-danger" (click)="onDeactivate()">
+                Vô hiệu hóa tài khoản
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- 🔽 FORM TẠO TÀI KHOẢN MỚI -->
+      <div class="card shadow animate__animated animate__fadeIn" *ngIf="showCreateForm">
+        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+          <h6 class="m-0 font-weight-bold">Tạo tài khoản mới</h6>
+          <button class="btn btn-light btn-sm" (click)="toggleCreateForm()">✖ Đóng</button>
+        </div>
+
+        <div class="card-body">
+          <form (ngSubmit)="onCreateAccount()" #createForm="ngForm">
+            <!-- Vai trò -->
+            <div class="form-group">
+              <label for="new_role">Chọn vai trò</label>
+              <select id="new_role" class="form-control"
+                      [(ngModel)]="newAccount.vaiTro" name="newVaiTro" required>
+                <option value="">-- Chọn vai trò --</option>
+                <option value="Admin">Admin</option>
+                <option value="NhanVien">Nhân viên</option>
+              </select>
+            </div>
+
+            <!-- Tên đăng nhập -->
+            <div class="form-group">
+              <label for="new_username">Tên đăng nhập</label>
+              <input type="text" id="new_username" class="form-control"
+                     [(ngModel)]="newAccount.tenDangNhap" name="newTenDangNhap" required />
+            </div>
+
+            <!-- Mật khẩu -->
+            <div class="form-group">
+              <label for="new_password">Mật khẩu</label>
+              <input type="password" id="new_password" class="form-control"
+                     [(ngModel)]="newAccount.matKhau" name="newMatKhau"
+                     required minlength="8" placeholder="Ít nhất 8 ký tự" />
+            </div>
+
+            <!-- Họ tên -->
+            <div class="form-group">
+              <label for="new_hoTen">Họ và tên</label>
+              <input type="text" id="new_hoTen" class="form-control"
+                     [(ngModel)]="newAccount.hoTen" name="newHoTen" required />
+            </div>
+
+            <!-- Chức vụ -->
+            <div class="form-group" *ngIf="newAccount.vaiTro === 'NhanVien'">
+              <label for="new_chucVu">Chức vụ</label>
+              <input type="text" id="new_chucVu" class="form-control"
+                     [(ngModel)]="newAccount.chucVu" name="newChucVu"
+                     placeholder="Nhân viên thư viện" />
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="new_email">Email</label>
+              <input
+                type="email"
+                id="new_email"
+                class="form-control"
+                [(ngModel)]="newAccount.email"
+                name="newEmail"
+                required
+                pattern="^[a-zA-Z0-9._%+-]+&#64;gmail\.com$"
+                placeholder="vd: example@gmail.com"
+                #newEmail="ngModel"
+              />
+              <div *ngIf="newEmail.invalid && (newEmail.dirty || newEmail.touched)" class="text-danger mt-1">
+                <div *ngIf="newEmail.errors?.['required']">⚠️ Email là bắt buộc.</div>
+                <div *ngIf="newEmail.errors?.['pattern']">
+                  ❌ Email phải là địa chỉ Gmail hợp lệ.
+                </div>
+              </div>
+            </div>
+            <!-- Số điện thoại -->
+            <div class="form-group">
+              <label for="new_soDT">Số điện thoại</label>
+              <input
+                type="text"
+                id="new_soDT"
+                class="form-control"
+                [(ngModel)]="newAccount.soDT"
+                name="newSoDT"
+                pattern="^0[0-9]{9}$"
+                placeholder="VD: 0909123456"
+                #newSoDT="ngModel"
+              />
+              <div *ngIf="newSoDT.invalid && (newSoDT.dirty || newSoDT.touched)" class="text-danger mt-1">
+                ❌ Số điện thoại không hợp lệ. Vui lòng nhập 10 chữ số bắt đầu bằng 0.
+              </div>
+            </div>
+
+            <!-- Nút hành động -->
+            <div class="d-flex justify-content-end mt-3">
+              <button type="button" class="btn btn-secondary mr-2" (click)="toggleCreateForm()">
+                Hủy
+              </button>
+              <button type="submit" class="btn btn-success" [disabled]="createForm.invalid">
+                Tạo tài khoản
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 🔔 Toast thông báo nổi -->
+<div
+  class="toast-container position-fixed top-0 end-0 p-3"
+  style="z-index: 2000"
+  *ngIf="showToast"
+>
+  <div
+    class="toast align-items-center text-white border-0 show"
+    [ngClass]="isSuccess ? 'bg-success' : 'bg-danger'"
+    role="alert"
+  >
+    <div class="d-flex">
+      <div class="toast-body">
+        {{ message }}
+      </div>
+      <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto"
+        (click)="showToast = false"
+      ></button>
+    </div>
+  </div>
+</div>
+>>>>>>> e9f5ac1fd4e0dbd1be90a8a2f9378a93918bf52c

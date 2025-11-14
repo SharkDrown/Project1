@@ -1,1 +1,157 @@
-/* You can add global styles to this file, and also import other style files */
+/* Css cho chức năng emoji */
+
+.emoji-popup {
+  position: absolute;
+  top: 100%;                 /* xuất hiện ngay dưới container comment-actions */
+  left: 36px;               /* bên phải nút emoji, đặt cố định cách 36px */
+  width: 330px;             /* chiều rộng rộng hơn để hiển thị nhiều emoji theo hàng */
+  max-height: 360px;          /* chiều cao tối đa */
+  overflow-y: auto;           /* thanh cuộn khi nhiều emoji */
+  overflow-x: hidden;        /* ẩn thanh cuộn ngang */
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  padding: 6px;
+  z-index: 1000;
+  min-width: 260px;
+  max-width: calc(100vw - 40px) !important;
+  padding: 4px 4px 0 4px !important;
+  
+}
+.emoji-popup .emoji-mart-search {
+  
+  padding: 8px 6px !important;
+  position: sticky !important;
+  top: 0;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+.emoji-popup .emoji-mart-search input {
+  width: 85% !important;
+  margin: 0 !important;
+ border-radius: 10px !important;
+  padding: 6px 10px !important;
+ box-sizing: border-box !important;
+}
+.emoji-popup .emoji-mart-search label,.emoji-popup .emoji-mart-search .emoji-mart-search-icon {
+  display: none !important;
+}
+/*: Ẩn các biểu tượng danh mục/danh mục dọc xuất hiện dưới dạng cột cao */
+.emoji-popup .emoji-mart-anchors,
+.emoji-popup .emoji-mart-anchor,
+.emoji-popup .emoji-mart-nav,
+.emoji-popup .emoji-mart-sidebar,
+.emoji-popup .emoji-mart-list-anchors,
+.emoji-popup .emoji-mart-bar {
+  display: none !important;
+}
+/* Tùy chỉnh kích thước emoji hiển thị trong popup */
+.emoji-popup button.emoji-mart-emoji,
+.emoji-popup .emoji {
+  width: 34px !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  
+  font-size: 18px !important;
+  border-radius: 6px !important;
+}
+
+/*Ẩn cái no result*/
+ .emoji-popup .emoji-mart-no-results,
+.emoji-popup .emoji-mart-no-results__message,
+.emoji-popup .emoji-mart-no-results-message,
+.emoji-popup .emoji-mart-no-emoji,
+.emoji-popup .emoji-mart-empty,
+.emoji-popup .emoji-mart-no-results-container {
+  display: none !important;
+}
+
+
+/* Đảm bảo các emoji bên trong mỗi danh mục được hiển thị theo hàng ngang */
+.emoji-popup .emoji-mart-category .emoji-mart-scroll {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  padding: 6px 8px !important;
+}
+
+/* Nút mở popup emoji */
+.emoji-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.emoji-btn:hover {
+  color: #000;
+}
+
+/* Ẩn các thông báo không tìm thấy emoji */
+.emoji-popup .emoji-mart-no-results,
+.emoji-popup .emoji-mart-no-results__message,
+.emoji-popup .emoji-mart-no-results-message,
+.emoji-popup .emoji-mart-no-emoji,
+.emoji-popup .emoji-mart-empty,
+.emoji-popup .emoji-mart-empty-state,
+.emoji-popup .no-results,
+.emoji-popup .noResults,
+.emoji-popup .no-emoji-found,
+.emoji-popup .emoji-picker__empty,
+.emoji-popup .emoji-picker__no-results,
+.emoji-popup .picker-no-results,
+.emoji-popup .no-results-message,
+.emoji-popup .emptyResults {
+  display: none !important;
+} 
+
+/*Đảm bảo không có thanh cuộn ngang xuất hiện*/
+.emoji-popup,
+.emoji-popup emoji-mart,
+.emoji-popup .emoji-mart-scroll,
+.emoji-popup .emoji-mart-list,
+.emoji-popup .emoji-mart-emoji-list {
+  overflow-x: hidden !important;
+}
+
+/* Tùy chỉnh kích thước emoji hiển thị trong popup */
+.emoji-popup .emoji-mart-emoji,
+.emoji-popup button.emoji-mart-emoji,
+.emoji-popup .emoji {
+  display: inline-flex !important;
+  margin: 6px !important;
+  width: 40px !important;
+  height: 40px !important;
+  font-size: 20px !important;
+}
+/* Đảm bảo các thành phần bên trong popup không có khoảng cách thừa */
+.emoji-popup .emoji-mart-scroll,
+.emoji-popup .emoji-mart-list,
+.emoji-popup .emoji-mart-category,
+.emoji-popup .emoji-mart-categories,
+.emoji-popup .emoji-mart-list-anchors,
+.emoji-popup .emoji-mart-rows {
+  padding-top: 0 !important;    
+  margin-top: 0 !important;    
+  padding-bottom: 0 !important;
+  margin-bottom: -15px !important;
+  align-content: flex-start !important;
+  align-items: flex-start !important;
+  box-sizing: border-box !important;
+}
+/* Hiển thị bình thường danh sách emoji khi tìm kiếm */
+.emoji-popup .emoji-mart-search-results {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  padding: 8px !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  overflow-y: auto !important;
+  max-height: 280px;
+}
+
+

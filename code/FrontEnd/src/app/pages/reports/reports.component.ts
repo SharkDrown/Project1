@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { NoticesComponent } from '../../notices/notices.component';
 
 @Component({
   selector: 'app-reports',
-  imports: [],
+  imports: [NoticesComponent],
   templateUrl: './reports.component.html',
   styleUrl: './reports.component.css'
 })

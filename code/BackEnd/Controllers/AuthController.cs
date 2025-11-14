@@ -1,5 +1,8 @@
+using BackEnd.Helpers;
 using BackEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackEnd.Controllers
 {
@@ -8,10 +11,13 @@ namespace BackEnd.Controllers
     public class AuthController : ControllerBase
     {
         private readonly QuanLyThuVienContext _context;
+        private readonly JwtService _jwt;
 
-        public AuthController(QuanLyThuVienContext context)
+
+        public AuthController(QuanLyThuVienContext context, JwtService jwt)
         {
             _context = context;
+            _jwt = jwt;
         }
 
         [HttpPost("register")]
@@ -29,13 +35,16 @@ namespace BackEnd.Controllers
                 return BadRequest(new { message = "Email đã được sử dụng" });
             }
 
+
+            var hashed = BCrypt.Net.BCrypt.HashPassword(dto.MatKhau);
             // 3. Tạo mới tài khoản
             var taiKhoan = new TaiKhoan
             {
                 TenDangNhap = dto.TenDangNhap,
-                MatKhau = dto.MatKhau, 
+                MatKhau = hashed,
                 VaiTro = "DocGia",
-                TrangThai = true
+                TrangThai = true,
+                LastActive = DateTime.UtcNow
             };
 
             _context.TaiKhoans.Add(taiKhoan);
@@ -57,63 +66,198 @@ namespace BackEnd.Controllers
 
             return Ok(new { message = "Đăng ký thành công", MaDocGia = docGia.MaDg });
         }
-
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginDto dto)
+        [HttpPost("create-staff")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult CreateStaff([FromBody] RegisterDto dto)
         {
-            // Tìm tài khoản
-            var taiKhoan = _context.TaiKhoans.FirstOrDefault(x => x.TenDangNhap == dto.TenDangNhap);
-            if (taiKhoan == null)
-            {
-                return BadRequest(new { message = "Tên đăng nhập không tồn tại" });
-            }
+            
+            if (string.IsNullOrWhiteSpace(dto.TenDangNhap) || string.IsNullOrWhiteSpace(dto.MatKhau))
+                return BadRequest(new { message = "Tên đăng nhập và mật khẩu là bắt buộc" });
 
-            // Kiểm tra mật khẩu (trong thực tế nên hash password)
-            if (taiKhoan.MatKhau != dto.MatKhau)
-            {
-                return BadRequest(new { message = "Mật khẩu không đúng" });
-            }
+            if (dto.VaiTro != null && dto.VaiTro != "NhanVien")
+                return BadRequest(new { message = "API này chỉ được dùng để tạo tài khoản nhân viên" });
 
-            // Kiểm tra trạng thái tài khoản
-            if (taiKhoan.TrangThai == false)
-            {
-                return BadRequest(new { message = "Tài khoản đã bị khóa" });
-            }
+            
+            if (_context.TaiKhoans.Any(x => x.TenDangNhap == dto.TenDangNhap))
+                return BadRequest(new { message = "Tên đăng nhập đã tồn tại" });
 
-            return Ok(new { 
-                success = true,
-                message = "Đăng nhập thành công",
-                user = new {
-                    MaTk = taiKhoan.MaTk,
-                    TenDangNhap = taiKhoan.TenDangNhap,
-                    VaiTro = taiKhoan.VaiTro
-                }
+            
+            if (!string.IsNullOrEmpty(dto.Email) && _context.NhanViens.Any(x => x.Email == dto.Email))
+                return BadRequest(new { message = "Email đã được sử dụng" });
+
+            
+            var hashed = BCrypt.Net.BCrypt.HashPassword(dto.MatKhau);
+
+            //  Tạo tài khoản
+            var taiKhoan = new TaiKhoan
+            {
+                TenDangNhap = dto.TenDangNhap,
+                MatKhau = hashed,
+                VaiTro = "NhanVien",
+                TrangThai = true,
+                LastActive = DateTime.UtcNow
+            };
+            _context.TaiKhoans.Add(taiKhoan);
+            _context.SaveChanges();
+
+            //  Tạo nhân viên liên kết
+            var nhanVien = new NhanVien
+            {
+                HoTen = dto.HoTen ?? "Chưa cập nhật",
+                ChucVu = dto.ChucVu ?? "Nhân viên",
+                Email = dto.Email,
+                SoDt = dto.SoDT,
+                MaTk = taiKhoan.MaTk
+            };
+            _context.NhanViens.Add(nhanVien);
+            _context.SaveChanges();
+
+            return Ok(new
+            {
+                message = "Tạo tài khoản nhân viên thành công",
+                MaNhanVien = nhanVien.MaNv,
+                VaiTro = "NhanVien"
             });
         }
 
+
+        // Tạo tài khoản ADMIN khác
+        //[AllowAnonymous]
         [HttpPost("create-admin")]
-        public IActionResult CreateAdmin()
+        [Authorize(Roles = "Admin")]
+        public IActionResult CreateAdmin([FromBody] RegisterDto dto)
         {
-            // Kiểm tra xem đã có admin chưa
-            if (_context.TaiKhoans.Any(x => x.VaiTro == "Admin"))
-            {
-                return BadRequest(new { message = "Admin đã tồn tại" });
-            }
+           
+            if (string.IsNullOrWhiteSpace(dto.TenDangNhap) || string.IsNullOrWhiteSpace(dto.MatKhau))
+                return BadRequest(new { message = "Tên đăng nhập và mật khẩu là bắt buộc" });
+
+            if (dto.VaiTro != null && dto.VaiTro != "Admin")
+                return BadRequest(new { message = "API này chỉ được dùng để tạo tài khoản Admin" });
+
+          
+            if (_context.TaiKhoans.Any(x => x.TenDangNhap == dto.TenDangNhap))
+                return BadRequest(new { message = "Tên đăng nhập đã tồn tại" });
+
+    
+            if (!string.IsNullOrEmpty(dto.Email) && _context.NhanViens.Any(x => x.Email == dto.Email))
+                return BadRequest(new { message = "Email đã được sử dụng" });
+
+            
+
+            var hashed = BCrypt.Net.BCrypt.HashPassword(dto.MatKhau);
 
             // Tạo tài khoản admin
-            var admin = new TaiKhoan
+            var taiKhoan = new TaiKhoan
             {
-                TenDangNhap = "admin",
-                MatKhau = "admin123",
+                TenDangNhap = dto.TenDangNhap,
+                MatKhau = hashed,
                 VaiTro = "Admin",
-                TrangThai = true
+                TrangThai = true,
+                LastActive = DateTime.UtcNow
             };
-
-            _context.TaiKhoans.Add(admin);
+            _context.TaiKhoans.Add(taiKhoan);
             _context.SaveChanges();
 
-            return Ok(new { message = "Tạo admin thành công", taiKhoan = admin });
+            // Tạo nhân viên liên kết (Admin cũng nằm trong bảng NhanVien)
+            var admin = new NhanVien
+            {
+                HoTen = dto.HoTen ?? "Quản trị viên mới",
+                ChucVu = dto.ChucVu ?? "Admin",
+                Email = dto.Email,
+                SoDt = dto.SoDT,
+                MaTk = taiKhoan.MaTk
+            };
+            _context.NhanViens.Add(admin);
+            _context.SaveChanges();
+
+            return Ok(new
+            {
+                message = "Tạo tài khoản Admin mới thành công",
+                MaNhanVien = admin.MaNv,
+                VaiTro = "Admin"
+            });
         }
+    
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginDto dto)
+        {
+            var user = _context.TaiKhoans
+                .AsNoTracking()
+                .FirstOrDefault(x => x.TenDangNhap == dto.TenDangNhap);
+
+            if (user == null)
+                return Unauthorized(new { message = "Tên đăng nhập hoặc mật khẩu không đúng" });
+
+            var ok = BCrypt.Net.BCrypt.Verify(dto.MatKhau, user.MatKhau);
+            if (!ok)
+                return Unauthorized(new { message = "Tên đăng nhập hoặc mật khẩu không đúng" });
+
+            if (user.TrangThai == false)
+                return BadRequest(new { message = "Tài khoản đã bị vô hiệu hóa" });
+
+            // Cập nhật LastActive (không dùng tracking nên update nhanh)
+            var tracked = _context.TaiKhoans.Find(user.MaTk);
+            if (tracked != null)
+            {
+                tracked.LastActive = DateTime.UtcNow;
+                _context.SaveChanges();
+            }
+
+            var token = _jwt.GenerateToken(user);
+
+            var refreshToken = new RefreshToken
+            {
+                MaTk = user.MaTk,
+                Token = TokenHelper.GenerateRefreshToken(),
+                ExpiryDate = DateTime.UtcNow.AddDays(7), // hạn 7 ngày
+                IsRevoked = false
+            };
+
+            _context.RefreshTokens.Add(refreshToken);
+            _context.SaveChanges();
+
+            // (Tuỳ chọn) Lưu LichSuDangNhap
+            _context.LichSuDangNhaps.Add(new LichSuDangNhap
+            {
+                MaTk = user.MaTk,
+                ThoiGian = DateTime.UtcNow,
+                DiaChiIp = HttpContext.Connection.RemoteIpAddress?.ToString()
+            });
+            _context.SaveChanges();
+
+            return Ok(new
+            {
+                access_token = token,
+                refresh_token = refreshToken.Token,
+                token_type = "Bearer",
+                expires_in_minutes = 120,
+                role = user.VaiTro
+            });
+        }
+        [HttpPost("refresh")]
+        public IActionResult Refresh([FromBody] string refreshToken)
+        {
+            var rt = _context.RefreshTokens
+                .FirstOrDefault(x => x.Token == refreshToken 
+                      && (x.IsRevoked == false || x.IsRevoked == null) 
+                      && x.ExpiryDate > DateTime.UtcNow);
+
+            if (rt == null) return Unauthorized(new { message = "Refresh token không hợp lệ hoặc đã hết hạn" });
+
+            var user = _context.TaiKhoans.Find(rt.MaTk);
+            if (user == null) return Unauthorized(new { message = "Tài khoản không tồn tại" });
+
+            var newAccessToken = _jwt.GenerateToken(user);
+
+            return Ok(new
+            {
+                access_token = newAccessToken,
+                token_type = "Bearer",
+                expires_in_minutes = 120
+            });
+        }
+        
+
     }
 
     public class LoginDto
@@ -121,4 +265,5 @@ namespace BackEnd.Controllers
         public string TenDangNhap { get; set; } = string.Empty;
         public string MatKhau { get; set; } = string.Empty;
     }
+
 }

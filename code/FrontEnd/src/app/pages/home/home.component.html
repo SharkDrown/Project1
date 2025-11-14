@@ -1,9 +1,230 @@
+<!--SLide ảnh -->
+<div id="libraryCarousel" class="carousel slide" data-bs-ride="carousel">
+  <!-- 🔹 Các nút chấm nhỏ phía dưới -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#libraryCarousel" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#libraryCarousel" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#libraryCarousel" data-bs-slide-to="2"></button>
+    <button type="button" data-bs-target="#libraryCarousel" data-bs-slide-to="3"></button>
+  </div>
 
-<app-feature-books></app-feature-books>>
+  <!-- 🔹 Ảnh chính -->
+  <div class="carousel-inner rounded-3 shadow-lg">
+    <div class="carousel-item active">
+      <img src="assets\img\library-1.jpg" class="d-block w-100" alt="Thư viện 1">
+      <div class="carousel-caption d-none d-md-block">
+        
+      </div>
+    </div>
 
-<section id="cards" class="cards section">
+    <div class="carousel-item">
+      <img src="assets\img\library-2.jpg" class="d-block w-100" alt="Thư viện 2">
+      <div class="carousel-caption d-none d-md-block">
+        
+      </div>
+    </div>
 
-      <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+    <div class="carousel-item">
+      <img src="assets\img\library-3.jpg" class="d-block w-100" alt="Thư viện 3">
+      <div class="carousel-caption d-none d-md-block">
+        
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="assets\img\library-4.webp" class="d-block w-100" alt="Thư viện 3">
+      <div class="carousel-caption d-none d-md-block">
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 Nút điều hướng -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#libraryCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#libraryCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<!-- Các item tròn (dưới slide) -->
+<div class="container text-center my-5" data-aos="fade-up">
+  <div class="row justify-content-center">
+    <!-- Cột 1 -->
+    <div class="col-md-4 mb-4">
+      <div class="info-item">
+        <img src="assets/img/kogianhoctap.png" alt="Không gian học tập" class="info-img">
+        <h5 class="info-title">Không gian rộng rãi</h5>
+        <p>Đáp ứng nhu cầu học tập và nghiên cứu</p>
+      </div>
+    </div>
+
+    <!-- Cột 2 -->
+    <div class="col-md-4 mb-4">
+      <div class="info-item">
+        <img src="assets/img/muontra.jpg" alt="Tài nguyên điện tử" class="info-img">
+        <h5 class="info-title">Dịch vụ mượn trả</h5>
+        <p>Hỗ trợ bạn mượn và trả tài liệu một cách nhanh chóng, thuận tiện</p>
+      </div>
+    </div>
+
+    <!-- Cột 3 -->
+    <div class="col-md-4 mb-4">
+      <div class="info-item">
+        <img src="assets/img/tailieu.jpg" alt="Tài liệu" class="info-img">
+        <h5 class="info-title">Tài liệu</h5>
+        <p>Kho học liệu phong phú gồm sách in, tài liệu điện tử và các nguồn tham khảo học tập trực tuyến</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Tin tức -->
+<!-- Section Title -->
+ <section id="news" class="news section">
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Tin tức</h2>
+  </div>
+    <div class="container" data-aos="fade-up" data-aos-delay="300">
+    <div class="row g-3 news-grid">
+      <!-- Tin nổi bật bên trái -->
+      <div class="col-lg-6 col-md-12">
+        <div class="news-item featured" *ngIf="newsList.length > 0">
+          <img [src]="newsList[0].image" alt="{{ newsList[0].title }}">
+          <div class="news-overlay">
+            <h4><a [href]="newsList[0].link" target="_blank">{{ newsList[0].title }}</a></h4>
+            <p>{{ newsList[0].source }} • {{ newsList[0].time }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 tin nhỏ bên phải -->
+      <div class="col-lg-6 col-md-12">
+        <div class="row g-3">
+          <div class="col-6" *ngFor="let news of newsList.slice(1, 5)">
+            <div class="news-item small">
+              <img [src]="news.image" alt="{{ news.title }}">
+              <div class="news-overlay">
+                <h5><a [href]="news.link" target="_blank">{{ news.title }}</a></h5>
+                <p>{{ news.source }} • {{ news.time }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   <!-- <rssapp-imageboard id="aNkuaI04ild1I2BD" data-aos="fade-up" data-aos-delay="300"></rssapp-imageboard> -->
+</section>
+<!-- End Section Title -->
+<!-- Sách -->
+ <section id="books" class="books section">
+  <div class="container section-title" data-aos="fade-up" data-aos-delay="300">
+    <h2>Sách</h2>
+  </div>
+
+  <main class="main">
+    <section id="call-to-action" class="call-to-action section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row featured-products-row" data-aos="fade-up" data-aos-delay="500">
+          <!-- Lặp qua danh sách sách -->
+          <div *ngFor="let sach of pagedSaches" class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="product-showcase">
+              <div class="product-image">
+                <img [src]="getImageUrl(sach.maSach, 'jpg')" alt="{{ sach.tuaSach }}" class="img-fluid">
+                <!-- Hiệu ứng hover + icon mắt -->
+                <div class="product-overlay">
+                  <div class="product-actions">
+                    <a class="action-btn" [routerLink]="['/book-detail', sach.maSach]" data-bs-toggle="tooltip" title="Xem chi tiết">
+                      <i class="bi bi-eye"></i>
+                    </a>
+
+                  </div>
+                </div>
+              </div>
+              
+              <div class="product-details">
+                <h6>{{ sach.tuaSach }}</h6>
+                <div class="price-section">
+                  <span class="sale-price">{{ sach.tenTg }}</span>
+                </div>
+                  <div class="book-quantity text-muted" style="font-size: 0.9rem;">
+                         Số lượng: {{ sach.soLuong }}
+                  </div>
+                <div class="rating-stars">
+                  <i class="bi bi-star-fill"></i>
+                  <span class="rating-count">{{ averageRatings[sach.maSach] || 0 }} </span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Product Showcase -->
+
+          <!-- Nếu không có sách -->
+          <div *ngIf="pagedSaches.length === 0" class="text-center py-5">
+            <p>Không có sách nào để hiển thị.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+   <section id="category-pagination" class="category-pagination section">
+  <div class="container">
+    <nav class="d-flex justify-content-center" aria-label="Page navigation">
+      <ul>
+        <li>
+          <a href="#" (click)="prevPage(); $event.preventDefault()" aria-label="Previous page">
+            <i class="bi bi-arrow-left"></i>
+            <span class="d-none d-sm-inline">Previous</span>
+          </a>
+        </li>
+
+        <li *ngFor="let p of visiblePages">
+          <ng-container *ngIf="p !== '...'; else ellipsis">
+            <a href="#" [class.active]="p === currentPage"
+               (click)="onPageClick(p, $event)">
+              {{ p }}
+            </a>
+          </ng-container>
+          <ng-template #ellipsis>
+            <span class="ellipsis">...</span>
+          </ng-template>
+        </li>
+
+        <li>
+          <a href="#" (click)="nextPage(); $event.preventDefault()" aria-label="Next page">
+            <span class="d-none d-sm-inline">Next</span>
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+
+
+  </main>
+</section>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <app-feature-books></app-feature-books> -->
+
+<!-- <section id="cards" class="cards section"> -->
+
+      <!-- <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row gy-4">
 
@@ -21,6 +242,6 @@
 
         </div>
 
-      </div>
+      </div> -->
 
-    </section>
+    <!-- </section> -->

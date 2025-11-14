@@ -1,5 +1,11 @@
 ﻿using BackEnd.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +14,36 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+
+    // 🟢 Thêm phần cấu hình xác thực Bearer
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Nhập token theo dạng: Bearer {token}",
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
+
 
 // Đăng ký DbContext với chuỗi kết nối
 builder.Services.AddDbContext<QuanLyThuVienContext>(options =>
@@ -25,6 +60,63 @@ builder.Services.AddCors(options =>
 
     });
 });
+
+// ===== Cấu hình JWT =====
+var jwtSection = builder.Configuration.GetSection("Jwt");
+var jwtKey = jwtSection["Key"];
+var jwtIssuer = jwtSection["Issuer"];
+var jwtAudience = jwtSection["Audience"];
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+options.RequireHttpsMetadata = false; // Cho dev, khi deploy nhớ bật true
+options.SaveToken = true;
+options.TokenValidationParameters = new TokenValidationParameters
+{
+    ValidateIssuer = true,
+    ValidateAudience = true,
+    ValidateLifetime = true,
+    ValidateIssuerSigningKey = true,
+    ValidIssuer = jwtIssuer,
+    ValidAudience = jwtAudience,
+    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+};
+options.Events = new JwtBearerEvents
+{
+    OnTokenValidated = async context =>
+    {
+        var db = context.HttpContext.RequestServices.GetRequiredService<QuanLyThuVienContext>();
+        var claims = context.Principal?.Identity as ClaimsIdentity;
+
+        var userIdClaim = claims?.FindFirst(ClaimTypes.NameIdentifier)
+                       ?? claims?.FindFirst(JwtRegisteredClaimNames.Sub);
+
+        if (userIdClaim == null)
+        {
+            context.Fail("Không tìm thấy userId trong token");
+            return;
+        }
+
+        var userId = int.Parse(userIdClaim.Value);
+        var user = await db.TaiKhoans.FindAsync(userId);
+
+        if (user == null || user.TrangThai == false)
+        {
+            context.Fail("Tài khoản đã bị vô hiệu hóa");
+        }
+    }
+    };
+});
+
+// Đăng ký JwtService để sinh token
+builder.Services.AddScoped<JwtService>();
+
+
 var app = builder.Build();
 app.UseCors("AllowAngular");
 app.UseStaticFiles();
@@ -36,7 +128,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
