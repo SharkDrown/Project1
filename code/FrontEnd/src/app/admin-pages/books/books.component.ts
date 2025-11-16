@@ -12,11 +12,15 @@ import { BooksService, Book, Category, CreateBookDto, UpdateBookDto } from '../.
 })
 export class BooksComponent implements OnInit {
   books: Book[] = [];
+  filteredBooks: Book[] = [];
   categories: Category[] = [];
   loading = false;
   errorMessage: string = '';
   successMessage: string = '';
   Math = Math; // Expose Math để dùng trong template
+
+  // Search
+  searchTerm: string = '';
 
   // Pagination
   currentPage = 1;
@@ -28,7 +32,7 @@ export class BooksComponent implements OnInit {
   get paginatedBooks(): Book[] {
     const start = (this.currentPage - 1) * this.pageSize;
     const end = start + this.pageSize;
-    return this.books.slice(start, end);
+    return this.filteredBooks.slice(start, end);
   }
 
   // Modal state
@@ -61,11 +65,7 @@ export class BooksComponent implements OnInit {
     this.booksService.getBooks().subscribe({
       next: (data) => {
         this.books = data;
-        this.totalItems = data.length;
-        // Reset về trang 1 nếu trang hiện tại không còn hợp lệ
-        if (this.currentPage > this.totalPages && this.totalPages > 0) {
-          this.currentPage = 1;
-        }
+        this.applySearch();
         this.loading = false;
       },
       error: (err) => {
@@ -74,6 +74,38 @@ export class BooksComponent implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  applySearch(): void {
+    if (!this.searchTerm || this.searchTerm.trim() === '') {
+      this.filteredBooks = [...this.books];
+    } else {
+      const term = this.searchTerm.toLowerCase().trim();
+      this.filteredBooks = this.books.filter(book => 
+        book.maSach.toString().includes(term) ||
+        book.tuaSach.toLowerCase().includes(term) ||
+        (book.namXB && book.namXB.toString().includes(term)) ||
+        (book.nhaXB && book.nhaXB.toLowerCase().includes(term)) ||
+        (book.tenTL && book.tenTL.toLowerCase().includes(term)) ||
+        this.getCategoryName(book.maTL).toLowerCase().includes(term)
+      );
+    }
+    this.totalItems = this.filteredBooks.length;
+    // Reset về trang 1 nếu trang hiện tại không còn hợp lệ
+    if (this.currentPage > this.totalPages && this.totalPages > 0) {
+      this.currentPage = 1;
+    } else if (this.totalPages === 0) {
+      this.currentPage = 1;
+    }
+  }
+
+  onSearchChange(): void {
+    this.applySearch();
+  }
+
+  clearSearch(): void {
+    this.searchTerm = '';
+    this.applySearch();
   }
 
   loadCategories(): void {

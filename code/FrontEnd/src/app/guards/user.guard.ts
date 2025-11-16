@@ -29,14 +29,10 @@ export class UserGuard implements CanActivate {
       const role = decoded.role 
           || decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
 
-        if (role === 'DocGia') {
+      // Cho phép tất cả user đã đăng nhập (DocGia, Admin, NhanVien)
+      if (role === 'DocGia' || role === 'Admin' || role === 'NhanVien') {
         return true;
-        }
-        if (role === 'Admin') {
-        this.router.navigate(['/admin']);
-        return false;
-        }
-
+      }
 
       // Trường hợp role không hợp lệ
       this.router.navigate(['/login']);

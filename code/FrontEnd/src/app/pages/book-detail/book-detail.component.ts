@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-book-detail',
-  imports: [],
-  templateUrl: './book-detail.component.html',
-  styleUrl: './book-detail.component.css'
-})
-export class BookDetailComponent {
-=======
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
@@ -370,8 +359,5 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
        
   }
   
- 
-
->>>>>>> e9f5ac1fd4e0dbd1be90a8a2f9378a93918bf52c
 
 }

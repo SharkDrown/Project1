@@ -169,11 +169,42 @@
 
 <!-- DataTables Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Danh Sách Sách</h6>
-        <small class="text-muted">Tổng số: {{ totalItems }} sách</small>
+                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="m-0 font-weight-bold text-primary">Danh Sách Sách</h6>
+                                <small class="text-muted">Tổng số: {{ totalItems }} sách</small>
+                            </div>
                         </div>
                         <div class="card-body">
+                            <!-- Search Box -->
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-search"></i>
+                                        </span>
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        placeholder="Tìm kiếm theo mã sách, tên sách, năm XB, nhà XB, thể loại..." 
+                                        [(ngModel)]="searchTerm"
+                                        (input)="onSearchChange()"
+                                        name="searchTerm">
+                                    <div class="input-group-append" *ngIf="searchTerm">
+                                        <button 
+                                            class="btn btn-outline-secondary" 
+                                            type="button" 
+                                            (click)="clearSearch()"
+                                            title="Xóa tìm kiếm">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <small class="text-muted" *ngIf="searchTerm">
+                                    Tìm thấy {{ totalItems }} kết quả cho "{{ searchTerm }}"
+                                </small>
+                            </div>
         <div *ngIf="loading && books.length === 0" class="text-center py-4">
             <div class="spinner-border text-primary" role="status">
                 <span class="sr-only">Loading...</span>
@@ -185,7 +216,14 @@
             <p class="text-muted">Chưa có sách nào trong hệ thống.</p>
         </div>
 
-        <div *ngIf="books.length > 0" class="table-responsive">
+        <div *ngIf="!loading && books.length > 0 && filteredBooks.length === 0" class="text-center py-4">
+            <p class="text-muted">Không tìm thấy sách nào phù hợp với từ khóa "{{ searchTerm }}".</p>
+            <button class="btn btn-sm btn-outline-primary" (click)="clearSearch()">
+                <i class="fas fa-redo mr-1"></i>Xóa bộ lọc
+            </button>
+        </div>
+
+        <div *ngIf="filteredBooks.length > 0" class="table-responsive">
             <table class="table table-bordered table-hover" width="100%" cellspacing="0">
                 <thead class="thead-light">
                     <tr>

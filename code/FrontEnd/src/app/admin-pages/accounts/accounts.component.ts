@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-accounts',
-  imports: [],
-  templateUrl: './accounts.component.html',
-  styleUrl: './accounts.component.css'
-})
-export class AccountsComponent {
-
-=======
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -197,5 +185,4 @@ export class AccountsComponent implements OnInit {
   get isAdmin(): boolean {
     return this.authService.getRole() === 'Admin';
   }
->>>>>>> e9f5ac1fd4e0dbd1be90a8a2f9378a93918bf52c
 }

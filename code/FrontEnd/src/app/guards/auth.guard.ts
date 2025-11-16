@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-<<<<<<< HEAD
 import { jwtDecode } from 'jwt-decode';
-=======
-import {jwtDecode} from 'jwt-decode';
->>>>>>> e9f5ac1fd4e0dbd1be90a8a2f9378a93918bf52c
 
 @Injectable({
   providedIn: 'root'
