@@ -11,6 +11,7 @@ public partial class CuonSach
 
     public string? TinhTrang { get; set; }
 
+    public int? MaDat { get; set; }
     public virtual ICollection<ChiTietPhieuMuon> ChiTietPhieuMuons { get; set; } = new List<ChiTietPhieuMuon>();
 
     public virtual Sach? MaSachNavigation { get; set; }

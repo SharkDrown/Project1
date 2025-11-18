@@ -32,7 +32,7 @@ export class LoginComponent {
       MatKhau: this.password
     }).subscribe({
       next: (res: any) => {
-        console.log('✅ Login success:', res);
+        console.log('Login success:', res);
 
         // Lưu access_token và refresh_token
         if (res.access_token) {
@@ -65,7 +65,7 @@ export class LoginComponent {
             localStorage.setItem('role', res.role);
           }
 
-          // ✅ Kiểm tra role và điều hướng
+          // Kiểm tra role và điều hướng
           if (res.role && (res.role.toLowerCase() === 'admin' || res.role.toLowerCase() === 'nhanvien')) {
             this.router.navigate(['/admin'], { replaceUrl: true });
           } else {
@@ -74,7 +74,7 @@ export class LoginComponent {
         }
       },
       error: (err) => {
-        console.error('❌ Login failed', err);
+        console.error('Login failed', err);
         this.errorMessage = 'Tên đăng nhập hoặc mật khẩu không đúng';
       }
     });

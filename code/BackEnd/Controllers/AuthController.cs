@@ -122,7 +122,7 @@ namespace BackEnd.Controllers
 
 
         // Tạo tài khoản ADMIN khác
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpPost("create-admin")]
         [Authorize(Roles = "Admin")]
         public IActionResult CreateAdmin([FromBody] RegisterDto dto)

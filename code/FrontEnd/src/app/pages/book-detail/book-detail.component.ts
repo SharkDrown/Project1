@@ -36,6 +36,7 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
   hoverRatingValue = 0;
   hovered: number = -1;
   showEmojiPicker = false;
+  emojiPopupStyle: any = {};
   isLoggedIn: boolean = false;
 
   loading = false;
@@ -328,7 +329,31 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
 }
 
 
-  toggleEmojiPicker(): void { this.showEmojiPicker = !this.showEmojiPicker; }
+  toggleEmojiPicker(event?: MouseEvent): void {
+   this.showEmojiPicker = !this.showEmojiPicker;
+    if (!this.showEmojiPicker && event && event.currentTarget) {
+      try {
+        const btn = event.currentTarget as HTMLElement;
+        const rect = btn.getBoundingClientRect();
+        
+        this.emojiPopupStyle = {
+          position: 'fixed',
+          top: `${Math.round(rect.bottom + 8)}px`,
+          left: `${Math.round(rect.left)}px`,
+          zIndex: 999999,
+        };
+      } catch (e) {
+       
+        this.emojiPopupStyle = { position: 'fixed', bottom: '6rem', right: '2rem', zIndex: 999999 };
+      }
+    }
+    
+
+   
+     else {
+       this.emojiPopupStyle = {};
+     }
+  }
   addEmoji(event: any): void { this.reviewText += event.emoji?.native || event.emoji || ''; }
 
   /** Giải mã JWT để lấy maDg */

@@ -1,0 +1,61 @@
+
+.custom-modal-center {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1060;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: flex-end; 
+    align-items: center;
+    padding-right: 25vw;
+}
+.modal-dialog {
+    max-width: 500px;
+    width: 50% !important;
+    margin: 1.75rem 0 auto;
+    
+}
+
+/* Lưới mã vạch */
+.mv-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* mỗi hàng 5 số */
+    gap: 10px;  /* khoảng cách giữa các ô */
+    margin-top: 10px;
+}
+
+/* Mỗi ô mã vạch */
+.mv-item {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;  /* hình tròn */
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    user-select: none;
+    background-color: #f8f9fa; /* nền mặc định */
+}
+
+/* Mã vạch đã chọn */
+.mv-selected {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Mã vạch đã mượn / bôi mờ */
+.mv-disabled {
+    background-color: #cababa;
+    color: #999999;
+    cursor: not-allowed;
+}
+.mv-available {
+    background-color: #f8f9fa;
+    cursor: pointer;
+}

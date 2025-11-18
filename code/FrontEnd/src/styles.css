@@ -1,13 +1,13 @@
 /* Css cho chức năng emoji */
-
+.emoji-wrapper {
+  position: relative;
+  display: inline-block;
+}
 .emoji-popup {
-  position: absolute;
-  top: 100%;                 /* xuất hiện ngay dưới container comment-actions */
-  left: 36px;               /* bên phải nút emoji, đặt cố định cách 36px */
-  width: 330px;             /* chiều rộng rộng hơn để hiển thị nhiều emoji theo hàng */
-  max-height: 360px;          /* chiều cao tối đa */
-  overflow-y: auto;           /* thanh cuộn khi nhiều emoji */
-  overflow-x: hidden;        /* ẩn thanh cuộn ngang */
+  width: 330px;             
+  max-height: 360px;         
+  overflow-y: auto;          
+  overflow-x: hidden;       
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
@@ -154,4 +154,14 @@
   max-height: 280px;
 }
 
+
+ji-mart-scroll {
+  min-height: 0 !important;
+}
+
+/* If the library uses a wrapper that sets a large line-height, normalize it */
+.emoji-popup .emoji-mart-emoji,
+.emoji-popup button.emoji-mart-emoji {
+  line-height: 1 !important;
+}
 
