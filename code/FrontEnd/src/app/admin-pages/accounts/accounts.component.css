@@ -1,0 +1,11 @@
+.equal-card {
+  min-height: 650px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.card {
+  width: 100%;
+}
