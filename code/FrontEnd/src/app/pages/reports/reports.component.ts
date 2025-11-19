@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NoticesComponent } from '../../notices/notices.component';
 
 @Component({
   selector: 'app-reports',
-  imports: [NoticesComponent],
+  standalone: true,
+  imports: [],
   templateUrl: './reports.component.html',
   styleUrl: './reports.component.css'
 })

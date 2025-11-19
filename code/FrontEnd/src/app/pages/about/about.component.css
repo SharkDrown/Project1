@@ -1,0 +1,295 @@
+/* About Section */
+.about {
+  padding: 60px 0;
+}
+
+.about .content h3 {
+  font-weight: 600;
+  font-size: 26px;
+  color: #2c3e50;
+}
+
+.about .content p {
+  font-size: 16px;
+  color: #6c757d;
+  margin-bottom: 15px;
+}
+
+.about .content .fst-italic {
+  font-style: italic;
+  color: #495057;
+}
+
+/* Features Section */
+.features {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+.features .section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.features .section-title h2 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.features .section-title p {
+  font-size: 16px;
+  color: #6c757d;
+}
+
+.features .icon-box {
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.features .icon-box i {
+  font-size: 48px;
+  color: #007bff;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.features .icon-box h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.features .icon-box p {
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.features .icon-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.features .icon-box ul li {
+  padding: 5px 0;
+  color: #495057;
+  position: relative;
+  padding-left: 20px;
+}
+
+.features .icon-box ul li:before {
+  content: "•";
+  color: #007bff;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.features .icon-box ul li strong {
+  color: #2c3e50;
+}
+
+/* Services Section */
+.services {
+  padding: 60px 0;
+}
+
+.services .section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.services .section-title h2 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.services .section-title p {
+  font-size: 16px;
+  color: #6c757d;
+}
+
+.services .icon-box {
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  text-align: center;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.services .icon-box:hover {
+  transform: translateY(-5px);
+}
+
+.services .icon-box .icon {
+  margin-bottom: 20px;
+}
+
+.services .icon-box .icon i {
+  font-size: 48px;
+  color: #007bff;
+}
+
+.services .icon-box h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.services .icon-box h4 a {
+  color: #2c3e50;
+  text-decoration: none;
+}
+
+.services .icon-box h4 a:hover {
+  color: #007bff;
+}
+
+.services .icon-box p {
+  color: #6c757d;
+}
+
+/* Contact Section */
+.contact {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+.contact .section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.contact .section-title h2 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.contact .section-title p {
+  font-size: 16px;
+  color: #6c757d;
+}
+
+.contact .info {
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  height: 100%;
+}
+
+.contact .info > div {
+  margin-bottom: 20px;
+}
+
+.contact .info i {
+  font-size: 24px;
+  color: #007bff;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+
+.contact .info h4 {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.contact .info p {
+  color: #6c757d;
+  margin: 0;
+  margin-left: 40px;
+}
+
+/* Form */
+.contact form {
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.contact form .form-group {
+  margin-bottom: 20px;
+}
+
+.contact form label {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.contact form .form-control {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.contact form .form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  outline: none;
+}
+
+.contact form textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact form button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact form button:hover {
+  background: #0056b3;
+}
+
+.contact form .loading,
+.contact form .error-message,
+.contact form .sent-message {
+  display: none;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.contact form .loading {
+  background: #e7f3ff;
+  color: #0066cc;
+}
+
+.contact form .error-message {
+  background: #ffe6e6;
+  color: #cc0000;
+}
+
+.contact form .sent-message {
+  background: #e6ffe6;
+  color: #006600;
+}

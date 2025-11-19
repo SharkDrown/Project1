@@ -384,7 +384,5 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
        
   }
   
- 
-
 
 }

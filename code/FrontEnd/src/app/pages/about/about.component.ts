@@ -1,11 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+declare var AOS: any;
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
-export class AboutComponent {
-
+export class AboutComponent implements AfterViewInit {
+  ngAfterViewInit(): void {
+    AOS.init({ duration: 1000, once: true });
+  }
 }

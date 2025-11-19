@@ -188,17 +188,47 @@ namespace BackEnd.Controllers
             if (user == null)
                 return Unauthorized(new { message = "Tên đăng nhập hoặc mật khẩu không đúng" });
 
-            var ok = BCrypt.Net.BCrypt.Verify(dto.MatKhau, user.MatKhau);
+            // Hỗ trợ cả plain text và BCrypt để tương thích với dữ liệu cũ
+            // Thử verify bằng BCrypt trước
+            bool ok = false;
+            bool isPlainText = false;
+            
+            try
+            {
+                // Nếu mật khẩu trong DB là BCrypt hash (bắt đầu bằng $2a$ hoặc $2b$)
+                if (user.MatKhau != null && (user.MatKhau.StartsWith("$2a$") || user.MatKhau.StartsWith("$2b$")))
+                {
+                    ok = BCrypt.Net.BCrypt.Verify(dto.MatKhau, user.MatKhau);
+                }
+                else
+                {
+                    // Mật khẩu là plain text - so sánh trực tiếp
+                    ok = user.MatKhau == dto.MatKhau;
+                    isPlainText = ok; // Đánh dấu để hash lại sau
+                }
+            }
+            catch
+            {
+                // Nếu BCrypt verify lỗi, thử so sánh plain text
+                ok = user.MatKhau == dto.MatKhau;
+                isPlainText = ok;
+            }
+
             if (!ok)
                 return Unauthorized(new { message = "Tên đăng nhập hoặc mật khẩu không đúng" });
 
             if (user.TrangThai == false)
                 return BadRequest(new { message = "Tài khoản đã bị vô hiệu hóa" });
 
-            // Cập nhật LastActive (không dùng tracking nên update nhanh)
+            // Cập nhật LastActive và hash lại mật khẩu nếu cần (không dùng tracking nên update nhanh)
             var tracked = _context.TaiKhoans.Find(user.MaTk);
             if (tracked != null)
             {
+                // Nếu mật khẩu là plain text và đúng, tự động hash lại và lưu vào DB
+                if (isPlainText)
+                {
+                    tracked.MatKhau = BCrypt.Net.BCrypt.HashPassword(dto.MatKhau);
+                }
                 tracked.LastActive = DateTime.UtcNow;
                 _context.SaveChanges();
             }
@@ -256,7 +286,7 @@ namespace BackEnd.Controllers
                 expires_in_minutes = 120
             });
         }
-        
+
 
     }
 
@@ -265,5 +295,6 @@ namespace BackEnd.Controllers
         public string TenDangNhap { get; set; } = string.Empty;
         public string MatKhau { get; set; } = string.Empty;
     }
+
 
 }

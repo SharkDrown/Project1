@@ -21,12 +21,32 @@ public class JwtService
     public string GenerateToken(TaiKhoan user)
     {
         var jwtSection = _config.GetSection("Jwt");
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSection["Key"]!));
+        var jwtKey = jwtSection["Key"];
+        
+        if (string.IsNullOrEmpty(jwtKey))
+        {
+            throw new InvalidOperationException("JWT Key không được để trống trong appsettings.json");
+        }
+        
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
         
         var expiresMinutes = int.TryParse(jwtSection["ExpiresMinutes"], out var m) ? m : 120;
-        var docGia = _context.DocGia.FirstOrDefault(d => d.MaTk == user.MaTk);
-        var hoTen = docGia?.HoTen ?? user.TenDangNhap;
+        
+        // Lấy HoTen từ DocGia hoặc NhanVien tùy theo vai trò
+        string? hoTen = null;
+        if (user.VaiTro == "DocGia")
+        {
+            var docGia = _context.DocGia.FirstOrDefault(d => d.MaTk == user.MaTk);
+            hoTen = docGia?.HoTen;
+        }
+        else if (user.VaiTro == "Admin" || user.VaiTro == "NhanVien")
+        {
+            var nhanVien = _context.NhanViens.FirstOrDefault(n => n.MaTk == user.MaTk);
+            hoTen = nhanVien?.HoTen;
+        }
+        
+        hoTen = hoTen ?? user.TenDangNhap ?? string.Empty;
 
         var claims = new List<Claim>
         {

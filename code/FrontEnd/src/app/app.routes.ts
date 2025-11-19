@@ -39,6 +39,7 @@ export const routes: Routes = [
       { path: 'reserve', component: ReserveComponent, canActivate: [UserGuard] },
       { path: 'history', component: HistoryComponent, canActivate: [UserGuard] },
       { path: 'reports', component: ReportsComponent, canActivate: [UserGuard] },
+      { path: 'notices', loadComponent: () => import('./notices/notices.component').then(m => m.NoticesComponent), canActivate: [UserGuard] },
       { path: 'contact', component: ContactComponent },
 
       // load lazy cho register & login

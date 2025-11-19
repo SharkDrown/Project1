@@ -12,13 +12,14 @@ export class AdminGuard implements CanActivate {
     const token = localStorage.getItem('access_token');
 
     if (!token) {
+      console.log('Không có token, chuyển đến trang đăng nhập');
       this.router.navigate(['/login']);
       return false;
     }
 
     try {
       const decoded: any = jwtDecode(token);
-      console.log("🔎 Decoded token:", decoded);
+      console.log("Decoded token:", decoded);
 
       // Lấy role từ token
       const role = decoded.role 
@@ -26,21 +27,23 @@ export class AdminGuard implements CanActivate {
 
       // Kiểm tra hết hạn
       if (decoded.exp && decoded.exp * 1000 < Date.now()) {
-        localStorage.clear();
+        console.log('Token đã hết hạn, chuyển đến trang đăng nhập');
+        localStorage.removeItem('access_token');
         this.router.navigate(['/login']);
         return false;
       }
 
-      // ✅ Chỉ cho Admin vào
-      if (role === 'Admin' || role ==='NhanVien') {
+      // Chỉ cho Admin và NhanVien vào
+      if (role === 'Admin' || role === 'NhanVien') {
         return true;
       } else {
-        console.warn('⚠️ Bạn không có quyền Admin');
+        console.log('Không có quyền admin, chuyển đến trang chủ');
         this.router.navigate(['/']);
         return false;
       }
     } catch (err) {
-      localStorage.clear();
+      console.error('Lỗi decode token:', err);
+      localStorage.removeItem('access_token');
       this.router.navigate(['/login']);
       return false;
     }

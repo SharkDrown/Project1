@@ -11,7 +11,7 @@
         <!-- Chỉ dành cho độc giả -->
         <li *ngIf="authService.isUser()"><a routerLink="/reserve" routerLinkActive="active">Đặt trước sách</a></li>
         <li *ngIf="authService.isUser()"><a routerLink="/history" routerLinkActive="active">Lịch sử mượn</a></li>
-        <li *ngIf="authService.isUser()"><a routerLink="/reports" routerLinkActive="active">Thông báo</a></li>
+        <li *ngIf="authService.isUser()"><a routerLink="/notices" routerLinkActive="active">Thông báo</a></li>
 
         <!-- Chỉ dành cho admin -->
         <li *ngIf="authService.isAdmin()"><a routerLink="/admin" routerLinkActive="active">Quản trị</a></li>

@@ -7,7 +7,7 @@ using System.Security.Claims;
 namespace BackEnd.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")] 
+    [Route("api/[controller]")]
     [Authorize]
     public class AccountController : ControllerBase
     {
@@ -28,7 +28,7 @@ namespace BackEnd.Controllers
 
             var acc = await _context.TaiKhoans
                 .Include(d => d.DocGium)
-                .Include(n => n.NhanVien)   // navigation property đơn
+                .Include(n => n.NhanVien)
                 .FirstOrDefaultAsync(x => x.MaTk == id);
 
             if (acc == null) return NotFound();
