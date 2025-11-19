@@ -15,6 +15,7 @@ public partial class DatTruoc
 
     public string? TrangThai { get; set; }
 
+    public int SoLuong { get; set; }
     public virtual DocGium? MaDgNavigation { get; set; }
 
     public virtual Sach? MaSachNavigation { get; set; }
