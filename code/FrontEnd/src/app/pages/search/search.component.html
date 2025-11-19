@@ -67,144 +67,97 @@
 
       <div class="col-lg-8">
 
-        <!-- Category Header Section -->
-        <section id="category-header" class="category-header section">
-          <div class="container" data-aos="fade-up">
-            <!-- Filter and Sort Options -->
-            <div class="filter-container mb-4" data-aos="fade-up" data-aos-delay="100">
-              <div class="row g-3 align-items-center">
-                <!-- Search input: approx 70% width on md/lg screens -->
-               <div class="col-12 col-md-8 col-lg-9">
-                  <div class="filter-item search-form">
-                    <label for="productSearch" class="form-label text-center d-block fw-bold mb-2">Tra cứu</label>
-                    <div class="input-group">
-                      <input type="text" class="form-control" id="productSearch" placeholder="Tìm sách hoặc tác giả..." 
-                      aria-label="Search for books" [formControl]="searchControl"/>
-                      <button class="btn btn-outline-primary search-btn" type="button" (click)="onSearchClick()" >
-                        <i class="bi bi-search"></i>
-                      </button>
-                    </div>
+  <!-- Category Header Section -->
+  <section id="category-header" class="category-header section" data-aos="fade-up">
+    <!-- Filter and Sort Options -->
+    <div class="filter-container mb-4" data-aos-delay="100">
+      <div class="row g-3 align-items-center">
+        <!-- Search input -->
+        <div class="col-12 col-md-8 col-lg-9">
+          <div class="filter-item search-form">
+            <label for="productSearch" class="form-label text-center d-block fw-bold mb-2">Tra cứu</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="productSearch" placeholder="Tìm sách hoặc tác giả..."
+                aria-label="Search for books" [formControl]="searchControl" />
+              <button class="btn btn-outline-primary search-btn" type="button" (click)="onSearchClick()">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+            <div *ngIf="error" class="alert alert-danger mt-2">{{ error }}</div>
+          </div>
+        </div>
 
-                    <!-- Hiển thị thông báo lỗi nếu có -->
-                    <div *ngIf="error" class="alert alert-danger mt-2">
-                        {{ error }}
-                    </div>
-                  </div>
-                </div>
+        <!-- Sort By -->
+        <div class="col-12 col-md-4 col-lg-3">
+          <div class="filter-item d-flex flex-column align-items-end">
+            <label for="sortBy" class="form-label text-center w-100">Sắp xếp theo</label>
+            <select class="form-select w-auto" id="sortBy" [(ngModel)]="sortBy" (change)="onSortChange($event)">
+              <option value="asc" selected>Từ A → Z</option>
+              <option value="desc">Từ Z → A</option>
+              <option value="rating">Đánh giá tốt nhất</option>
+              <option value="available">Có thể mượn</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Category Product List Section -->
+  <section id="category-product-list" class="category-product-list section" data-aos="fade-up" data-aos-delay="100">
+    <div class="row g-4">
+      <!-- Loading Spinner -->
+      <div *ngIf="loading" class="col-12 text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Đang tải...</span>
+        </div>
+        <p class="mt-2">Đang tải...</p>
+      </div>
 
-                <!-- Sort By: right aligned -->
-                <div class="col-12 col-md-4 col-lg-3">
-                  <div class="filter-item d-flex flex-column align-items-end">
-                    <label for="sortBy" class="form-label text-center w-100">Sắp xếp theo</label>
-                    <select class="form-select w-auto" id="sortBy" [(ngModel)]="sortBy" (change)="onSortChange($event)">
-                      <option value="asc" selected>Từ A -> Z</option>
-                      <option value="desc">Từ Z -> A</option>
-                      <option value="rating">Đánh giá tốt nhất</option>
-                      <option value="available">Có thể mượn</option>
-                    </select>
-                  </div>
-                </div>
+      <!-- No Results -->
+      <div *ngIf="!loading && pagedSaches.length === 0 && searchControl.value?.trim()" class="col-12 text-center py-5">
+        <i class="bi bi-book display-4 text-muted"></i>
+        <h5 class="mt-3">Không tìm thấy sách phù hợp</h5>
+        <p>Hãy thử từ khóa khác!</p>
+      </div>
+
+      <!-- Results -->
+      <div *ngFor="let sach of pagedSaches" class="col-6 col-xl-4">
+        <div class="product-card">
+          <div class="product-image">
+            <img [src]="getImageUrl(sach.maSach, 'jpg')" class="main-image img-fluid" [alt]="sach.tuaSach" />
+            <div class="product-overlay">
+              <div class="product-actions">
+                <a class="action-btn" [routerLink]="['/book-detail', sach.maSach]" data-bs-toggle="tooltip"
+                  title="Xem chi tiết">
+                  <i class="bi bi-eye"></i>
+                </a>
               </div>
             </div>
           </div>
-        </section><!-- /Category Header Section -->
-
-        <!-- Category Product List Section -->
-        <section id="category-product-list" class="category-product-list section">
-          <div class="container" data-aos="fade-up" data-aos-delay="100">
-            <div class="row g-4">
-              <!-- Loading Spinner -->
-              <div *ngIf="loading" class="col-12 text-center py-5">
-                <div class="spinner-border text-primary" role="status">
-                  <span class="visually-hidden">Đang tải...</span>
-                </div>
-                <p class="mt-2">Đang tải...</p>
-              </div>
-
-              <!-- No Results (khi không có data và đã search) -->
-              <div *ngIf="!loading && pagedSaches.length === 0 && searchControl.value?.trim()" class="col-12 text-center py-5">
-                <i class="bi bi-book display-4 text-muted"></i>
-                <h5 class="mt-3">Không tìm thấy sách phù hợp</h5>
-                <p>Hãy thử từ khóa khác!</p>
-              </div>
-
-              <!-- Results List (hiển thị khi có data hoặc load all) -->
-              <div *ngFor="let sach of pagedSaches" class="col-6 col-xl-4">
-                <div class="product-card">
-                  <div class="product-image">
-                    <img [src]="getImageUrl(sach.maSach, 'jpg')" class="main-image img-fluid" [alt]="sach.tuaSach">
-                    <div class="product-overlay">
-                      <div class="product-actions">
-                         <a class="action-btn" [routerLink]="['/book-detail', sach.maSach]" data-bs-toggle="tooltip" title="Xem chi tiết">
-                           <i class="bi bi-eye"></i>
-                         </a>
-                      
-                      </div>
-                    </div>
-                  </div>
-                  <div class="product-details">
-                  <!-- Tên sách -->
-                    <div class="product-category">{{ sach.tuaSach }}</div>
-
-                  <!-- Tác giả (thay vì Nhà xuất bản) -->
-                    <h4 class="product-title">
-                      <a routerLink="/sach/{{ sach.maSach }}">
-                        {{ sach.tenTg || 'Không có tác giả' }}
-                      </a>
-                    </h4>
-
-                  <!-- Thông tin phụ -->
-                    <div class="product-meta">
-                      <div class="product-price">Số lượng: {{ sach.soLuong }}</div>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning"></i>
-                        {{ averageRatings[sach.maSach] || 0 }} 
-                        <span>({{ reviewCounts[sach.maSach] || 0 }})</span>
-                      </div>
-
-
-
-                    </div>
-                  </div>
-
-                </div>
+          <div class="product-details">
+            <div class="product-category">{{ sach.tuaSach }}</div>
+            <h4 class="product-title">
+              <a routerLink="/sach/{{ sach.maSach }}">
+                {{ sach.tenTg || 'Không có tác giả' }}
+              </a>
+            </h4>
+            <div class="product-meta">
+              <div class="product-price">Số lượng: {{ sach.soLuong }}</div>
+              <div class="product-rating">
+                <i class="bi bi-star-fill text-warning"></i>
+                {{ averageRatings[sach.maSach] || 0 }}
+                <span>({{ reviewCounts[sach.maSach] || 0 }})</span>
               </div>
             </div>
           </div>
-        </section><!-- /Category Product List Section -->
+        </div>
+      </div>
+    </div>
+  </section>
 
- <!-- Category Pagination Section (dynamic) -->
-<!-- <section id="category-pagination" class="category-pagination section">
-  <div class="container">
-    <nav class="d-flex justify-content-center" aria-label="Page navigation">
-      <ul class="pagination">
-        
-        <li class="page-item" [class.disabled]="currentPage === 1">
-          <a class="page-link" (click)="changePage(currentPage - 1)" aria-label="Previous">
-            <i class="bi bi-arrow-left"></i>
-            <span class="d-none d-sm-inline">Previous</span>
-          </a>
-        </li>
-
-        
-        <li *ngFor="let page of [].constructor(totalPages); let i = index" class="page-item" [class.active]="i + 1 === currentPage">
-          <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
-        </li>
-
-        
-        <li class="page-item" [class.disabled]="currentPage === totalPages">
-          <a class="page-link" (click)="changePage(currentPage + 1)" aria-label="Next">
-            <span class="d-none d-sm-inline">Next</span>
-            <i class="bi bi-arrow-right"></i>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</section> -->
-    <section id="category-pagination" class="category-pagination section" *ngIf="totalPages > 1">
-  <div class="container">
+  <!-- Pagination -->
+  <section id="category-pagination" class="category-pagination section" *ngIf="totalPages > 1">
     <nav class="d-flex justify-content-center" aria-label="Page navigation">
       <ul>
         <li>
@@ -216,14 +169,11 @@
 
         <li *ngFor="let p of visiblePages">
           <ng-container *ngIf="p !== '...'; else ellipsis">
-            <a href="#" [class.active]="p === currentPage"
-               (click)="onPageClick(p, $event)">
+            <a href="#" [class.active]="p === currentPage" (click)="onPageClick(p, $event)">
               {{ p }}
             </a>
           </ng-container>
-          <ng-template #ellipsis>
-            <span class="ellipsis">...</span>
-          </ng-template>
+          <ng-template #ellipsis><span class="ellipsis">...</span></ng-template>
         </li>
 
         <li>
@@ -234,10 +184,11 @@
         </li>
       </ul>
     </nav>
-  </div>
-</section>
-  
-    </div>
+  </section>
+
+</div>
+
+
     </div>
   </div>
 </main>
