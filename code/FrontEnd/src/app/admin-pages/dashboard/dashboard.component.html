@@ -1,12 +1,40 @@
-<!-- ====================== BIỂU ĐỒ ====================== -->
+<!--  CHỌN NĂM  -->
+<div class="row mb-4">
+  <div class="col-md-4">
+    <label class="font-weight-bold">Chọn năm thống kê</label>
+    <select
+      class="form-control"
+      [(ngModel)]="selectedYear"
+      (change)="reloadDashboard()"
+    >
+      <option *ngFor="let y of years" [value]="y">
+        Năm {{ y }}
+      </option>
+    </select>
+  </div>
 
+  <div class="col-md-4 d-flex align-items-end">
+    <button
+      class="btn btn-success"
+      (click)="exportExcel()"
+    >
+      <i class="fas fa-file-excel"></i>
+      Xuất Excel
+    </button>
+  </div>
+</div>
+
+
+<!--  BIỂU ĐỒ  -->
 <div class="row">
 
   <!-- Độc giả -->
   <div class="col-lg-6 mb-4">
     <div class="card shadow h-100">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Độc giả theo tháng</h6>
+        <h6 class="m-0 font-weight-bold text-primary">
+          Độc giả theo tháng ({{ selectedYear }})
+        </h6>
       </div>
       <div class="card-body">
         <canvas id="chartReaders" height="200"></canvas>
@@ -18,7 +46,9 @@
   <div class="col-lg-6 mb-4">
     <div class="card shadow h-100">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-success">Lượt mượn & trả theo tháng</h6>
+        <h6 class="m-0 font-weight-bold text-success">
+          Lượt mượn & trả theo tháng ({{ selectedYear }})
+        </h6>
       </div>
       <div class="card-body">
         <canvas id="chartBorrowReturn" height="200"></canvas>
@@ -30,7 +60,9 @@
   <div class="col-lg-6 mb-4">
     <div class="card shadow h-100">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-danger">Vi phạm theo tháng</h6>
+        <h6 class="m-0 font-weight-bold text-danger">
+          Vi phạm theo tháng ({{ selectedYear }})
+        </h6>
       </div>
       <div class="card-body">
         <canvas id="chartViolation" height="200"></canvas>
@@ -42,7 +74,9 @@
   <div class="col-lg-6 mb-4">
     <div class="card shadow h-100">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-info">Tình trạng sách</h6>
+        <h6 class="m-0 font-weight-bold text-info">
+          Tình trạng sách
+        </h6>
       </div>
       <div class="card-body">
         <canvas id="chartCondition" height="200"></canvas>
