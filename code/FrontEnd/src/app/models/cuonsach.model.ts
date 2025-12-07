@@ -1,6 +1,6 @@
 export interface CuonSach {
-  maVach: number;
+  maVach: string;
   maSach: string;
   tinhTrang: string; // "Tot" | "DangMuon"
-  maDat?: number;
+  maDat?: number | null ;
 }

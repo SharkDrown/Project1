@@ -3,12 +3,33 @@
   <h1 class="h3 mb-2 text-gray-800">Danh sách mượn</h1>
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
-    <div class="card-header py-3">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
       <h6 class="m-0 font-weight-bold text-primary">Tổng số: {{ borrows.length }} lượt đặt</h6>
-      <!-- <small class="text-muted">Tổng số: sách</small> -->
+
+      <button class="btn btn-primary btn-sm" (click)="openCreateLoanModal()">
+        <i class="fas fa-plus-circle"></i> TẠO PHIẾU MƯỢN
+      </button>
     </div>
     <div class="card-body">
+      <div class="mb-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+          <input type="text" class="form-control" placeholder="Tìm kiếm theo mã độc giả, mã sách"
+            [(ngModel)]="searchTerm" (ngModelChange)="filterBorrows()">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" title="Xóa tìm kiếm" (click)="clearSearch()">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <small class="text-muted">
 
+        </small>
+      </div>
 
       <div class="table-responsive">
         <table class="table table-bordered table-hover" width="100%" cellspacing="0">
@@ -144,7 +165,7 @@
         <!-- Danh sách mã vạch -->
         <div class="mv-grid">
           <div *ngFor="let c of danhSachCuonSach" class="mv-item" [ngClass]="{
-                            'mv-disabled': maVachDaBiNguoiKhacDat.includes(c.maVach+''),
+                            'mv-disabled': maVachDaBiNguoiKhacDat.includes(c.maVach+'') && !daChon.includes(c.maVach+''),
                             'mv-selected': daChon.includes(c.maVach+''),
                             'mv-available': !daChon.includes(c.maVach+'') && !maVachDaBiNguoiKhacDat.includes(c.maVach+'')
                         }" (click)="toggleChon(c.maVach + '', c.tinhTrang,c.maDat)">
@@ -231,3 +252,112 @@
     </div>
   </div>
 </div>
+<!--Modal mượn-->
+<div *ngIf="showModalCreateLoan" class="modal fade show custom-modal-center" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Tạo Phiếu Mượn Sách</h5>
+        <button type="button" class="close" (click)="closeCreateLoanModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-5 border-right">
+            <div class="form-group">
+              <label for="inputMaDg">Nhập Mã Độc Giả:</label>
+              <input type="number" id="inputMaDg" class="form-control mb-2" [(ngModel)]="inputMaDg"
+                (keyup.enter)="checkDocGia()">
+              <button class="btn btn-primary btn-block" (click)="checkDocGia()">
+                OK
+              </button>
+            </div>
+            <div class="form-group mt-3">
+              <label for="inputNgayTra">Ngày Trả Dự Kiến:</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                </div>
+                <input type="date" id="inputNgayTra" class="form-control" [(ngModel)]="selectedNgayTra">
+              </div>
+            </div>
+            <div *ngIf="checkMessage" class="alert mt-2" [ngClass]="checkMessageType">
+              {{ checkMessage }}
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <h6 class="font-weight-bold text-success mb-3">Danh sách các sách mượn (Đã duyệt)</h6>
+
+            <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+              <table class="table table-bordered table-sm">
+                <thead class="thead-light">
+                  <tr>
+                    <th>Mã Sách</th>
+                    <th>Tựa Sách</th>
+                    <th class="text-center">Số Lượng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of loanItems">
+                    <td>{{ item.maSach }}</td>
+                    <td>{{ item.tuaSach }}</td>
+                    <td class="text-center font-weight-bold">{{ item.soLuong }}</td>
+                  </tr>
+                  <tr *ngIf="loanItems.length === 0">
+                    <td colspan="3" class="text-center text-muted font-italic">
+                      Chưa có dữ liệu hoặc không tìm thấy sách đã duyệt cho độc giả này.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeCreateLoanModal()">Hủy</button>
+        <button class="btn btn-primary" (click)="confirmCreateLoan()" [disabled]="loanItems.length === 0">
+          Xác nhận
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--Modal xác nhận mượn thành công-->
+<div *ngIf="showModalSuccessCreate" class="modal fade show custom-modal-center" tabindex="-1" role="dialog" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-check-circle mr-2"></i> Tạo Phiếu Mượn Thành Công
+                </h5>
+                <button type="button" class="close text-white" (click)="okSuccessCreate()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body text-center">
+                <p class="h5 text-success">
+                    {{ successMessage }}
+                </p>
+                <!-- <p class="text-muted mt-3">
+                    Vui lòng kiểm tra lại chi tiết phiếu ở trang **Danh sách phiếu mượn**.
+                </p> -->
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-success" (click)="okSuccessCreate()">OK</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div *ngIf="showModalCreateLoan" class="modal-backdrop fade show"></div>
+<div *ngIf="showModalSuccessCreate" class="modal-backdrop fade show"></div>

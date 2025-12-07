@@ -41,9 +41,14 @@ export class BorrowService {
     
     return this.http.put<void>(`${this.cuonSachUrl}/${maVach}/status`, { tinhTrang, maDat });
   }
-  // duyetMuon(maDat: number): Observable<any> {
-  //   return this.http.put(`${this.apiUrl}/admin/${maDat}/duyet`, {});
-  // }
+  
+  assignReservationToItem(maVach: string, maDat: number): Observable<any> {
+    const url = `${this.cuonSachUrl}/${maVach}/assign-reservation`;
+    
+    const body = { MaDat: maDat, TinhTrang: "DatTruoc" }; 
+
+    return this.http.put(url, body);
+  }
 
 
 }

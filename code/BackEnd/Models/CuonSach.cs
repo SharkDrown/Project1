@@ -7,7 +7,7 @@ public partial class CuonSach
 {
     public string MaVach { get; set; } = null!;
 
-    public int? MaSach { get; set; }
+    public int MaSach { get; set; }
 
     public string? TinhTrang { get; set; }
 

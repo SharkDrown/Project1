@@ -11,7 +11,7 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
   private apiUrl = '/api/auth';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // ===== Đăng ký tài khoản độc giả =====
   register(data: any): Observable<any> {
@@ -19,23 +19,23 @@ export class AuthService {
   }
 
   private getAuthHeader(): { headers: HttpHeaders } {
-  const token = this.getAccessToken();
-  const headersConfig: any = { 'Content-Type': 'application/json' };
+    const token = this.getAccessToken();
+    const headersConfig: any = { 'Content-Type': 'application/json' };
 
-  if (token) {
-    headersConfig['Authorization'] = `Bearer ${token}`;
+    if (token) {
+      headersConfig['Authorization'] = `Bearer ${token}`;
+    }
+
+    return { headers: new HttpHeaders(headersConfig) };
   }
-
-  return { headers: new HttpHeaders(headersConfig) };
-}
-   // ===== Admin tạo tài khoản NHÂN VIÊN =====
+  // ===== Admin tạo tài khoản NHÂN VIÊN =====
   createStaff(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/create-staff`, data, this.getAuthHeader());
   }
 
   // ===== Admin tạo tài khoản ADMIN khác =====
   createAdmin(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/create-admin`, data,  this.getAuthHeader());
+    return this.http.post(`${this.apiUrl}/create-admin`, data, this.getAuthHeader());
   }
   // ===== Đăng nhập =====
   login(data: any): Observable<any> {
@@ -80,7 +80,24 @@ export class AuthService {
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('user'); // nếu bạn có lưu thông tin user
   }
+  // lấy MaNv từ token
+  getMaNv(): number | null {
+    const token = this.getAccessToken();
+    if (!token) return null;
 
+    try {
+      const decoded: any = jwtDecode(token);
+
+      // Kiểm tra các trường phổ biến mà MaNv có thể được lưu trữ:
+      const maNv = decoded.MaNv || decoded.maNv || decoded.id || decoded.userId || decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+
+      // Chuyển kết quả sang số (nếu có)
+      return maNv ? Number(maNv) : null;
+    } catch (e) {
+      console.error("Lỗi khi giải mã token:", e);
+      return null;
+    }
+  }
   // lấy role từ token
   getRole(): string | null {
     const token = localStorage.getItem('access_token');

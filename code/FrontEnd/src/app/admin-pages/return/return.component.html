@@ -1,1 +1,202 @@
-<p>return works!</p>
+<div class="container-fluid">
+    <!-- KHỐI NAVIGATION TABS MỚI -->
+    <!-- Sử dụng class 'navigation-tabs' đã định nghĩa CSS để có hiệu ứng hover -->
+    <div class="navigation-tabs mb-4">
+        <!-- Tab 1: Quản Lý Phiếu Mượn -->
+        <a (click)="setActiveTab('muon')" [class.active]="activeTab === 'muon'">
+            Quản Lý Phiếu Mượn
+        </a>
+
+        <!-- Tab 2: Trạng Thái Sách -->
+        <a (click)="setActiveTab('trangthai')" [class.active]="activeTab === 'trangthai'">
+            Trạng Thái Sách
+        </a>
+    </div>
+    <!-- END TABS -->
+
+    <!-- NỘI DUNG HIỂN THỊ CỦA TAB 1: Quản Lý Phiếu Mượn -->
+    <!-- Nội dung này chỉ hiển thị khi activeTab là 'muon' -->
+    <div *ngIf="activeTab === 'muon'">
+        <h1 class="h3 mb-2 text-gray-800">Danh sách phiếu mượn</h1>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Tổng số: {{ filteredPhieuMuons.length }} phiếu</h6>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control"
+                            placeholder="Tìm kiếm theo Mã độc giả, Mã nhân viên, Mã phiếu mượn" [(ngModel)]="searchTerm"
+                            (input)="applyFilter()">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" title="Xóa tìm kiếm"
+                                (click)="searchTerm=''; applyFilter()"> <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" width="100%" cellspacing="0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Mã phiếu mượn</th>
+                                <th>Mã độc giả</th>
+                                <th>Mã nhân viên</th>
+                                <th>Ngày mượn</th>
+                                <th>Ngày trả (Dự kiến)</th>
+                                <th>Chi tiết (Tên sách - SL)</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pm of paginatedLoans">
+                                <td>{{ pm.maPm }}</td>
+                                <td>{{ pm.maDg }}</td>
+                                <td>{{ pm.maNv }}</td>
+                                <td>{{ pm.ngayMuon }}</td>
+                                <td>{{ pm.ngayTra }}</td>
+                                <td>
+                                    <div class="multiline-cell">
+                                        {{ pm.chiTietSachHienThi }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm" title="Xóa phiếu"
+                                        (click)="deletePhieu(pm.maPm)">
+                                        <i class="fas fa-trash"></i> Xóa
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr *ngIf="paginatedLoans.length === 0">
+                                <td colspan="7" class="text-center">Không tìm thấy phiếu mượn nào.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            <div class="d-flex justify-content-center mt-3" >
+                <ul class="pagination">
+                    <li class="page-item" [class.disabled]="loanCurrentPage === 1">
+                        <a class="page-link" (click)="changeLoanPage(loanCurrentPage - 1)" style="cursor:pointer;">Previous</a> 
+                    </li>
+                    
+                    <li class="page-item" *ngFor="let page of getPageNumbers(loanCurrentPage, loanTotalPages)"
+                        [class.active]="loanCurrentPage === page">
+                        <a class="page-link" (click)="changeLoanPage(page)" style="cursor:pointer;">{{ page }}</a>
+                    </li>
+
+                    <li class="page-item" [class.disabled]="loanCurrentPage === loanTotalPages">
+                        <a class="page-link" (click)="changeLoanPage(loanCurrentPage + 1)" style="cursor:pointer;">Next</a>
+                    </li>
+                </ul>
+            </div>  
+            </div>
+            
+        </div>
+    </div>
+
+
+    <!-- NỘI DUNG HIỂN THỊ CỦA TAB 2: Trạng Thái Sách -->
+    <div *ngIf="activeTab === 'trangthai'">
+        <h1 class="h3 mb-2 text-gray-800">Trạng Thái Cuốn Sách</h1>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Tổng số: {{ filteredStatusData.length }} cuốn</h6>
+            </div>
+            <div class="card-body">
+                <!-- ⭐️ KHỐI TÌM KIẾM MỚI CHO TRẠNG THÁI SÁCH -->
+                <div class="mb-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control"
+                            placeholder="Tìm kiếm theo Mã Sách, Tên Sách, Mã Vạch, Mã Độc Giả"
+                            [(ngModel)]="statusSearchTerm" (input)="applyStatusFilter()">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" title="Xóa tìm kiếm"
+                                (click)="statusSearchTerm=''; applyStatusFilter()"> <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- KẾT THÚC KHỐI TÌM KIẾM -->
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" width="100%" cellspacing="0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Mã Sách</th>
+                                <th>Tên Sách</th>
+                                <th>Mã Vạch</th>
+                                <th>Ngày Mượn</th>
+                                <th>Ngày Trả DK</th>
+                                <th>Mã Độc Giả</th>
+                                <th>Trạng Thái/Cập nhật</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of paginatedStatusData">
+
+                                <td>{{ item.maSach }}</td>
+                                <td>{{ item.tuaSach }}</td>
+                                <td>{{ item.maVach }}</td>
+                                <td>{{ item.ngayMuon || '---' }}</td>
+                                <td>{{ item.ngayTra || '---' }}</td>
+                                <td>{{ item.maDg || '---' }}</td>
+
+                                <td>
+                                    <select class="form-control form-control-sm" #statusSelect
+                                        [ngModel]="item.trangThai"
+                                        (ngModelChange)="handleStatusUpdate(item.maVach, $event, item.trangThai, statusSelect)">
+
+                                        <option value="DangMuon" [disabled]="item.trangThai !== 'DangMuon'">DangMuon
+                                        </option>
+
+                                        <option value="Tot">Tot</option>
+                                        <option value="Hong">Hong</option>
+                                        <option value="Mat">Mat</option>
+                                    </select>
+
+                                    <small *ngIf="item.trangThai === 'DangMuon'" class="text-danger">
+                                        (Chọn Tot/Hong/Mat để Trả sách)
+                                    </small>
+                                </td>
+
+                            </tr>
+                            <tr *ngIf="paginatedStatusData.length === 0">
+                                <td colspan="7" class="text-center">Không tìm thấy dữ liệu hoặc cuốn sách nào.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="d-flex justify-content-center mt-3" *ngIf="statusTotalPages > 1">
+                <ul class="pagination">
+                    <li class="page-item" [class.disabled]="statusCurrentPage === 1">
+                        <a class="page-link" (click)="changeStatusPage(statusCurrentPage - 1)" style="cursor:pointer;">Previous</a>
+                    </li>
+
+                    <li class="page-item" *ngFor="let page of getPageNumbers(statusCurrentPage, statusTotalPages)"
+                        [class.active]="statusCurrentPage === page">
+                        <a class="page-link" (click)="changeStatusPage(page)" style="cursor:pointer;">{{ page }}</a>
+                    </li>
+
+                    <li class="page-item" [class.disabled]="statusCurrentPage === statusTotalPages">
+                        <a class="page-link" (click)="changeStatusPage(statusCurrentPage + 1)" style="cursor:pointer;">Next</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

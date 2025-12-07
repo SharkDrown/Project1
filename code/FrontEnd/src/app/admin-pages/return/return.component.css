@@ -1,0 +1,64 @@
+/* Container cho Navigation Tabs */
+.navigation-tabs {
+    display: flex;
+    border-bottom: 2px solid #e0e0e0; /* Đường viền dưới chung */
+    margin-bottom: 20px;
+    gap: 15px; 
+}
+
+/* Kiểu dáng chung cho mỗi Tab */
+.navigation-tabs a {
+    text-decoration: none;
+    padding: 10px 0; 
+    color: #495057; 
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+    background-color: transparent;
+}
+
+/* Hiệu ứng khi rê chuột qua (Hover) */
+.navigation-tabs a:hover {
+    color: #007bff; /* Màu chữ khi hover (Xanh dương) */
+}
+
+/* ⭐️ PHẦN CẦN THAY ĐỔI: Khởi tạo thanh Underline */
+.navigation-tabs a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0; /* KHỞI TẠO: Chiều rộng bằng 0 */
+    height: 3px; 
+    background-color: #ffc107; /* Màu vàng */
+    transition: width 0.3s ease-out; /* THÊM TRANSITION cho thuộc tính width */
+}
+
+/* ⭐️ PHẦN CẦN THAY ĐỔI: Trạng thái Hover */
+.navigation-tabs a:hover::after {
+    width: 100%; /* KHI HOVER: Chiều rộng lên 100% */
+}
+
+/* Kiểu dáng khi Tab đang hoạt động (Active) */
+.navigation-tabs a.active {
+    color: #007bff; /* Màu chữ khi active */
+}
+
+/* ⭐️ PHẦN CẦN THAY ĐỔI: Trạng thái Active */
+.navigation-tabs a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%; /* KHI ACTIVE: Luôn có chiều rộng 100% */
+    height: 3px;
+    background-color: #ffc107; 
+    transition: none; /* Không cần transition khi active */
+}
+
+/* Định dạng cho ô chi tiết sách nhiều dòng */
+.multiline-cell {
+    white-space: pre-wrap; 
+    min-width: 150px;
+}
