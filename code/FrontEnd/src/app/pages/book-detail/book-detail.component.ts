@@ -7,7 +7,7 @@ import { DanhGiaSachService, DanhGia } from '../../services/danhgiasach.service'
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
-import { PagedResult } from '../../models/pagedresult.model';
+import { UserBorrowService } from '../../services/user-borrow.service';
 declare var AOS: any;
 declare var GLightbox: any;
 
@@ -36,6 +36,7 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
   hoverRatingValue = 0;
   hovered: number = -1;
   showEmojiPicker = false;
+  emojiPopupStyle: any = {};
   isLoggedIn: boolean = false;
 
   loading = false;
@@ -60,7 +61,8 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private sachService: SachService,
-    private danhGiaService: DanhGiaSachService
+    private danhGiaService: DanhGiaSachService,
+    private userBorrowService: UserBorrowService
   ) {}
 
   ngOnInit(): void {
@@ -328,7 +330,31 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
 }
 
 
-  toggleEmojiPicker(): void { this.showEmojiPicker = !this.showEmojiPicker; }
+  toggleEmojiPicker(event?: MouseEvent): void {
+   this.showEmojiPicker = !this.showEmojiPicker;
+    if (!this.showEmojiPicker && event && event.currentTarget) {
+      try {
+        const btn = event.currentTarget as HTMLElement;
+        const rect = btn.getBoundingClientRect();
+        
+        this.emojiPopupStyle = {
+          position: 'fixed',
+          top: `${Math.round(rect.bottom + 8)}px`,
+          left: `${Math.round(rect.left)}px`,
+          zIndex: 999999,
+        };
+      } catch (e) {
+       
+        this.emojiPopupStyle = { position: 'fixed', bottom: '6rem', right: '2rem', zIndex: 999999 };
+      }
+    }
+    
+
+   
+     else {
+       this.emojiPopupStyle = {};
+     }
+  }
   addEmoji(event: any): void { this.reviewText += event.emoji?.native || event.emoji || ''; }
 
   /** Giải mã JWT để lấy maDg */
@@ -359,5 +385,23 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
        
   }
   
+  placeOrder() {
+  if (!this.sach || this.quantity <= 0) return;
+
+  this.userBorrowService.createBorrow(this.sach.maSach, this.quantity)
+    .subscribe({
+      next: borrow => {
+        alert('Đặt sách thành công!');
+        // Giảm số lượng sách còn lại
+        this.sach!.soLuong = (this.sach!.soLuong ?? 0) - this.quantity;
+        // Reset số lượng đặt về 1
+        this.quantity = 1;
+      },
+      error: err => {
+        const msg = err.error?.message || 'Đặt sách thất bại!';
+        alert(msg);
+      }
+    });
+}
 
 }

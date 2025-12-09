@@ -159,5 +159,231 @@ namespace BackEnd.Controllers
 
             return Ok(new { message = "Tài khoản đã bị vô hiệu hóa" });
         }
+
+        // ADMIN THỰC HIỆN
+        // lấy toàn bộ nhân viên 
+        [HttpGet ("all-staff")]
+        [Authorize(Roles ="Admin")]
+        public async Task<IActionResult> GetAllStaff()
+        {
+           var list = await _context.NhanViens
+                .Join(
+                    _context.TaiKhoans,
+                    nv => nv.MaTk,
+                    tk => tk.MaTk,
+                    (nv, tk) => new { nv, tk }
+                )
+                .Where(x => x.tk.VaiTro == "NhanVien" && x.tk.TrangThai==true)  
+                .Select(x => new
+                {
+                    x.nv.MaNv,
+                    x.nv.HoTen,
+                    x.nv.ChucVu,
+                    x.nv.Email,
+                    SoDT = x.nv.SoDt,
+                    x.nv.MaTk,
+                    x.tk.VaiTro
+                })
+                .ToListAsync();
+
+            return Ok(list);
+        }
+
+        [HttpDelete("deactivate-staff/{maTK}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeactivateStaffAccount(int maTK)
+        {
+            var account = await _context.TaiKhoans.FirstOrDefaultAsync(t => t.MaTk == maTK);
+
+            if (account == null)
+                return NotFound(new { message = "Tài khoản không tồn tại" });
+
+            if (account.VaiTro == "Admin")
+                return BadRequest(new { message = "Không thể vô hiệu hóa tài khoản Admin" });
+
+            account.TrangThai = false;
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Đã vô hiệu hóa tài khoản nhân viên" });
+        }
+
+        [HttpPut("update-staff")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateStaff([FromBody] UpdateStaffDto dto)
+        {
+            var nv = await _context.NhanViens
+                        .FirstOrDefaultAsync(n => n.MaNv == dto.MaNV);
+
+            if (nv == null)
+                return NotFound(new { message = "Nhân viên không tồn tại" });
+
+            if (!string.IsNullOrWhiteSpace(dto.ChucVu))
+                nv.ChucVu = dto.ChucVu;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Cập nhật chức vụ nhân viên thành công" });
+        }
+
+        [HttpGet("search-staff")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> SearchStaff([FromQuery] string keyword)
+        {
+            if (string.IsNullOrWhiteSpace(keyword))
+                return BadRequest(new { message = "Từ khóa tìm kiếm không được để trống!" });
+
+            keyword = keyword.Trim().ToLower();
+
+            // Kiểm tra keyword có phải là số (mã NV)
+            bool isNumber = int.TryParse(keyword, out int maNvSearch);
+
+            var list = await _context.NhanViens
+                .Join(
+                    _context.TaiKhoans,
+                    nv => nv.MaTk,
+                    tk => tk.MaTk,
+                    (nv, tk) => new { nv, tk }
+                )
+                .Where(x =>
+                    x.tk.VaiTro == "NhanVien" &&
+                    x.tk.TrangThai == true &&
+                    (
+                        x.nv.HoTen.ToLower().Contains(keyword) ||   // tìm theo tên
+                        (isNumber && x.nv.MaNv == maNvSearch)       // tìm theo mã NV
+                    )
+                )
+                .Select(x => new
+                {
+                    x.nv.MaNv,
+                    x.nv.HoTen,
+                    x.nv.ChucVu,
+                    x.nv.Email,
+                    SoDT = x.nv.SoDt,
+                    x.nv.MaTk,
+                    x.tk.VaiTro
+                })
+                .ToListAsync();
+
+            return Ok(list);
+        }
+
+
+        // THỐNG KÊ
+
+        // Độc giả
+        [HttpGet("stats/readers-per-month")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetReadersPerMonth()
+        {
+            var result = await _context.TaiKhoans
+                .Where(d => d.VaiTro =="DocGia")
+                .GroupBy(d => d.LastActive!.Value.Month) 
+                .Select(g => new {
+                    Thang = g.Key,
+                    SoLuong = g.Count()
+                })
+                .OrderBy(x => x.Thang)
+                .ToListAsync();
+
+            return Ok(result);
+        }
+
+        // mượn
+
+        [HttpGet("stats/borrow")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetBorrowStats()
+        {
+            var result = await _context.PhieuMuons
+                .Where(p => p.NgayMuon != null)
+                .GroupBy(p => p.NgayMuon.Value.Month)
+                .Select(g => new {
+                    Thang = g.Key,
+                    LuotMuon = g.Count()
+                })
+                .OrderBy(x => x.Thang)
+                .ToListAsync();
+
+            return Ok(result);
+        }
+
+
+        //trả
+
+        [HttpGet("stats/return")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetReturnStats()
+        {
+            var result = await _context.ChiTietPhieuMuons
+                .Where(c => c.NgayTraThucTe != null)
+                .GroupBy(c => c.NgayTraThucTe.Value.Month)
+                .Select(g => new {
+                    Thang = g.Key,
+                    LuotTra = g.Count()
+                })
+                .OrderBy(x => x.Thang)
+                .ToListAsync();
+
+            return Ok(result);
+        }
+
+
+        //vi phạm
+        [HttpGet("stats/violations-per-month")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetViolationStats()
+        {
+            var result = await _context.PhieuPhats
+                .GroupBy(p => p.NgayPhat!.Value.Month)
+                .Select(g => new {
+                    Thang = g.Key,
+                    ViPham = g.Count()
+                })
+                .OrderBy(x => x.Thang)
+                .ToListAsync();
+
+            return Ok(result);
+        }
+
+        // số sách tốt hỏng
+        [HttpGet("stats/book-condition")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetBookCondition()
+        {
+            var tong = await _context.CuonSaches.CountAsync();
+            var tot = await _context.CuonSaches.CountAsync(s => s.TinhTrang == "Tot");
+            var hong = tong - tot;
+
+            return Ok(new
+            {
+                TongSach = tong,
+                SachTot = tot,
+                SachHong = hong
+            });
+        }
+
+        // tổng quan 
+        [HttpGet("stats/overview")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetOverview()
+        {
+            var docs = await _context.DocGia.CountAsync();
+            var books = await _context.Saches.CountAsync();
+            var borrow = await _context.PhieuMuons.CountAsync();
+            var violation = await _context.PhieuPhats.CountAsync();
+
+            return Ok(new {
+                TongDocGia = docs,
+                TongSach = books,
+                TongPhieuMuon = borrow,
+                TongViPham = violation
+            });
+        }
+
+
+
+
+
+
     }
 }

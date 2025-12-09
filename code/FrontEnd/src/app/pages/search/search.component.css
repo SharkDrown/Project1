@@ -6,4 +6,27 @@
 .page-link {
   cursor: pointer;
 }
+/**/
+
+
+
+/* Fix: ensure local page sidebar uses Bootstrap column sizing instead of the global
+   .sidebar rules from sb-admin-2 which set a fixed small width. This makes the
+   category/filters column take the expected col-lg-4 width. */
+.col-lg-4.sidebar {
+  /* let Bootstrap's grid control column width */
+  width: auto !important;
+  max-width: 100% !important;
+  /* explicitly restore the expected flex-basis for a 4/12 column */
+  flex: 0 0 33.333333% !important;
+}
+
+@media (max-width: 991.98px) {
+  /* On smaller screens the column should be full width */
+  .col-lg-4.sidebar {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+}
+
 

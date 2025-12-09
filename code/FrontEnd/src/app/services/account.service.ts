@@ -24,4 +24,6 @@ export class AccountService {
   deactivateAccount(): Observable<any> {
     return this.http.delete(`${this.apiUrl}/deactivate`);
   }
+
+  
 }

@@ -39,7 +39,7 @@ export class UserGuard implements CanActivate {
       return false;
 
     } catch (err) {
-      console.error('❌ Lỗi decode token:', err);
+      console.error(' Lỗi decode token:', err);
       localStorage.clear();
       this.router.navigate(['/login']);
       return false;

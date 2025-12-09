@@ -35,4 +35,10 @@ namespace BackEnd.Models
         public string? SoDT { get; set; }
         public string? ChucVu { get; set; }   
     }
+
+    public class UpdateStaffDto
+    {
+        public int MaNV { get; set; }
+        public string ChucVu { get; set; } = string.Empty;
+    }
 }
