@@ -1,0 +1,246 @@
+<div class="container-fluid">
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Quản Lý Thể Loại</h1>
+  <button class="btn btn-primary btn-sm" (click)="showAddForm()" [disabled]="loading">
+    <i class="fas fa-plus fa-sm"></i> Thêm Thể Loại Mới
+  </button>
+</div>
+
+<!-- Alert Messages -->
+<div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Lỗi!</strong> {{ errorMessage }}
+  <button type="button" class="close" (click)="errorMessage = ''" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Thành công!</strong> {{ successMessage }}
+  <button type="button" class="close" (click)="successMessage = ''" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<!-- Modal Backdrop for Edit -->
+<div *ngIf="showModal" class="modal-backdrop fade show" (click)="closeModal()"></div>
+
+<!-- Delete Confirmation Modal Backdrop -->
+<div *ngIf="showDeleteModal" class="modal-backdrop fade show" (click)="closeDeleteModal()"></div>
+
+<!-- Delete Confirmation Modal -->
+<div *ngIf="showDeleteModal" class="modal fade show" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="false">
+  <div class="modal-dialog" role="document" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="deleteModalLabel">
+          <i class="fas fa-exclamation-triangle mr-2"></i>Xác Nhận Xóa
+        </h5>
+        <button type="button" class="close text-white" (click)="closeDeleteModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc chắn muốn xóa thể loại này?</p>
+        <div class="alert alert-warning">
+          <strong>{{ categoryToDelete?.tenTL }}</strong>
+          <br>
+          <small>Mã thể loại: {{ categoryToDelete?.maTL }}</small>
+        </div>
+        <p class="text-danger mb-0">
+          <i class="fas fa-info-circle"></i> Hành động này không thể hoàn tác!
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeDeleteModal()" [disabled]="loading">
+          Hủy
+        </button>
+        <button type="button" class="btn btn-danger" (click)="confirmDelete()" [disabled]="loading">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-2"></span>
+          <i class="fas fa-trash mr-1"></i>Xóa
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Modal for Add/Edit Category -->
+<div *ngIf="showModal" class="modal fade show" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="false">
+  <div class="modal-dialog" role="document" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="categoryModalLabel">{{ modalTitle }}</h5>
+        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="isEditMode ? saveCategory() : addCategory()">
+          <div class="form-group">
+            <label for="maTL">Mã Thể Loại <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              id="maTL"
+              [(ngModel)]="currentCategory.maTL"
+              name="maTL"
+              [disabled]="isEditMode"
+              [required]="!isEditMode"
+              placeholder="VD: TL001">
+            <small class="form-text text-muted" *ngIf="isEditMode">Mã thể loại không thể thay đổi.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="tenTL">Tên Thể Loại <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              id="tenTL"
+              [(ngModel)]="currentCategory.tenTL"
+              name="tenTL"
+              required
+              placeholder="Nhập tên thể loại">
+          </div>
+
+          <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+            {{ errorMessage }}
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()" [disabled]="loading">
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-primary" [disabled]="loading">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-2"></span>
+              {{ isEditMode ? 'Cập Nhật' : 'Thêm Mới' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Danh sách thể loại -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3 d-flex justify-content-between align-items-center">
+    <div>
+      <h6 class="m-0 font-weight-bold text-primary">Danh Sách Thể Loại</h6>
+      <small class="text-muted">Tổng số: {{ totalItems }} thể loại</small>
+    </div>
+  </div>
+  <div class="card-body">
+    <!-- Search Box -->
+    <div class="mb-3">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Tìm kiếm theo mã thể loại, tên thể loại..."
+          [(ngModel)]="searchTerm"
+          (input)="onSearchChange()"
+          name="searchTerm">
+        <div class="input-group-append" *ngIf="searchTerm">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="clearSearch()"
+            title="Xóa tìm kiếm">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <small class="text-muted" *ngIf="searchTerm">
+        Tìm thấy {{ totalItems }} kết quả cho "{{ searchTerm }}"
+      </small>
+    </div>
+
+    <div *ngIf="loading && categories.length === 0" class="text-center py-4">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <p class="mt-2">Đang tải dữ liệu...</p>
+    </div>
+
+    <div *ngIf="!loading && categories.length === 0" class="text-center py-4">
+      <p class="text-muted">Chưa có thể loại nào trong hệ thống.</p>
+    </div>
+
+    <div *ngIf="!loading && categories.length > 0 && filteredCategories.length === 0" class="text-center py-4">
+      <p class="text-muted">Không tìm thấy thể loại nào phù hợp với từ khóa "{{ searchTerm }}".</p>
+      <button class="btn btn-sm btn-outline-primary" (click)="clearSearch()">
+        <i class="fas fa-redo mr-1"></i>Xóa bộ lọc
+      </button>
+    </div>
+
+    <div class="table-responsive" [class.d-none]="loading && categories.length === 0">
+      <table class="table table-bordered table-hover" width="100%" cellspacing="0">
+        <thead class="thead-light">
+          <tr>
+            <th>Mã Thể Loại</th>
+            <th>Tên Thể Loại</th>
+            <th>Thao Tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="filteredCategories.length === 0 && !loading && categories.length > 0">
+            <td colspan="3" class="text-center text-muted py-4">
+              Không tìm thấy thể loại nào phù hợp với từ khóa "{{ searchTerm }}".
+            </td>
+          </tr>
+          <tr *ngFor="let category of paginatedCategories">
+            <td><strong>{{ category.maTL }}</strong></td>
+            <td>{{ category.tenTL }}</td>
+            <td>
+              <button
+                class="btn btn-sm btn-info mr-1"
+                (click)="showEditForm(category)"
+                title="Sửa">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="showDeleteConfirmation(category)"
+                [disabled]="loading"
+                title="Xóa">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Pagination -->
+      <div *ngIf="totalPages > 0" class="d-flex justify-content-between align-items-center mt-3">
+        <div class="text-muted">
+          Hiển thị {{ (currentPage - 1) * pageSize + 1 }} - {{ Math.min(currentPage * pageSize, totalItems) }} của {{ totalItems }} kết quả
+        </div>
+        <nav>
+          <ul class="pagination mb-0">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+              <a class="page-link" href="#" (click)="previousPage(); $event.preventDefault()" tabindex="-1">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li *ngFor="let page of getPageNumbers()" class="page-item" [class.active]="page === currentPage">
+              <a class="page-link" href="#" (click)="goToPage(page); $event.preventDefault()">
+                {{ page }}
+              </a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+              <a class="page-link" href="#" (click)="nextPage(); $event.preventDefault()">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

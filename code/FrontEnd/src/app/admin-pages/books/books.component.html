@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Quản Lý Sách</h1>
@@ -168,14 +169,14 @@
 </div>
 
 <!-- DataTables Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="m-0 font-weight-bold text-primary">Danh Sách Sách</h6>
-                                <small class="text-muted">Tổng số: {{ totalItems }} sách</small>
-                            </div>
-                        </div>
-                        <div class="card-body">
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <div>
+            <h6 class="m-0 font-weight-bold text-primary">Danh Sách Sách</h6>
+            <small class="text-muted">Tổng số: {{ totalItems }} sách</small>
+        </div>
+    </div>
+    <div class="card-body">
                             <!-- Search Box -->
                             <div class="mb-3">
                                 <div class="input-group">
@@ -223,7 +224,7 @@
             </button>
         </div>
 
-        <div *ngIf="filteredBooks.length > 0" class="table-responsive">
+        <div class="table-responsive" [class.d-none]="loading && books.length === 0">
             <table class="table table-bordered table-hover" width="100%" cellspacing="0">
                 <thead class="thead-light">
                     <tr>
@@ -234,9 +235,14 @@
                         <th>Số Lượng</th>
                         <th>Thể Loại</th>
                         <th>Thao Tác</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="filteredBooks.length === 0 && !loading && books.length > 0">
+                        <td colspan="7" class="text-center text-muted py-4">
+                            Không tìm thấy sách nào phù hợp với từ khóa "{{ searchTerm }}".
+                        </td>
+                    </tr>
                     <tr *ngFor="let book of paginatedBooks">
                         <td>{{ book.maSach }}</td>
                         <td><strong>{{ book.tuaSach }}</strong></td>
@@ -263,12 +269,12 @@
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    </tr>
+                </tbody>
+            </table>
 
             <!-- Pagination -->
-            <div *ngIf="totalPages > 1" class="d-flex justify-content-between align-items-center mt-3">
+            <div *ngIf="totalPages > 0" class="d-flex justify-content-between align-items-center mt-3">
                 <div class="text-muted">
                     Hiển thị {{ (currentPage - 1) * pageSize + 1 }} - {{ Math.min(currentPage * pageSize, totalItems) }} của {{ totalItems }} kết quả
                 </div>
@@ -292,6 +298,7 @@
                     </ul>
                 </nav>
             </div>
-                            </div>
-                        </div>
-                    </div>
+        </div>
+    </div>
+</div>
+</div>
