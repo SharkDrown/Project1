@@ -30,11 +30,18 @@ namespace BackEnd.Controllers
                 var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value 
                     ?? User.FindFirst("sub")?.Value;
                 
+                _logger.LogInformation("GetMyNotices - userIdClaim: {UserIdClaim}", userIdClaim);
+                _logger.LogInformation("GetMyNotices - All claims: {Claims}", 
+                    string.Join(", ", User.Claims.Select(c => $"{c.Type}={c.Value}")));
+                
                 if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int maTk))
                 {
+                    _logger.LogWarning("GetMyNotices - Không xác định được tài khoản từ token. userIdClaim: {UserIdClaim}", userIdClaim);
                     return Unauthorized(new { message = "Không xác định được tài khoản" });
                 }
 
+                _logger.LogInformation("GetMyNotices - Đang tìm thông báo cho MaTk: {MaTk}", maTk);
+                
                 var notices = await _context.ThongBaos
                     .Where(tb => tb.MaTk == maTk)
                     .OrderByDescending(tb => tb.NgayTb)
@@ -47,6 +54,8 @@ namespace BackEnd.Controllers
                     })
                     .ToListAsync();
 
+                _logger.LogInformation("GetMyNotices - Tìm thấy {Count} thông báo cho MaTk: {MaTk}", notices.Count, maTk);
+                
                 return Ok(notices);
             }
             catch (Exception ex)
@@ -172,10 +181,17 @@ namespace BackEnd.Controllers
                 }).ToList();
 
                 _logger.LogInformation("Đang thêm {Count} thông báo vào database", notices.Count);
+                foreach (var notice in notices)
+                {
+                    _logger.LogInformation("Thông báo: MaTk={MaTk}, NoiDung={NoiDung}, NgayTb={NgayTb}", 
+                        notice.MaTk, notice.NoiDung?.Substring(0, Math.Min(50, notice.NoiDung?.Length ?? 0)), notice.NgayTb);
+                }
+                
                 _context.ThongBaos.AddRange(notices);
                 await _context.SaveChangesAsync();
 
-                _logger.LogInformation("Đã gửi {Count} thông báo thành công", notices.Count);
+                _logger.LogInformation("Đã gửi {Count} thông báo thành công. Các MaTb: {MaTbs}", 
+                    notices.Count, string.Join(", ", notices.Select(n => n.MaTb)));
                 return Ok(new { message = $"Đã gửi {notices.Count} thông báo thành công" });
             }
             catch (Exception ex)

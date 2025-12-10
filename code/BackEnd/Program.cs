@@ -140,26 +140,32 @@ builder.Services.AddScoped<JwtService>();
 
 var app = builder.Build();
 
-// ✅ Kiểm tra kết nối database khi khởi động
+// ✅ Kiểm tra kết nối database khi khởi động (log chi tiết lý do thất bại)
 try
 {
-    using (var scope = app.Services.CreateScope())
+    using var scope = app.Services.CreateScope();
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<QuanLyThuVienContext>();
+
+    try
     {
-        var services = scope.ServiceProvider;
-        var context = services.GetRequiredService<QuanLyThuVienContext>();
-        // Test kết nối database
-        var canConnect = context.Database.CanConnect();
-        if (canConnect)
-        {
-            Console.WriteLine("✅ Kết nối database thành công!");
-            // Kiểm tra xem có dữ liệu sách không
-            var bookCount = context.Saches.Count();
-            Console.WriteLine($"📚 Số lượng sách trong database: {bookCount}");
-        }
-        else
-        {
-            Console.WriteLine("⚠️ Cảnh báo: Không thể kết nối tới database!");
-        }
+        var conn = context.Database.GetDbConnection();
+        Console.WriteLine($"ℹ️ Đang kiểm tra kết nối DB: {conn.ConnectionString}");
+        await conn.OpenAsync();
+        Console.WriteLine("✅ Kết nối database thành công!");
+
+        // Kiểm tra xem có dữ liệu sách không
+        var bookCount = context.Saches.Count();
+        Console.WriteLine($"📚 Số lượng sách trong database: {bookCount}");
+
+        await conn.CloseAsync();
+    }
+    catch (Exception dbEx)
+    {
+        Console.WriteLine("⚠️ Cảnh báo: Không thể kết nối tới database!");
+        Console.WriteLine($"   Lỗi: {dbEx.Message}");
+        Console.WriteLine($"   Chi tiết: {dbEx.InnerException?.Message ?? dbEx.ToString()}");
+        Console.WriteLine("👉 Vui lòng kiểm tra lại: SQL Server đã chạy chưa, instance/port đúng chưa, tài khoản/Integrated Security, firewall.");
     }
 }
 catch (Exception ex)
@@ -173,6 +179,10 @@ catch (Exception ex)
 // ✅ QUAN TRỌNG: UseCors phải được đặt TRƯỚC UseAuthentication và UseAuthorization
 app.UseCors("AllowAngular");
 
+// Bật lại Authentication/Authorization
+app.UseAuthentication();
+app.UseAuthorization();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -181,8 +191,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseAuthentication();
-app.UseAuthorization();
 
 app.MapControllers();
 
