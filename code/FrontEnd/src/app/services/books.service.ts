@@ -72,6 +72,25 @@ export class BooksService {
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.categoriesUrl);
   }
+  
+  // ===== CATEGORIES API =====
+
+  // Thêm thể loại
+  createCategory(category: Category): Observable<Category> {
+    return this.http.post<Category>(this.categoriesUrl, category);
+  }
+
+  // Cập nhật thể loại
+  updateCategory(maTL: string, updateData: Partial<Category>): Observable<Category> {
+    return this.http.put<Category>(`${this.categoriesUrl}/${maTL}`, updateData);
+  }
+
+  // Xóa thể loại
+  deleteCategory(maTL: string): Observable<void> {
+    return this.http.delete<void>(`${this.categoriesUrl}/${maTL}`);
+  }
+
+
 }
 
 

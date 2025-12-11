@@ -113,6 +113,20 @@ export const routes: Routes = [
             (m) => m.AnnouncementComponent
           ),
       },
+      {
+        path: 'admin/categories',
+        loadComponent: () =>
+          import('./admin-pages/categories/categories.component').then(
+            (m) => m.CategoriesComponent
+          ),
+      },
+      {
+        path: 'admin/notices',
+        loadComponent: () =>
+          import('./notices/notices.component').then(
+            (m) => m.NoticesComponent
+          ),
+      },
     ],
   },
 ];

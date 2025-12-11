@@ -1,6 +1,38 @@
-/* Notices Section */
+/* Admin Layout - Copy from books/categories */
+.container-fluid {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.card {
+  border-radius: 0.35rem;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.card-body {
+  padding: 1.5rem;
+  width: 100%;
+}
+
+.notices-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* User Layout - Notices Section */
 .notices {
-  padding: 60px 0;
+  padding: 20px 0;
 }
 
 .notices-container {
@@ -8,37 +40,50 @@
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   padding: 30px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .notices-list {
   display: flex;
   flex-direction: column;
-  gap: 0; /* Bỏ gap vì đã có margin-bottom trong notice-item */
+  gap: 0;
+  width: 100%;
 }
 
 .notice-item {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 20px;
+  padding: 15px;
   background: #fff;
-  border-radius: 10px;
-  border-left: 4px solid #007bff;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  border-left: 4px solid #4e73df;
+  border-bottom: 1px solid #e3e6f0;
   transition: all 0.3s ease;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.notice-item:last-child {
+  border-bottom: none;
 }
 
 .notice-item:hover {
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
-  transform: translateY(-2px);
-  border-left-color: #0056b3;
+  background-color: #f8f9fc;
+  border-left-color: #2e59d9;
 }
 
 .notice-content {
   flex: 1;
   margin-right: 15px;
   min-width: 0; /* Cho phép text wrap */
+  max-width: calc(100% - 60px); /* Trừ đi space cho button delete */
+  overflow: hidden;
 }
 
 .notice-text {
@@ -50,6 +95,12 @@
   word-break: break-word;
   white-space: pre-wrap; /* Giữ nguyên xuống dòng và tự động wrap */
   overflow-wrap: break-word;
+  max-width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Giới hạn tối đa 5 dòng */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 
 .notice-meta {
@@ -86,6 +137,46 @@
   .notices-container {
     padding: 20px;
   }
+}
+
+/* Pagination Styles */
+.pagination-container {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e3e6f0;
+  width: 100%;
+}
+
+.pagination {
+  margin-bottom: 0;
+}
+
+.page-link {
+  color: #5a5c69;
+  border: 1px solid #d1d3e2;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.page-link:hover {
+  color: #3a3b45;
+  background-color: #eaecf4;
+  border-color: #d1d3e2;
+}
+
+.page-item.active .page-link {
+  background-color: #4e73df;
+  border-color: #4e73df;
+  color: #fff;
+}
+
+.page-item.disabled .page-link {
+  color: #858796;
+  pointer-events: none;
+  cursor: auto;
+  background-color: #fff;
+  border-color: #d1d3e2;
 }
 
 

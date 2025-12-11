@@ -9,7 +9,7 @@ import { PagedResult } from '../models/pagedresult.model';
   providedIn: 'root'
 })
 export class SachService {
-  private apiUrl = 'https://localhost:7299/api/quanlythuvien'; 
+  private apiUrl = '/api/quanlythuvien'; 
 
   constructor(private http: HttpClient) {}
 
