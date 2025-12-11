@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using System.Drawing;
+
 
 namespace BackEnd.Controllers
 {
@@ -273,12 +277,15 @@ namespace BackEnd.Controllers
         // Độc giả
         [HttpGet("stats/readers-per-month")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> GetReadersPerMonth()
+        public async Task<IActionResult> GetReadersPerMonth([FromQuery] int year)
         {
             var result = await _context.TaiKhoans
-                .Where(d => d.VaiTro =="DocGia")
-                .GroupBy(d => d.LastActive!.Value.Month) 
-                .Select(g => new {
+                .Where(t => t.VaiTro == "DocGia"
+                        && t.LastActive.HasValue
+                        && t.LastActive.Value.Year == year)
+                .GroupBy(t => t.LastActive!.Value.Month)
+                .Select(g => new
+                {
                     Thang = g.Key,
                     SoLuong = g.Count()
                 })
@@ -288,16 +295,18 @@ namespace BackEnd.Controllers
             return Ok(result);
         }
 
+
         // mượn
 
         [HttpGet("stats/borrow")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> GetBorrowStats()
+        public async Task<IActionResult> GetBorrowStats([FromQuery] int year)
         {
             var result = await _context.PhieuMuons
-                .Where(p => p.NgayMuon != null)
+                .Where(p => p.NgayMuon.Value.Year == year)
                 .GroupBy(p => p.NgayMuon.Value.Month)
-                .Select(g => new {
+                .Select(g => new
+                {
                     Thang = g.Key,
                     LuotMuon = g.Count()
                 })
@@ -312,12 +321,14 @@ namespace BackEnd.Controllers
 
         [HttpGet("stats/return")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> GetReturnStats()
+        public async Task<IActionResult> GetReturnStats([FromQuery] int year)
         {
             var result = await _context.ChiTietPhieuMuons
-                .Where(c => c.NgayTraThucTe != null)
-                .GroupBy(c => c.NgayTraThucTe.Value.Month)
-                .Select(g => new {
+                .Where(c => c.NgayTraThucTe.HasValue
+                        && c.NgayTraThucTe.Value.Year == year)
+                .GroupBy(c => c.NgayTraThucTe!.Value.Month)
+                .Select(g => new
+                {
                     Thang = g.Key,
                     LuotTra = g.Count()
                 })
@@ -328,14 +339,17 @@ namespace BackEnd.Controllers
         }
 
 
+
         //vi phạm
         [HttpGet("stats/violations-per-month")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> GetViolationStats()
+        public async Task<IActionResult> GetViolationStats([FromQuery] int year)
         {
             var result = await _context.PhieuPhats
-                .GroupBy(p => p.NgayPhat!.Value.Month)
-                .Select(g => new {
+                .Where(p => p.NgayPhat.Value.Year == year)
+                .GroupBy(p => p.NgayPhat.Value.Month)
+                .Select(g => new
+                {
                     Thang = g.Key,
                     ViPham = g.Count()
                 })
@@ -344,6 +358,7 @@ namespace BackEnd.Controllers
 
             return Ok(result);
         }
+
 
         // số sách tốt hỏng
         [HttpGet("stats/book-condition")]
@@ -365,14 +380,20 @@ namespace BackEnd.Controllers
         // tổng quan 
         [HttpGet("stats/overview")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> GetOverview()
+        public async Task<IActionResult> GetOverview([FromQuery] int year)
         {
             var docs = await _context.DocGia.CountAsync();
-            var books = await _context.Saches.CountAsync();
-            var borrow = await _context.PhieuMuons.CountAsync();
-            var violation = await _context.PhieuPhats.CountAsync();
 
-            return Ok(new {
+            var books = await _context.Saches.CountAsync();
+
+            var borrow = await _context.PhieuMuons
+                .CountAsync(p => p.NgayMuon.Value.Year == year);
+
+            var violation = await _context.PhieuPhats
+                .CountAsync(p => p.NgayPhat.Value.Year == year);
+
+            return Ok(new
+            {
                 TongDocGia = docs,
                 TongSach = books,
                 TongPhieuMuon = borrow,
@@ -380,10 +401,159 @@ namespace BackEnd.Controllers
             });
         }
 
+        // xuất file
+        [HttpGet("stats/export-excel")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ExportDashboardExcel([FromQuery] int year)
+        {
+            
+            ExcelPackage.License.SetNonCommercialPersonal("library-dashboard");
 
+            using var package = new ExcelPackage();
 
+            // sheet tổng quan
+            var overviewSheet = package.Workbook.Worksheets.Add("TongQuan");
 
+            var totalReaders = await _context.DocGia.CountAsync();
+            var totalBooks = await _context.Saches.CountAsync();
+            var totalBorrow = await _context.PhieuMuons
+                .CountAsync(p => p.NgayMuon.Value.Year == year);
+            var totalViolation = await _context.PhieuPhats
+                .CountAsync(p => p.NgayPhat.Value.Year == year);
 
+            overviewSheet.Cells[1, 1].Value = "Chỉ số";
+            overviewSheet.Cells[1, 2].Value = "Giá trị";
 
+            overviewSheet.Cells[2, 1].Value = "Tổng độc giả";
+            overviewSheet.Cells[2, 2].Value = totalReaders;
+
+            overviewSheet.Cells[3, 1].Value = "Tổng sách";
+            overviewSheet.Cells[3, 2].Value = totalBooks;
+
+            overviewSheet.Cells[4, 1].Value = $"Lượt mượn ({year})";
+            overviewSheet.Cells[4, 2].Value = totalBorrow;
+
+            overviewSheet.Cells[5, 1].Value = $"Vi phạm ({year})";
+            overviewSheet.Cells[5, 2].Value = totalViolation;
+
+            overviewSheet.Cells.AutoFitColumns();
+
+            //sheet độc giả
+            var readerSheet = package.Workbook.Worksheets.Add("DocGiaTheoThang");
+
+            var readers = await _context.TaiKhoans
+                .Where(t => t.VaiTro == "DocGia"
+                        && t.LastActive.HasValue
+                        && t.LastActive.Value.Year == year)
+                .GroupBy(t => t.LastActive!.Value.Month)
+                .Select(g => new { Thang = g.Key, SoLuong = g.Count() })
+                .OrderBy(x => x.Thang)
+                .ToListAsync();
+
+            readerSheet.Cells[1, 1].Value = "Tháng";
+            readerSheet.Cells[1, 2].Value = "Số độc giả";
+
+            for (int i = 0; i < readers.Count; i++)
+            {
+                readerSheet.Cells[i + 2, 1].Value = readers[i].Thang;
+                readerSheet.Cells[i + 2, 2].Value = readers[i].SoLuong;
+            }
+
+            readerSheet.Cells.AutoFitColumns();
+
+            //sheet lượt mượn
+            var borrowSheet = package.Workbook.Worksheets.Add("LuotMuon");
+
+            var borrowData = await _context.PhieuMuons
+                .Where(p => p.NgayMuon.Value.Year == year)
+                .GroupBy(p => p.NgayMuon.Value.Month)
+                .Select(g => new { Thang = g.Key, LuotMuon = g.Count() })
+                .OrderBy(x => x.Thang)
+                .ToListAsync();
+
+            borrowSheet.Cells[1, 1].Value = "Tháng";
+            borrowSheet.Cells[1, 2].Value = "Lượt mượn";
+
+            for (int i = 0; i < borrowData.Count; i++)
+            {
+                borrowSheet.Cells[i + 2, 1].Value = borrowData[i].Thang;
+                borrowSheet.Cells[i + 2, 2].Value = borrowData[i].LuotMuon;
+            }
+
+            borrowSheet.Cells.AutoFitColumns();
+
+            //sheet lượt trả
+            var returnSheet = package.Workbook.Worksheets.Add("LuotTra");
+
+            var returnData = await _context.ChiTietPhieuMuons
+                .Where(c => c.NgayTraThucTe.HasValue && 
+                            c.NgayTraThucTe.Value.Year == year)
+                .GroupBy(c => c.NgayTraThucTe!.Value.Month)
+                .Select(g => new { Thang = g.Key, LuotTra = g.Count() })
+                .OrderBy(x => x.Thang)
+                .ToListAsync();
+
+            returnSheet.Cells[1, 1].Value = "Tháng";
+            returnSheet.Cells[1, 2].Value = "Lượt trả";
+
+            for (int i = 0; i < returnData.Count; i++)
+            {
+                returnSheet.Cells[i + 2, 1].Value = returnData[i].Thang;
+                returnSheet.Cells[i + 2, 2].Value = returnData[i].LuotTra;
+            }
+
+            returnSheet.Cells.AutoFitColumns();
+
+            //sheet vi phạm
+            var violationSheet = package.Workbook.Worksheets.Add("ViPham");
+
+            var violationData = await _context.PhieuPhats
+                .Where(p => p.NgayPhat.Value.Year == year)
+                .GroupBy(p => p.NgayPhat.Value.Month)
+                .Select(g => new { Thang = g.Key, ViPham = g.Count() })
+                .OrderBy(x => x.Thang)
+                .ToListAsync();
+
+            violationSheet.Cells[1, 1].Value = "Tháng";
+            violationSheet.Cells[1, 2].Value = "Vi phạm";
+
+            for (int i = 0; i < violationData.Count; i++)
+            {
+                violationSheet.Cells[i + 2, 1].Value = violationData[i].Thang;
+                violationSheet.Cells[i + 2, 2].Value = violationData[i].ViPham;
+            }
+
+            violationSheet.Cells.AutoFitColumns();
+
+            //sheet tình trạng sách
+            var conditionSheet = package.Workbook.Worksheets.Add("TinhTrangSach");
+
+            var total = await _context.CuonSaches.CountAsync();
+            var good = await _context.CuonSaches.CountAsync(s => s.TinhTrang == "Tot");
+            var bad = total - good;
+
+            conditionSheet.Cells[1, 1].Value = "Loại";
+            conditionSheet.Cells[1, 2].Value = "Số lượng";
+
+            conditionSheet.Cells[2, 1].Value = "Sách tốt";
+            conditionSheet.Cells[2, 2].Value = good;
+
+            conditionSheet.Cells[3, 1].Value = "Sách hỏng";
+            conditionSheet.Cells[3, 2].Value = bad;
+
+            conditionSheet.Cells.AutoFitColumns();
+
+            //xuất file
+            var fileName = $"ThongKeThuVien_{year}.xlsx";
+            var fileBytes = await package.GetAsByteArrayAsync();
+
+            return File(
+                fileBytes,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                fileName
+            );
+        }
+    
     }
 }
+

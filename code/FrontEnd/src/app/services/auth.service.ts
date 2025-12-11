@@ -13,7 +13,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  // ===== Đăng ký tài khoản độc giả =====
+  //  Đăng ký tài khoản độc giả 
   register(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, data);
   }
@@ -28,16 +28,16 @@ export class AuthService {
 
     return { headers: new HttpHeaders(headersConfig) };
   }
-  // ===== Admin tạo tài khoản NHÂN VIÊN =====
+   //  Admin tạo tài khoản NHÂN VIÊN 
   createStaff(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/create-staff`, data, this.getAuthHeader());
   }
 
-  // ===== Admin tạo tài khoản ADMIN khác =====
+  //  Admin tạo tài khoản ADMIN khác 
   createAdmin(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/create-admin`, data, this.getAuthHeader());
   }
-  // ===== Đăng nhập =====
+  //  Đăng nhập 
   login(data: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, data).pipe(
       tap(res => {
@@ -48,7 +48,7 @@ export class AuthService {
     );
   }
 
-  // ===== Làm mới access token =====
+  //  Làm mới access token 
   refreshToken(): Observable<any> {
     const refresh = this.getRefreshToken();
     return this.http.post<any>(`${this.apiUrl}/refresh`, refresh).pipe(
@@ -60,7 +60,7 @@ export class AuthService {
     );
   }
 
-  // ===== Helper methods =====
+  //  Helper methods 
   private setTokens(access: string, refresh: string): void {
     localStorage.setItem('access_token', access);
     localStorage.setItem('refresh_token', refresh);
@@ -74,7 +74,7 @@ export class AuthService {
     return localStorage.getItem('refresh_token');
   }
 
-  // ===== Đăng xuất (xoá token ở trình duyệt hiện tại) =====
+  //  Đăng xuất (xoá token ở trình duyệt hiện tại) 
   logout(): void {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
@@ -116,13 +116,18 @@ export class AuthService {
     return role === 'Admin' || role === 'NhanVien';
   }
 
+  isAdminn(): boolean {
+    const role = this.getRole();
+    return role === 'Admin';
+  }
+
   isUser(): boolean {
     const role = this.getRole();
     return role === 'DocGia';
   }
 
 
-  // ===== Kiểm tra trạng thái đăng nhập =====
+  //  Kiểm tra trạng thái đăng nhập 
   isLoggedIn(): boolean {
     const token = this.getAccessToken();
     return !!token;

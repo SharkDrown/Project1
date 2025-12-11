@@ -55,6 +55,7 @@ public partial class QuanLyThuVienContext : DbContext
 
         => optionsBuilder.UseSqlServer("Data Source=LAPTOP-HUNGVIET\\SQLEXPRESS;Initial Catalog=QuanLyThuVien;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
 
+
     // Data Source=HOANG;Initial Catalog=QuanLyThuVien;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False
 
 

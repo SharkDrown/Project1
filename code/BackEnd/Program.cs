@@ -7,18 +7,23 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.OpenApi.Models;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+
+OfficeOpenXml.ExcelPackage.License
+    .SetNonCommercialPersonal("library-dashboard");
+
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
 
-    // 🟢 Thêm phần cấu hình xác thực Bearer
+    //cấu hình xác thực Bearer
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -55,7 +60,7 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<QuanLyThuVienContext>(options =>
     options.UseSqlServer(connectionString)
            .EnableSensitiveDataLogging() // Cho phép log SQL queries (chỉ dùng trong development)
-           .LogTo(Console.WriteLine, LogLevel.Information)); // Log SQL queries ra console
+           .LogTo(Console.WriteLine, LogLevel.Information)); 
 // Thêm CORS
 builder.Services.AddCors(options =>
 {
@@ -68,7 +73,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-// ===== Cấu hình JWT =====
+// Cấu hình JWT
 var jwtSection = builder.Configuration.GetSection("Jwt");
 var jwtKey = jwtSection["Key"];
 var jwtIssuer = jwtSection["Issuer"];
@@ -140,7 +145,7 @@ builder.Services.AddScoped<JwtService>();
 
 var app = builder.Build();
 
-// ✅ Kiểm tra kết nối database khi khởi động
+//  Kiểm tra kết nối database khi khởi động
 try
 {
     using (var scope = app.Services.CreateScope())
@@ -169,8 +174,8 @@ catch (Exception ex)
     Console.WriteLine("⚠️ Backend vẫn sẽ chạy nhưng có thể không truy cập được database!");
 }
 
-// Configure the HTTP request pipeline.
-// ✅ QUAN TRỌNG: UseCors phải được đặt TRƯỚC UseAuthentication và UseAuthorization
+// 
+// QUAN TRỌNG: UseCors phải được đặt TRƯỚC UseAuthentication và UseAuthorization
 app.UseCors("AllowAngular");
 
 if (app.Environment.IsDevelopment())
