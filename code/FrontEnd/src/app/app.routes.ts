@@ -7,7 +7,6 @@ import { SearchComponent } from './pages/search/search.component';
 import { HistoryComponent } from './pages/history/history.component';
 import { ReserveComponent } from './pages/reserve/reserve.component';
 import { ReportsComponent } from './pages/reports/reports.component';
-import { ContactComponent } from './pages/contact/contact.component';
 import { InfoComponent } from './pages/info/info.component';
 import { ReviewComponent } from './pages/info/review/review.component';
 import { SettingComponent } from './pages/info/setting/setting.component';
@@ -40,7 +39,6 @@ export const routes: Routes = [
       { path: 'history', component: HistoryComponent, canActivate: [UserGuard] },
       { path: 'reports', component: ReportsComponent, canActivate: [UserGuard] },
       { path: 'notices', loadComponent: () => import('./notices/notices.component').then(m => m.NoticesComponent), canActivate: [UserGuard] },
-      { path: 'contact', component: ContactComponent },
 
       // load lazy cho register & login
       {

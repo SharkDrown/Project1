@@ -6,7 +6,6 @@
         <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Trang chủ</a></li>
         <li><a routerLink="/about" routerLinkActive="active">Giới thiệu</a></li>
         <li><a routerLink="/search" routerLinkActive="active">Tra cứu</a></li>
-        <li><a routerLink="/contact" routerLinkActive="active">Liên hệ</a></li>
 
         <!-- Chỉ dành cho độc giả -->
         <li *ngIf="authService.isUser()"><a routerLink="/reserve" routerLinkActive="active">Đặt trước sách</a></li>

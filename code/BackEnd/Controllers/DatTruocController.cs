@@ -123,7 +123,7 @@ namespace BackEnd.Controllers
                 cuon.MaDat = id;
             }
 
-            yeuCau.TrangThai = "DaNhan";
+            yeuCau.TrangThai = "Cho";
 
             await _context.SaveChangesAsync();
 

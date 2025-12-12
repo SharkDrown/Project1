@@ -1,0 +1,97 @@
+<section id="cart" class="cart section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10" data-aos="fade-up" data-aos-delay="200">
+
+        <div class="cart-items">
+
+          <!-- Header -->
+          <div class="cart-header d-none d-lg-block">
+            <div class="row align-items-center py-3">
+              <div class="col-lg-6"><h5>Tên sách</h5></div>
+              <div class="col-lg-3 text-center"><h5>Số lượng</h5></div>
+              <div class="col-lg-3 text-center"><h5>Thao tác</h5></div>
+            </div>
+          </div>
+
+          <!-- Danh sách -->
+          <div *ngFor="let item of pendingList" class="cart-item p-3 mb-3">
+            <div class="row align-items-center">
+
+              <!-- Thông tin sách -->
+              <div class="col-lg-6 col-12 mb-3 mb-lg-0">
+                <div class="product-info d-flex align-items-center gap-3">
+
+                  <div class="product-image">
+                    <img [src]="getImageUrl(item.maSach, 'jpg')"
+                         class="img-fluid rounded"
+                         alt="Book">
+                  </div>
+
+                  <div class="product-details">
+                    <h6 class="product-title">{{ item.tuaSach }}</h6>
+
+                    <div class="product-meta">
+                      <span class="product-color">Tác giả: {{ getTenTacGia(item) }}</span><br>
+                      <span>Thể loại: {{ item.theLoai }}</span><br>
+                      <span>Số lượng còn: {{ item.soLuongCon }}</span>
+                    </div>
+
+                    <button class="remove-item" (click)="removeItem(item.maDat)">
+                      <i class="bi bi-trash"></i> Xóa
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Số lượng -->
+              <div class="col-lg-3 col-12 text-center mb-3 mb-lg-0">
+                <div class="quantity-selector mx-auto">
+
+                  <button type="button" class="quantity-btn decrease"
+                          (click)="decrease(item)">
+                    <i class="bi bi-dash"></i>
+                  </button>
+
+                  <input type="number"
+                         class="quantity-input"
+                         min="1"
+                         [(ngModel)]="item.soLuong">
+
+                  <button type="button"
+                          class="quantity-btn increase"
+                          (click)="increase(item)">
+                    <i class="bi bi-plus"></i>
+                  </button>
+
+                </div>
+              </div>
+
+              <!-- Cập nhật -->
+              <div class="col-lg-3 col-12 text-center">
+                <button class="btn btn-update-qty"
+                        (click)="updateQuantity(item)">
+                  <i class="bi bi-arrow-repeat"></i> Cập nhật
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Xóa tất cả -->
+          <div class="cart-actions mt-4 text-center">
+            <button class="btn btn-outline-remove px-4 py-2"
+                    (click)="removeAll()">
+              <i class="bi bi-trash"></i> Xóa tất cả
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

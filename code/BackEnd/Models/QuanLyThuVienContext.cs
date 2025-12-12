@@ -102,7 +102,10 @@ public partial class QuanLyThuVienContext : DbContext
         {
             entity.HasKey(e => e.MaVach).HasName("PK__CuonSach__8BBF4A1D44CA9392");
 
-            entity.ToTable("CuonSach");
+            entity.ToTable("CuonSach", tb =>
+            {
+                tb.HasTrigger("trg_CuonSach_FullUpdate");
+            });
 
             entity.Property(e => e.MaVach).HasMaxLength(50);
             entity.Property(e => e.TinhTrang)
@@ -141,7 +144,10 @@ public partial class QuanLyThuVienContext : DbContext
         {
             entity.HasKey(e => e.MaDat).HasName("PK__DatTruoc__3D88833093236C40");
 
-            entity.ToTable("DatTruoc");
+            entity.ToTable("DatTruoc", tb =>
+            {
+                tb.HasTrigger("trg_DatTruoc_FullUpdate"); // Thêm dòng này do có trigger
+            });
 
             entity.Property(e => e.MaDg).HasColumnName("MaDG");
             entity.Property(e => e.NgayDat).HasDefaultValueSql("(getdate())");

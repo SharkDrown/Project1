@@ -159,7 +159,7 @@ namespace BackEnd.Controllers
             // 5. Cập nhật trạng thái các yêu cầu Đặt trước đã dùng
             foreach (var yeuCau in cacYeuCauDaDuyet)
             {
-                yeuCau.TrangThai = "Huy";
+                yeuCau.TrangThai = "DaNhan";
                 _context.DatTruocs.Update(yeuCau);
             }
 
@@ -205,7 +205,7 @@ namespace BackEnd.Controllers
                 if (cuonSach != null && cuonSach.TinhTrang == "DangMuon" && chiTiet.NgayTraThucTe == null)
                 {
                     // Chuyển về trạng thái sẵn sàng (SanSang)
-                    cuonSach.TinhTrang = "SanSang";
+                    cuonSach.TinhTrang = "Tot";
                     _context.CuonSaches.Update(cuonSach);
                 }
             }

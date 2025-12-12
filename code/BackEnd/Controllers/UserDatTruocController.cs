@@ -121,11 +121,53 @@ namespace BackEnd.Controllers
 
             if (borrow.TrangThai != "Cho")
                 return BadRequest(new { message = "Chỉ có thể cập nhật phiếu còn trạng thái 'Cho'" });
+            // 🔥 LẤY THÔNG TIN SÁCH
+            var sach = await _context.Saches
+                .FirstOrDefaultAsync(s => s.MaSach == borrow.MaSach);
+
+            if (sach == null)
+                return BadRequest(new { message = "Không tìm thấy sách" });
+
+            // 🔥 TRÁNH ÂM SỐ LƯỢNG
+            if ((soLuong - borrow.SoLuong) > sach.SoLuong)
+                return BadRequest(new { message = "Không đủ số lượng sách còn lại" });
 
             borrow.SoLuong = soLuong;
             await _context.SaveChangesAsync();
 
             return Ok(borrow);
         }
+
+        // GET: api/UserDatTruoc/my/pending
+        [HttpGet("my/pending")]
+        public async Task<IActionResult> GetMyPendingBorrows()
+        {
+            var maDg = await GetMaDgFromToken();
+            if (maDg == null)
+                return Unauthorized(new { message = "Token không hợp lệ hoặc không tìm thấy độc giả" });
+
+            var pending = await _context.DatTruocs
+                .Where(d => d.MaDg == maDg && d.TrangThai == "Cho")
+                .Include(d => d.MaSachNavigation)
+                .OrderByDescending(d => d.NgayDat)
+                .Select(d => new
+                {
+                    d.MaDat,
+                    d.MaSach,
+                    d.SoLuong,
+                    d.TrangThai,
+                    d.NgayDat,
+
+                    // Thông tin sách để hiển thị giỏ hàng
+                    TuaSach = d.MaSachNavigation.TuaSach,
+                    TacGia = d.MaSachNavigation.TacGia,
+                    TheLoai = d.MaSachNavigation.MaTlNavigation.TenTl,
+                    SoLuongCon = d.MaSachNavigation.SoLuong
+                })
+                .ToListAsync();
+
+            return Ok(pending);
+        }
+
     }
 }

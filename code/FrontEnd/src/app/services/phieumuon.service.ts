@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PhieuMuonService {
  
-   private baseUrl = '/api'; 
+  private baseUrl = '/api'; 
   private phieuMuonUrl = `${this.baseUrl}/PhieuMuon`;
   private cuonSachUrl = `${this.baseUrl}/CuonSach`;
 
