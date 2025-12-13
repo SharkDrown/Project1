@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { PhieuMuon } from '../models/phieumuon.model';
 
 @Injectable({
   providedIn: 'root' 
@@ -56,4 +57,9 @@ export class PhieuMuonService {
     return this.http.put(`${this.cuonSachUrl}/${maVach}/status`, body);
   }
   
+  getMyPhieuMuons(page: number, pageSize: number) {
+  return this.http.get<any>(
+    `/api/PhieuMuon/my?page=${page}&pageSize=${pageSize}`
+  );
+  }
 }

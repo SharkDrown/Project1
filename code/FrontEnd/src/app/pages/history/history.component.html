@@ -1,0 +1,134 @@
+<section id="account" class="account section">
+      <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+        <div class="row g-4">
+          <!-- Content Area -->
+          <div class="col-lg-9">
+            <div class="content-area">
+              <div class="tab-content">
+                <!-- Orders Tab -->
+                <div class="tab-pane fade show active" id="orders" role="tabpanel">
+                  <div class="section-header aos-init aos-animate" data-aos="fade-up">
+                    <h2>Lịch sử mượn sách</h2>
+                  </div>
+
+                  <div class="orders-grid">
+
+                    <div class="order-card"
+                        *ngFor="let order of orders; let i = index"
+                        data-aos="fade-up">
+                        <!-- HEADER -->
+                        <div class="order-header">
+                        <div class="order-id">
+                            <span class="label">Mã phiếu mượn:</span>
+                            <span class="value">{{ order.maPm }}</span>
+                        </div>
+                        <div class="order-date">
+                            {{ order.ngayMuon | date:'dd/MM/yyyy' }}
+                        </div>
+                        </div>
+
+                        <!-- CONTENT -->
+                        <div class="order-content">
+                        <div class="product-grid">
+                            <img *ngFor="let item of order.items"
+                                [src]="getImageUrl(item.maSach, 'jpg')"
+                                alt="Book"
+                                [routerLink]="['/book-detail', item.maSach]">
+                        </div>
+
+                        <div class="order-info">
+                            <div class="info-row">
+                            <span>Số lượng</span>
+                            <span>
+                            {{ getTotalQuantity(order.items) }} cuốn
+                            </span>
+                            </div>
+                        </div>
+                        </div>
+
+                        <!-- FOOTER -->
+                        <div class="order-footer">
+                        <button class="btn-details"
+                                data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#details' + i">
+                            View Details
+                        </button>
+                        </div>
+
+                        <!-- DETAILS -->
+                        <div class="collapse order-details"
+                            [id]="'details' + i">
+
+                        <div class="details-content">
+
+                            <!-- INFO -->
+                            <div class="detail-section">
+                            <h5>Thông tin chi tiết</h5>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                <span class="label">Ngày mượn</span>
+                                <span class="value">
+                                    {{ order.ngayMuon | date:'dd/MM/yyyy' }}
+                                </span>
+                                </div>
+                                <div class="info-item">
+                                <span class="label">Ngày trả</span>
+                                <span class="value">
+                                    {{ order.ngayTra ? (order.ngayTra | date:'dd/MM/yyyy') : '—' }}
+                                </span>
+                                </div>
+                            </div>
+                            </div>
+
+                            <!-- ITEMS -->
+                            <div class="detail-section">
+                            <div class="order-items">
+
+                                <div class="item" *ngFor="let item of order.items" [routerLink]="['/book-detail', item.maSach]">
+                                <img [src]="getImageUrl(item.maSach, 'jpg')" alt="Book">
+                                <div class="item-info">
+                                    <h6>{{ item.tuaSach }}</h6>
+                                    <div class="item-meta">
+                                    <span class="sku">Thể loại: {{ item.theLoai ?? 'Chưa phân loại' }}</span>
+                                    <span class="qty">Số lượng: {{ item.soLuong }}</span>
+                                    </div>
+                                </div>
+                                </div>
+
+                            </div>
+                            </div>
+
+                        </div>
+                        </div>
+
+                    </div>
+                    </div>
+
+                  <div class="pagination-wrapper">
+                    <button class="btn-prev"
+                            (click)="changePage(currentPage - 1)"
+                            [disabled]="currentPage === 1">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+
+                    <div class="page-numbers">
+                        <button *ngFor="let p of pages"
+                                (click)="changePage(p)"
+                                [class.active]="p === currentPage">
+                        {{ p }}
+                        </button>
+                    </div>
+
+                    <button class="btn-next"
+                            (click)="changePage(currentPage + 1)"
+                            [disabled]="currentPage === totalPages">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>

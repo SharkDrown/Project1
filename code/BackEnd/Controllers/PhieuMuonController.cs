@@ -5,6 +5,7 @@ using BackEnd.Models;
 using System;
 using System.Security.Claims; // Thêm thư viện này để xử lý Claims
 using System.Globalization;
+using Microsoft.AspNetCore.Authorization;
 namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
@@ -48,6 +49,74 @@ namespace BackEnd.Controllers
 
             return Ok(data);
         }
+
+        [HttpGet("my")]
+        [Authorize]
+        public async Task<IActionResult> GetMyPhieuMuons(
+                int page = 1,
+                int pageSize = 3
+            )
+        {
+            if (page < 1) page = 1;
+            if (pageSize < 1) pageSize = 3;
+
+            var maTkClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (!int.TryParse(maTkClaim, out int maTk))
+                return Unauthorized();
+
+            var docGia = await _context.DocGia
+                .FirstOrDefaultAsync(d => d.MaTk == maTk);
+
+            if (docGia == null)
+                return NotFound();
+
+            var query = _context.PhieuMuons
+                .Where(p => p.MaDg == docGia.MaDg);
+
+            var totalItems = await query.CountAsync();
+
+            var data = await query
+                .Include(p => p.ChiTietPhieuMuons)
+                    .ThenInclude(ct => ct.MaVachNavigation)
+                        .ThenInclude(cs => cs.MaSachNavigation)
+                            .ThenInclude(s => s.MaTlNavigation)
+                .OrderByDescending(p => p.NgayMuon)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Select(p => new
+                {
+                    maPm = p.MaPm,
+                    ngayMuon = p.NgayMuon,
+                    ngayTra = p.NgayTra,
+
+                    items = p.ChiTietPhieuMuons
+                        .Where(ct => ct.MaVachNavigation != null &&
+                                     ct.MaVachNavigation.MaSachNavigation != null)
+                        .GroupBy(ct => ct.MaVachNavigation!.MaSachNavigation!)
+                        .Select(g => new
+                        {
+                            maSach = g.First().MaVachNavigation!.MaSachNavigation!.MaSach,
+                            tuaSach = g.First().MaVachNavigation!.MaSachNavigation!.TuaSach,
+                            theLoai = g.First().MaVachNavigation!.MaSachNavigation!.MaTlNavigation != null
+                                    ? g.First().MaVachNavigation!.MaSachNavigation!.MaTlNavigation!.TenTl : null,
+                            soLuong = g.Count()
+                        })
+                        .ToList()
+                })
+                .ToListAsync();
+
+            return Ok(new
+            {
+                page,
+                pageSize,
+                totalItems,
+                totalPages = (int)Math.Ceiling(totalItems / (double)pageSize),
+                data
+            });
+        }
+
+
+
 
         // --- POST: Tạo Phiếu Mượn Mới ---
         [HttpPost]

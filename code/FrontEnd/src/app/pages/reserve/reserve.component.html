@@ -23,14 +23,14 @@
               <div class="col-lg-6 col-12 mb-3 mb-lg-0">
                 <div class="product-info d-flex align-items-center gap-3">
 
-                  <div class="product-image">
+                  <div class="product-image" [routerLink]="['/book-detail', item.maSach]">
                     <img [src]="getImageUrl(item.maSach, 'jpg')"
                          class="img-fluid rounded"
                          alt="Book">
                   </div>
 
                   <div class="product-details">
-                    <h6 class="product-title">{{ item.tuaSach }}</h6>
+                    <h6 class="product-title" [routerLink]="['/book-detail', item.maSach]" >{{ item.tuaSach }}</h6>
 
                     <div class="product-meta">
                       <span class="product-color">Tác giả: {{ getTenTacGia(item) }}</span><br>
