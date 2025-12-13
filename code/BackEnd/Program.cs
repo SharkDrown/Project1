@@ -18,6 +18,12 @@ OfficeOpenXml.ExcelPackage.License
 
 builder.Services.AddControllers();
 
+//AI
+builder.Services.AddSignalR();
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<RagChatService>();
+//AI
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -112,39 +118,46 @@ options.TokenValidationParameters = new TokenValidationParameters
     ValidAudience = jwtAudience,
     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
 };
-options.Events = new JwtBearerEvents
-{
-    OnTokenValidated = async context =>
+    options.Events = new JwtBearerEvents
     {
-        var db = context.HttpContext.RequestServices.GetRequiredService<QuanLyThuVienContext>();
-        var claims = context.Principal?.Identity as ClaimsIdentity;
-
-        var userIdClaim = claims?.FindFirst(ClaimTypes.NameIdentifier)
-                       ?? claims?.FindFirst(JwtRegisteredClaimNames.Sub);
-
-        //if (userIdClaim == null)
-        //{
-        //    context.Fail("Không tìm thấy userId trong token");
-        //    return;
-        //}
-        if (userIdClaim == null)
+        OnMessageReceived = context =>
         {
-            Console.WriteLine("⚠️ Token claim null: ");
-            foreach (var c in claims.Claims)
-                Console.WriteLine($"{c.Type} = {c.Value}");
+            var accessToken = context.Request.Query["access_token"];
+            var path = context.HttpContext.Request.Path;
 
-            context.Fail("Không tìm thấy userId trong token");
-            return;
-        }
+            if (!string.IsNullOrEmpty(accessToken)
+                && path.StartsWithSegments("/chatHub"))
+            {
+                context.Token = accessToken;
+            }
+            return Task.CompletedTask;
+        },
 
-        var userId = int.Parse(userIdClaim.Value);
-        var user = await db.TaiKhoans.FindAsync(userId);
-
-        if (user == null || user.TrangThai == false)
+        OnTokenValidated = async context =>
         {
-            context.Fail("Tài khoản đã bị vô hiệu hóa");
+            var db = context.HttpContext.RequestServices
+                .GetRequiredService<QuanLyThuVienContext>();
+
+            var claims = context.Principal?.Identity as ClaimsIdentity;
+
+            var userIdClaim =
+                claims?.FindFirst(ClaimTypes.NameIdentifier)
+                ?? claims?.FindFirst(JwtRegisteredClaimNames.Sub);
+
+            if (userIdClaim == null)
+            {
+                context.Fail("Không tìm thấy userId trong token");
+                return;
+            }
+
+            var userId = int.Parse(userIdClaim.Value);
+            var user = await db.TaiKhoans.FindAsync(userId);
+
+            if (user == null || user.TrangThai == false)
+            {
+                context.Fail("Tài khoản đã bị vô hiệu hóa");
+            }
         }
-    }
     };
 });
 
@@ -205,5 +218,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.MapControllers();
+app.MapHub<ChatHub>("/chatHub")
+   .RequireAuthorization();
 
 app.Run();

@@ -1,0 +1,482 @@
+[
+  {
+    "id": "BOOK_1",
+    "type": "book_meta",
+    "maSach": 1,
+    "content_vi": "Tựa sách: Tôi tự học    Tác giả: Nguyễn Duy Cần    Thể loại: Kỹ năng sống    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 1945    Giới thiệu: Sách kinh điển về phương pháp tự học và rèn luyện trí tuệ."
+  },
+  {
+    "id": "BOOK_2",
+    "type": "book_meta",
+    "maSach": 2,
+    "content_vi": "Tựa sách: Đắc nhân tâm    Tác giả: Dale Carnegie    Thể loại: Tâm lý    Nhà xuất bản: NXB Tổng Hợp    Năm xuất bản: 1936    Giới thiệu: Sách dạy kỹ năng giao tiếp, ứng xử nổi tiếng nhất thế giới."
+  },
+  {
+    "id": "BOOK_3",
+    "type": "book_meta",
+    "maSach": 3,
+    "content_vi": "Tựa sách: 7 thói quen hiệu quả của bạn trẻ thành đạt    Tác giả: Sean Covey    Thể loại: Kỹ năng sống    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 1998    Giới thiệu: Hướng dẫn hình thành thói quen tốt để đạt được thành công."
+  },
+  {
+    "id": "BOOK_4",
+    "type": "book_meta",
+    "maSach": 4,
+    "content_vi": "Tựa sách: Tôi tài giỏi, bạn cũng thế    Tác giả: Adam Khoo    Thể loại: Kỹ năng sống    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 2002    Giới thiệu: Sách truyền cảm hứng và phương pháp học tập hiệu quả cho học sinh, sinh viên."
+  },
+  {
+    "id": "BOOK_5",
+    "type": "book_meta",
+    "maSach": 5,
+    "content_vi": "Tựa sách: Làm chủ tư duy, thay đổi vận mệnh    Tác giả: Adam Khoo    Thể loại: Kỹ năng sống    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 2003    Giới thiệu: Giúp bạn khám phá tiềm năng và thay đổi bản thân qua tư duy tích cực."
+  },
+  {
+    "id": "BOOK_6",
+    "type": "book_meta",
+    "maSach": 6,
+    "content_vi": "Tựa sách: Tuổi trẻ đáng giá bao nhiêu?    Tác giả: Rosie Nguyễn    Thể loại: Tâm lý    Nhà xuất bản: NXB Hội Nhà Văn    Năm xuất bản: 2016    Giới thiệu: Cuốn sách truyền cảm hứng sống hết mình cho tuổi trẻ."
+  },
+  {
+    "id": "BOOK_7",
+    "type": "book_meta",
+    "maSach": 7,
+    "content_vi": "Tựa sách: Cà phê cùng Tony    Tác giả: Tony Buổi Sáng    Thể loại: Tâm lý    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 2015    Giới thiệu: Tập hợp những câu chuyện truyền cảm hứng về cuộc sống và sự nghiệp."
+  },
+  {
+    "id": "BOOK_8",
+    "type": "book_meta",
+    "maSach": 8,
+    "content_vi": "Tựa sách: Khéo ăn khéo nói sẽ có được thiên hạ    Tác giả: Tristan Lê    Thể loại: Kỹ năng sống    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 2015    Giới thiệu: Bí quyết giao tiếp, ứng xử thông minh trong cuộc sống và công việc."
+  },
+  {
+    "id": "BOOK_9",
+    "type": "book_meta",
+    "maSach": 9,
+    "content_vi": "Tựa sách: Thế giới phẳng    Tác giả: Thomas L. Friedman    Thể loại: Kinh tế    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 2005    Giới thiệu: Phân tích toàn cầu hóa và những cơ hội trong thời đại mới."
+  },
+  {
+    "id": "BOOK_10",
+    "type": "book_meta",
+    "maSach": 10,
+    "content_vi": "Tựa sách: Trên đường băng    Tác giả: Tony Buổi Sáng    Thể loại: Tâm lý    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 2017    Giới thiệu: Cuốn sách định hướng tư duy tích cực và khát vọng sống cho người trẻ."
+  },
+  {
+    "id": "BOOK_11",
+    "type": "book_meta",
+    "maSach": 11,
+    "content_vi": "Tựa sách: Đừng lựa chọn an nhàn khi còn trẻ    Tác giả: Cảnh Thiên    Thể loại: Tâm lý    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 2017    Giới thiệu: Lời nhắc nhở giới trẻ phải sống nhiệt huyết, không lười biếng."
+  },
+  {
+    "id": "BOOK_12",
+    "type": "book_meta",
+    "maSach": 12,
+    "content_vi": "Tựa sách: Hạt giống tâm hồn    Tác giả: Jack Canfield, Mark Victor Hansen    Thể loại: Tâm lý    Nhà xuất bản: NXB Tổng Hợp    Năm xuất bản: 2002    Giới thiệu: Tuyển tập những câu chuyện truyền cảm hứng về cuộc sống."
+  },
+  {
+    "id": "BOOK_13",
+    "type": "book_meta",
+    "maSach": 13,
+    "content_vi": "Tựa sách: Tuổi trẻ không trì hoãn    Tác giả: Lý Thượng Long    Thể loại: Kỹ năng sống    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 2014    Giới thiệu: Giúp bạn trẻ nhận ra giá trị của thời gian và hành động kịp lúc."
+  },
+  {
+    "id": "BOOK_14",
+    "type": "book_meta",
+    "maSach": 14,
+    "content_vi": "Tựa sách: Dám nghĩ lớn    Tác giả: David Schwartz    Thể loại: Kỹ năng sống    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 1959    Giới thiệu: Sách kinh điển truyền cảm hứng hành động mạnh mẽ để đạt thành công."
+  },
+  {
+    "id": "BOOK_15",
+    "type": "book_meta",
+    "maSach": 15,
+    "content_vi": "Tựa sách: Đi tìm lẽ sống    Tác giả: Viktor Frankl    Thể loại: Tâm lý    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 1946    Giới thiệu: Tác phẩm nổi tiếng về ý nghĩa cuộc sống và sức mạnh tinh thần."
+  },
+  {
+    "id": "BOOK_16",
+    "type": "book_meta",
+    "maSach": 16,
+    "content_vi": "Tựa sách: Không gia đình    Tác giả: Hector Malot    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 1878    Giới thiệu: Tiểu thuyết nổi tiếng của Hector Malot, kể về hành trình gian nan và nghị lực của cậu bé Remi."
+  },
+  {
+    "id": "BOOK_17",
+    "type": "book_meta",
+    "maSach": 17,
+    "content_vi": "Tựa sách: Hiệu ứng chim mồi    Tác giả: Mark Tungate    Thể loại: Kinh tế    Nhà xuất bản: NXB Kinh Tế    Năm xuất bản: 2017    Giới thiệu: Sách về tư duy lựa chọn và tác động của tâm lý trong quyết định."
+  },
+  {
+    "id": "BOOK_18",
+    "type": "book_meta",
+    "maSach": 18,
+    "content_vi": "Tựa sách: Khởi nghiệp tinh gọn    Tác giả: Eric Ries    Thể loại: Kinh tế    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 2011    Giới thiệu: Cuốn sách hướng dẫn phương pháp khởi nghiệp tiết kiệm và hiệu quả."
+  },
+  {
+    "id": "BOOK_19",
+    "type": "book_meta",
+    "maSach": 19,
+    "content_vi": "Tựa sách: Tâm lý học thành công    Tác giả: Carol S. Dweck    Thể loại: Tâm lý    Nhà xuất bản: NXB Lao Động    Năm xuất bản: 2006    Giới thiệu: Nghiên cứu cách tư duy ảnh hưởng đến thành công của con người."
+  },
+  {
+    "id": "BOOK_20",
+    "type": "book_meta",
+    "maSach": 20,
+    "content_vi": "Tựa sách: Dạy con làm giàu – Tập 1    Tác giả: Robert Kiyosaki    Thể loại: Kinh tế    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 1997    Giới thiệu: Tác phẩm nổi tiếng của Robert Kiyosaki về tư duy tài chính và đầu tư."
+  },
+  {
+    "id": "BOOK_21",
+    "type": "book_meta",
+    "maSach": 21,
+    "content_vi": "Tựa sách: Doraemon Tập 1    Tác giả: Fujiko F. Fujio    Thể loại: Thiếu nhi    Nhà xuất bản: NXB Kim Đồng    Năm xuất bản: 1992    Giới thiệu: Truyện tranh thiếu nhi nổi tiếng của Fujiko F. Fujio"
+  },
+  {
+    "id": "BOOK_22",
+    "type": "book_meta",
+    "maSach": 22,
+    "content_vi": "Tựa sách: Doraemon Tập 2    Tác giả: Fujiko F. Fujio    Thể loại: Thiếu nhi    Nhà xuất bản: NXB Kim Đồng    Năm xuất bản: 1993    Giới thiệu: Truyện tranh phiêu lưu hài hước cho trẻ em"
+  },
+  {
+    "id": "BOOK_23",
+    "type": "book_meta",
+    "maSach": 23,
+    "content_vi": "Tựa sách: Tắt đèn    Tác giả: Ngô Tất Tố    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 1939    Giới thiệu: Tác phẩm hiện thực phê phán nổi tiếng của Ngô Tất Tố"
+  },
+  {
+    "id": "BOOK_24",
+    "type": "book_meta",
+    "maSach": 24,
+    "content_vi": "Tựa sách: Chí Phèo    Tác giả: Nam Cao    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 1941    Giới thiệu: Truyện ngắn nổi tiếng của Nam Cao"
+  },
+  {
+    "id": "BOOK_25",
+    "type": "book_meta",
+    "maSach": 25,
+    "content_vi": "Tựa sách: Lược sử thời gian    Tác giả: Stephen Hawking    Thể loại: Khoa học    Nhà xuất bản: NXB Khoa Học    Năm xuất bản: 1988    Giới thiệu: Sách khoa học của Stephen Hawking"
+  },
+  {
+    "id": "BOOK_26",
+    "type": "book_meta",
+    "maSach": 26,
+    "content_vi": "Tựa sách: Vũ trụ trong vỏ hạt dẻ    Tác giả: Stephen Hawking    Thể loại: Khoa học    Nhà xuất bản: NXB Khoa Học    Năm xuất bản: 2001    Giới thiệu: Tác phẩm tiếp nối của Stephen Hawking"
+  },
+  {
+    "id": "BOOK_27",
+    "type": "book_meta",
+    "maSach": 27,
+    "content_vi": "Tựa sách: Giải thuật và lập trình    Tác giả: Nguyễn Tấn Trần Minh Khang    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB Giáo dục    Năm xuất bản: 2010    Giới thiệu: Sách hướng dẫn về giải thuật và cấu trúc dữ liệu"
+  },
+  {
+    "id": "BOOK_28",
+    "type": "book_meta",
+    "maSach": 28,
+    "content_vi": "Tựa sách: Truyền thuyết và lịch sử Việt Nam    Tác giả: Trần Quốc Vượng    Thể loại: Lịch sử    Nhà xuất bản: NXB Lịch sử    Năm xuất bản: 2005    Giới thiệu: Tài liệu tham khảo lịch sử Việt Nam"
+  },
+  {
+    "id": "BOOK_29",
+    "type": "book_meta",
+    "maSach": 29,
+    "content_vi": "Tựa sách: Chiến tranh và hòa bình    Tác giả: Lev Tolstoy    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học Nga    Năm xuất bản: 1869    Giới thiệu: Tiểu thuyết sử thi của Lev Tolstoy"
+  },
+  {
+    "id": "BOOK_30",
+    "type": "book_meta",
+    "maSach": 30,
+    "content_vi": "Tựa sách: Tư bản    Tác giả: Karl Marx    Thể loại: Kinh tế    Nhà xuất bản: NXB Chính trị Quốc gia    Năm xuất bản: 1867    Giới thiệu: Tác phẩm kinh điển của Karl Marx"
+  },
+  {
+    "id": "BOOK_31",
+    "type": "book_meta",
+    "maSach": 31,
+    "content_vi": "Tựa sách: Quốc gia khởi nghiệp    Tác giả: Dan Senor    Thể loại: Kinh tế    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 2009    Giới thiệu: Sách phân tích kinh tế và đổi mới của Israel"
+  },
+  {
+    "id": "BOOK_32",
+    "type": "book_meta",
+    "maSach": 32,
+    "content_vi": "Tựa sách: Đắc nhân tâm    Tác giả: Dale Carnegie    Thể loại: Tâm lý    Nhà xuất bản: NXB Tổng Hợp    Năm xuất bản: 1936    Giới thiệu: Sách kỹ năng sống của Dale Carnegie"
+  },
+  {
+    "id": "BOOK_33",
+    "type": "book_meta",
+    "maSach": 33,
+    "content_vi": "Tựa sách: 7 thói quen của người thành đạt    Tác giả: Stephen R. Covey    Thể loại: Tâm lý    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 1989    Giới thiệu: Sách phát triển bản thân của Stephen R. Covey"
+  },
+  {
+    "id": "BOOK_34",
+    "type": "book_meta",
+    "maSach": 34,
+    "content_vi": "Tựa sách: Tiếng gọi nơi hoang dã    Tác giả: Jack London    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 1903    Giới thiệu: Tiểu thuyết nổi tiếng của Jack London"
+  },
+  {
+    "id": "BOOK_35",
+    "type": "book_meta",
+    "maSach": 35,
+    "content_vi": "Tựa sách: Hoàng tử bé    Tác giả: Antoine de Saint-Exupéry    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 1943    Giới thiệu: Tác phẩm triết lý dành cho mọi lứa tuổi của Antoine de Saint-Exupéry"
+  },
+  {
+    "id": "BOOK_36",
+    "type": "book_meta",
+    "maSach": 36,
+    "content_vi": "Tựa sách: Sherlock Holmes Toàn tập    Tác giả: Arthur Conan Doyle    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 1892    Giới thiệu: Truyện trinh thám của Arthur Conan Doyle"
+  },
+  {
+    "id": "BOOK_37",
+    "type": "book_meta",
+    "maSach": 37,
+    "content_vi": "Tựa sách: Câu truyện triết học    Tác giả: Will Durant    Thể loại: Khoa học    Nhà xuất bản: NXB Tri thức    Năm xuất bản: 2015    Giới thiệu: Sách nhập môn triết học đơn giản"
+  },
+  {
+    "id": "BOOK_38",
+    "type": "book_meta",
+    "maSach": 38,
+    "content_vi": "Tựa sách: Kỹ thuật lập trình    Tác giả: Phạm Văn Ất    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB Giáo dục    Năm xuất bản: 2023    Giới thiệu: Sách lập trình cơ bản cho sinh viên CNTT"
+  },
+  {
+    "id": "BOOK_39",
+    "type": "book_meta",
+    "maSach": 39,
+    "content_vi": "Tựa sách: Lịch sử thế giới hiện đại    Tác giả: Nguyễn Hiến Lê    Thể loại: Lịch sử    Nhà xuất bản: NXB Lịch sử    Năm xuất bản: 2000    Giới thiệu: Tổng quan lịch sử thế giới từ thế kỷ 19 đến nay"
+  },
+  {
+    "id": "BOOK_40",
+    "type": "book_meta",
+    "maSach": 40,
+    "content_vi": "Tựa sách: Kinh tế học vĩ mô    Tác giả: N. Gregory Mankiw    Thể loại: Kinh tế    Nhà xuất bản: NXB Kinh tế Quốc dân    Năm xuất bản: 2018    Giới thiệu: Giáo trình về kinh tế học vĩ mô"
+  },
+  {
+    "id": "BOOK_41",
+    "type": "book_meta",
+    "maSach": 41,
+    "content_vi": "Tựa sách: Giáo dục kỹ năng sống    Tác giả: Huỳnh Lâm Anh Chương, Nguyễn Trí Hậu, Ngô Thị Phương Hiền    Thể loại: Tài liệu học tập    Nhà xuất bản: NXB ĐH Sư phạm TP HCM    Năm xuất bản: 2020    Giới thiệu: Sách hướng dẫn kỹ năng mềm, giao tiếp và quản lý thời gian."
+  },
+  {
+    "id": "BOOK_42",
+    "type": "book_meta",
+    "maSach": 42,
+    "content_vi": "Tựa sách: Python Cơ Bản    Tác giả: Bùi Việt Hà    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB ĐH Quốc gia Hà Nội    Năm xuất bản: 2020    Giới thiệu: Giới thiệu ngôn ngữ Python, cú pháp nền và ví dụ thực hành."
+  },
+  {
+    "id": "BOOK_43",
+    "type": "book_meta",
+    "maSach": 43,
+    "content_vi": "Tựa sách: Truyện Kiều    Tác giả: Nguyễn Du    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 2008    Giới thiệu: Tác phẩm kinh điển của Nguyễn Du, kiệt tác văn học Việt Nam."
+  },
+  {
+    "id": "BOOK_44",
+    "type": "book_meta",
+    "maSach": 44,
+    "content_vi": "Tựa sách: Cấu trúc dữ liệu và giải thuật    Tác giả: Đỗ Xuân Lợi    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB ĐH Quốc gia Hà Nội    Năm xuất bản: 2006    Giới thiệu: Cấu trúc dữ liệu và giải thuật cơ bản cho giảng dạy và tự học."
+  },
+  {
+    "id": "BOOK_45",
+    "type": "book_meta",
+    "maSach": 45,
+    "content_vi": "Tựa sách: Cơ sở văn hóa Việt Nam    Tác giả: Trần Ngọc Thêm    Thể loại: Ngôn ngữ    Nhà xuất bản: NXB Giáo dục Việt Nam    Năm xuất bản: 2020    Giới thiệu: Tổng quan khái niệm, thiết chế và lịch sử văn hóa Việt Nam."
+  },
+  {
+    "id": "BOOK_46",
+    "type": "book_meta",
+    "maSach": 46,
+    "content_vi": "Tựa sách: Bài tập Toán Học Cao Cấp - Tập 1    Tác giả: Nguyễn Đình Trí, Nhóm tác giả ĐHBK Hà Nội    Thể loại: Khoa học    Nhà xuất bản: NXB Giáo dục Việt Nam    Năm xuất bản: 2017    Giới thiệu: Tuyển tập bài tập đại số và hình học giải tích."
+  },
+  {
+    "id": "BOOK_47",
+    "type": "book_meta",
+    "maSach": 47,
+    "content_vi": "Tựa sách: Giáo Trình Phương Pháp Luận Nghiên Cứu Khoa Học    Tác giả: Nguyễn Văn Tuấn    Thể loại: Khoa học    Nhà xuất bản: NXB Giáo dục Việt Nam    Năm xuất bản: 2021    Giới thiệu: Hệ thống các bước nghiên cứu từ dữ liệu đến luận điểm."
+  },
+  {
+    "id": "BOOK_48",
+    "type": "book_meta",
+    "maSach": 48,
+    "content_vi": "Tựa sách: Thống kê và ứng dụng    Tác giả: Nguyễn Văn Tiến    Thể loại: Khoa học    Nhà xuất bản: NXB Giáo dục Việt Nam    Năm xuất bản: 2015    Giới thiệu: Xác suất, ước lượng, kiểm định, tương quan và hồi quy."
+  },
+  {
+    "id": "BOOK_49",
+    "type": "book_meta",
+    "maSach": 49,
+    "content_vi": "Tựa sách: Giáo Trình Đo lường điện    Tác giả: Đặng Văn Đào, Nhóm tác giả ĐHBK Hà Nội    Thể loại: Cơ khí - Điện tử    Nhà xuất bản: NXB Giáo dục Việt Nam    Năm xuất bản: 2010    Giới thiệu: Nguyên lý và kỹ thuật đo lường điện, thiết bị và ứng dụng."
+  },
+  {
+    "id": "BOOK_50",
+    "type": "book_meta",
+    "maSach": 50,
+    "content_vi": "Tựa sách: Sinh Học Campbell    Tác giả: Reece, Urry, Cain, Wasserman, Minorsky, Jackson    Thể loại: Khoa học    Nhà xuất bản: NXB Giáo dục Việt Nam    Năm xuất bản: 2008    Giới thiệu: Giáo trình sinh học đại cương, bản dịch dùng cho sinh viên năm đầu."
+  },
+  {
+    "id": "BOOK_51",
+    "type": "book_meta",
+    "maSach": 51,
+    "content_vi": "Tựa sách: Engineering Mechanics STATICS    Tác giả: R.C. Hibbeler    Thể loại: Cơ khí - Điện tử    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2024    Giới thiệu: Tài liệu tĩnh học cho khối kỹ thuật."
+  },
+  {
+    "id": "BOOK_52",
+    "type": "book_meta",
+    "maSach": 52,
+    "content_vi": "Tựa sách: Thiết kế máy công cụ    Tác giả: Nguyễn Trọng Hiệp    Thể loại: Cơ khí - Điện tử    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2024    Giới thiệu: Thiết kế máy công cụ cho ngành cơ khí chế tạo."
+  },
+  {
+    "id": "BOOK_53",
+    "type": "book_meta",
+    "maSach": 53,
+    "content_vi": "Tựa sách: Bài giảng Giải tích I    Tác giả: Nguyễn Cảnh Toàn    Thể loại: Khoa học    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2025    Giới thiệu: Hàm một biến, tích phân và hàm nhiều biến."
+  },
+  {
+    "id": "BOOK_54",
+    "type": "book_meta",
+    "maSach": 54,
+    "content_vi": "Tựa sách: Phương pháp tính Quyển 1    Tác giả: Nguyễn Đình Trí, Nhóm tác giả ĐHBK Hà Nội    Thể loại: Khoa học    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2024    Giới thiệu: Nhập môn các phương pháp tính."
+  },
+  {
+    "id": "BOOK_55",
+    "type": "book_meta",
+    "maSach": 55,
+    "content_vi": "Tựa sách: Phương pháp tính Quyển 2    Tác giả: Nguyễn Đình Trí, Nhóm tác giả ĐHBK Hà Nội    Thể loại: Khoa học    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2024    Giới thiệu: Phương pháp tính nâng cao và kỹ thuật áp dụng."
+  },
+  {
+    "id": "BOOK_56",
+    "type": "book_meta",
+    "maSach": 56,
+    "content_vi": "Tựa sách: Quản trị về an ninh mạng Quyển 1    Tác giả: Lê Văn Hưng    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2025    Giới thiệu: Khái niệm và chiến lược quản trị an ninh mạng."
+  },
+  {
+    "id": "BOOK_57",
+    "type": "book_meta",
+    "maSach": 57,
+    "content_vi": "Tựa sách: Quản trị về an ninh mạng Quyển 2    Tác giả: Lê Văn Hưng    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2025    Giới thiệu: Biện pháp bảo vệ, phân tích mối đe dọa và quản trị rủi ro."
+  },
+  {
+    "id": "BOOK_58",
+    "type": "book_meta",
+    "maSach": 58,
+    "content_vi": "Tựa sách: Học máy và ứng dụng thiên tai Quyển 1    Tác giả: Lê Văn Hưng, Phạm Văn Đồng    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2024    Giới thiệu: Giới thiệu học máy và ứng dụng cơ bản trong đánh giá nguy cơ thiên tai."
+  },
+  {
+    "id": "BOOK_59",
+    "type": "book_meta",
+    "maSach": 59,
+    "content_vi": "Tựa sách: Học máy và ứng dụng thiên tai Quyển 2    Tác giả: Lê Văn Hưng, Phạm Văn Đồng    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2024    Giới thiệu: Thuật toán học máy và ví dụ cho cháy rừng, trượt lở đất."
+  },
+  {
+    "id": "BOOK_60",
+    "type": "book_meta",
+    "maSach": 60,
+    "content_vi": "Tựa sách: Lý thuyết ngôn ngữ và tính toán (Quyển 1)    Tác giả: Nguyễn Văn Ba    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2023    Giới thiệu: Cơ sở ngôn ngữ hình thức và tính toán cho khoa học máy tính."
+  },
+  {
+    "id": "BOOK_61",
+    "type": "book_meta",
+    "maSach": 61,
+    "content_vi": "Tựa sách: Sách cờ tướng    Tác giả: Hồ Vinh Hoa    Thể loại: Trò chơi    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Chơi Cờ Tướng Như Thế Nào cung cấp cho các bạn mới chơi cờ những kiến thức cơ bản: Khai cuộc - Trung cuộc - Tàn cuộc."
+  },
+  {
+    "id": "BOOK_62",
+    "type": "book_meta",
+    "maSach": 62,
+    "content_vi": "Tựa sách: Sách học bơi    Tác giả: Phi Trọng Hanh    Thể loại: Thể chất    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Tập bơi giúp rèn luyện cơ thể và củng cố lòng tin trước sông nước, phù hợp điều kiện tự nhiên ở Việt Nam."
+  },
+  {
+    "id": "BOOK_63",
+    "type": "book_meta",
+    "maSach": 63,
+    "content_vi": "Tựa sách: Sách cờ vua    Tác giả: Mai Luân    Thể loại: Trò chơi    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Tài liệu hướng dẫn cơ bản và nâng cao về chiến thuật, khai cuộc và tàn cuộc trong cờ vua."
+  },
+  {
+    "id": "BOOK_64",
+    "type": "book_meta",
+    "maSach": 64,
+    "content_vi": "Tựa sách: Cầu lông    Tác giả: Hải Phong    Thể loại: Thể chất    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Sách cung cấp kiến thức cơ bản về kỹ thuật và chiến thuật chơi cầu lông."
+  },
+  {
+    "id": "BOOK_65",
+    "type": "book_meta",
+    "maSach": 65,
+    "content_vi": "Tựa sách: Vẽ kĩ thuật cơ khí    Tác giả: Trần Hữu Quê    Thể loại: Cơ khí - Điện tử    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Tài liệu về các tiêu chuẩn, ký hiệu và phương pháp vẽ kỹ thuật trong cơ khí."
+  },
+  {
+    "id": "BOOK_66",
+    "type": "book_meta",
+    "maSach": 66,
+    "content_vi": "Tựa sách: Xử lý tín hiệu    Tác giả: Nguyễn Quốc Trung    Thể loại: Cơ khí - Điện tử    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Sách trình bày các nguyên lý và ứng dụng của xử lý tín hiệu số và tương tự."
+  },
+  {
+    "id": "BOOK_67",
+    "type": "book_meta",
+    "maSach": 67,
+    "content_vi": "Tựa sách: Tự động hóa hệ thống lạnh    Tác giả: Nguyễn Đức Lợi    Thể loại: Cơ khí - Điện tử    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Tài liệu nghiên cứu và ứng dụng tự động hóa trong hệ thống lạnh công nghiệp."
+  },
+  {
+    "id": "BOOK_68",
+    "type": "book_meta",
+    "maSach": 68,
+    "content_vi": "Tựa sách: Kỹ thuật lập trình C    Tác giả: Phạm Văn Ất    Thể loại: Công nghệ thông tin    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Giáo trình giới thiệu cú pháp, cấu trúc và kỹ thuật lập trình ngôn ngữ C."
+  },
+  {
+    "id": "BOOK_69",
+    "type": "book_meta",
+    "maSach": 69,
+    "content_vi": "Tựa sách: Điện toán đám mây    Tác giả: Huỳnh Quyết Thắng    Thể loại: Công nghệ thông tin    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Tài liệu tổng quan và ứng dụng công nghệ điện toán đám mây trong CNTT."
+  },
+  {
+    "id": "BOOK_70",
+    "type": "book_meta",
+    "maSach": 70,
+    "content_vi": "Tựa sách: Code dạo ký sự    Tác giả: Huỳnh Quyết Thắng    Thể loại: Công nghệ thông tin    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Câu chuyện và trải nghiệm thực tế về ngành CNTT."
+  },
+  {
+    "id": "BOOK_71",
+    "type": "book_meta",
+    "maSach": 71,
+    "content_vi": "Tựa sách: Giáo trình Quản trị Kinh doanh    Tác giả: Nguyễn Thành Đô    Thể loại: Kinh doanh    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Giáo trình cung cấp các kiến thức cơ bản về quản trị và điều hành doanh nghiệp."
+  },
+  {
+    "id": "BOOK_72",
+    "type": "book_meta",
+    "maSach": 72,
+    "content_vi": "Tựa sách: Kỹ năng quản lý hiệu quả    Tác giả: Managers Toolkit    Thể loại: Kinh doanh    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Sách kỹ năng dành cho nhà quản lý nhằm nâng cao hiệu suất công việc."
+  },
+  {
+    "id": "BOOK_73",
+    "type": "book_meta",
+    "maSach": 73,
+    "content_vi": "Tựa sách: Tự học Tiếng Pháp trong 24h    Tác giả: Nguyễn Thanh Thúy    Thể loại: Ngôn ngữ    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Tài liệu tự học nhanh tiếng Pháp cho người mới bắt đầu."
+  },
+  {
+    "id": "BOOK_74",
+    "type": "book_meta",
+    "maSach": 74,
+    "content_vi": "Tựa sách: Tiếng Đức cho người Việt    Tác giả: Nguyễn Thanh Thúy    Thể loại: Ngôn ngữ    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Giáo trình nhập môn tiếng Đức dành cho người Việt."
+  },
+  {
+    "id": "BOOK_75",
+    "type": "book_meta",
+    "maSach": 75,
+    "content_vi": "Tựa sách: Tục ngữ Nga    Tác giả: Nguyễn Tùng Cương    Thể loại: Ngôn ngữ    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Tuyển tập tục ngữ Nga, có giải thích ý nghĩa và ngữ cảnh sử dụng."
+  },
+  {
+    "id": "BOOK_76",
+    "type": "book_meta",
+    "maSach": 76,
+    "content_vi": "Tựa sách: Vật lý đại cương    Tác giả: Tạ Văn Tùng    Thể loại: Khoa học    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Giáo trình cơ bản về cơ học, nhiệt học, điện học và quang học."
+  },
+  {
+    "id": "BOOK_77",
+    "type": "book_meta",
+    "maSach": 77,
+    "content_vi": "Tựa sách: Toán rời rạc    Tác giả: Đỗ Đức    Thể loại: Khoa học    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Sách học về logic toán, tập hợp, quan hệ, hàm và đồ thị."
+  },
+  {
+    "id": "BOOK_78",
+    "type": "book_meta",
+    "maSach": 78,
+    "content_vi": "Tựa sách: Luận án tiến sĩ Kinh tế    Tác giả: Đỗ Đức    Thể loại: Luận án    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Nghiên cứu chuyên sâu thuộc lĩnh vực kinh tế."
+  },
+  {
+    "id": "BOOK_79",
+    "type": "book_meta",
+    "maSach": 79,
+    "content_vi": "Tựa sách: Đồ án CNTT xây dựng wifi    Tác giả: Nguyễn Thanh Phong    Thể loại: Luận án    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Đồ án tốt nghiệp về thiết kế và triển khai hệ thống wifi."
+  },
+  {
+    "id": "BOOK_80",
+    "type": "book_meta",
+    "maSach": 80,
+    "content_vi": "Tựa sách: Đồ án thiết kế hệ thống điều chỉnh nhiệt độ thiết bị sấy hoa quả    Tác giả: Trần Thị Nhung    Thể loại: Luận án    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Nghiên cứu và thiết kế hệ thống điều khiển nhiệt độ cho thiết bị sấy hoa quả."
+  }
+]

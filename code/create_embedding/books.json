@@ -1,0 +1,562 @@
+[
+  {
+    "id": "BOOK_1",
+    "type": "book_meta",
+    "maSach": 1,
+    "content_vi": "Tựa sách: Tôi tự học    Tác giả: Nguyễn Duy Cần    Thể loại: Kỹ năng sống    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 1945    Giới thiệu: Sách kinh điển về phương pháp tự học và rèn luyện trí tuệ.",
+    "content_en": "Book title: I study by myself Author: Nguyen Duy Can Genre: Life skills Publisher: Tre Publishing House Year of publication: 1945 Introduction: Classic book on self-study methods and intellectual training."
+  },
+  {
+    "id": "BOOK_2",
+    "type": "book_meta",
+    "maSach": 2,
+    "content_vi": "Tựa sách: Đắc nhân tâm    Tác giả: Dale Carnegie    Thể loại: Tâm lý    Nhà xuất bản: NXB Tổng Hợp    Năm xuất bản: 1936    Giới thiệu: Sách dạy kỹ năng giao tiếp, ứng xử nổi tiếng nhất thế giới.",
+    "content_en": "Book title: How to Win Friends and Influence People Author: Dale Carnegie Genre: Psychology Publisher: General Publishing House Year of publication: 1936 Introduction: The most famous book teaching communication and behavior skills in the world."
+  },
+  {
+    "id": "BOOK_3",
+    "type": "book_meta",
+    "maSach": 3,
+    "content_vi": "Tựa sách: 7 thói quen hiệu quả của bạn trẻ thành đạt    Tác giả: Sean Covey    Thể loại: Kỹ năng sống    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 1998    Giới thiệu: Hướng dẫn hình thành thói quen tốt để đạt được thành công.",
+    "content_en": "Book title: 7 effective habits of successful young people Author: Sean Covey Genre: Life skills Publisher: Tre Publishing House Year of publication: 1998 Introduction: Guide to forming good habits to achieve success."
+  },
+  {
+    "id": "BOOK_4",
+    "type": "book_meta",
+    "maSach": 4,
+    "content_vi": "Tựa sách: Tôi tài giỏi, bạn cũng thế    Tác giả: Adam Khoo    Thể loại: Kỹ năng sống    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 2002    Giới thiệu: Sách truyền cảm hứng và phương pháp học tập hiệu quả cho học sinh, sinh viên.",
+    "content_en": "Book title: I'm talented, so are you Author: Adam Khoo Genre: Life skills Publisher: Tre Publishing House Year of publication: 2002 Introduction: The book provides inspiration and effective learning methods for students."
+  },
+  {
+    "id": "BOOK_5",
+    "type": "book_meta",
+    "maSach": 5,
+    "content_vi": "Tựa sách: Làm chủ tư duy, thay đổi vận mệnh    Tác giả: Adam Khoo    Thể loại: Kỹ năng sống    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 2003    Giới thiệu: Giúp bạn khám phá tiềm năng và thay đổi bản thân qua tư duy tích cực.",
+    "content_en": "Book title: Master your thinking, change your destiny Author: Adam Khoo Genre: Life skills Publisher: Tre Publishing House Year of publication: 2003 Introduction: Helps you discover your potential and change yourself through positive thinking."
+  },
+  {
+    "id": "BOOK_6",
+    "type": "book_meta",
+    "maSach": 6,
+    "content_vi": "Tựa sách: Tuổi trẻ đáng giá bao nhiêu?    Tác giả: Rosie Nguyễn    Thể loại: Tâm lý    Nhà xuất bản: NXB Hội Nhà Văn    Năm xuất bản: 2016    Giới thiệu: Cuốn sách truyền cảm hứng sống hết mình cho tuổi trẻ.",
+    "content_en": "Book title: How much is youth worth?    Author: Rosie Nguyen Genre: Psychology Publisher: Writers Association Publishing Year: 2016 Introduction: The book inspires youth to live their lives to the fullest."
+  },
+  {
+    "id": "BOOK_7",
+    "type": "book_meta",
+    "maSach": 7,
+    "content_vi": "Tựa sách: Cà phê cùng Tony    Tác giả: Tony Buổi Sáng    Thể loại: Tâm lý    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 2015    Giới thiệu: Tập hợp những câu chuyện truyền cảm hứng về cuộc sống và sự nghiệp.",
+    "content_en": "Book title: Coffee with Tony Author: Tony Morning Genre: Psychology Publisher: Tre Publishing House Year of publication: 2015 Introduction: A collection of inspirational stories about life and career."
+  },
+  {
+    "id": "BOOK_8",
+    "type": "book_meta",
+    "maSach": 8,
+    "content_vi": "Tựa sách: Khéo ăn khéo nói sẽ có được thiên hạ    Tác giả: Tristan Lê    Thể loại: Kỹ năng sống    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 2015    Giới thiệu: Bí quyết giao tiếp, ứng xử thông minh trong cuộc sống và công việc.",
+    "content_en": "Book title: Speak skillfully and you will win the world Author: Tristan Le Genre: Life skills Publisher: Literature Publishing House Year of publication: 2015 Introduction: The secret to communicating and behaving intelligently in life and work."
+  },
+  {
+    "id": "BOOK_9",
+    "type": "book_meta",
+    "maSach": 9,
+    "content_vi": "Tựa sách: Thế giới phẳng    Tác giả: Thomas L. Friedman    Thể loại: Kinh tế    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 2005    Giới thiệu: Phân tích toàn cầu hóa và những cơ hội trong thời đại mới.",
+    "content_en": "Book title: The world is flat Author: Thomas L. Friedman Genre: Economics Publisher: Tre Publishing House Year of publication: 2005 Introduction: Analysis of globalization and opportunities in the new era."
+  },
+  {
+    "id": "BOOK_10",
+    "type": "book_meta",
+    "maSach": 10,
+    "content_vi": "Tựa sách: Trên đường băng    Tác giả: Tony Buổi Sáng    Thể loại: Tâm lý    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 2017    Giới thiệu: Cuốn sách định hướng tư duy tích cực và khát vọng sống cho người trẻ.",
+    "content_en": "Book title: On the runway Author: Tony Morning Genre: Psychology Publisher: Tre Publishing House Year of publication: 2017 Introduction: The book orients positive thinking and life aspirations for young people."
+  },
+  {
+    "id": "BOOK_11",
+    "type": "book_meta",
+    "maSach": 11,
+    "content_vi": "Tựa sách: Đừng lựa chọn an nhàn khi còn trẻ    Tác giả: Cảnh Thiên    Thể loại: Tâm lý    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 2017    Giới thiệu: Lời nhắc nhở giới trẻ phải sống nhiệt huyết, không lười biếng.",
+    "content_en": "Book title: Don't choose comfort when you're young Author: Canh Thien Genre: Psychology Publisher: Literature Publishing House Year of publication: 2017 Introduction: A reminder to young people to live enthusiastically, not lazy."
+  },
+  {
+    "id": "BOOK_12",
+    "type": "book_meta",
+    "maSach": 12,
+    "content_vi": "Tựa sách: Hạt giống tâm hồn    Tác giả: Jack Canfield, Mark Victor Hansen    Thể loại: Tâm lý    Nhà xuất bản: NXB Tổng Hợp    Năm xuất bản: 2002    Giới thiệu: Tuyển tập những câu chuyện truyền cảm hứng về cuộc sống.",
+    "content_en": "Book title: Seeds of the soul Author: Jack Canfield, Mark Victor Hansen Genre: Psychology Publisher: General Publishing Year of publication: 2002 Introduction: Collection of inspirational stories about life."
+  },
+  {
+    "id": "BOOK_13",
+    "type": "book_meta",
+    "maSach": 13,
+    "content_vi": "Tựa sách: Tuổi trẻ không trì hoãn    Tác giả: Lý Thượng Long    Thể loại: Kỹ năng sống    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 2014    Giới thiệu: Giúp bạn trẻ nhận ra giá trị của thời gian và hành động kịp lúc.",
+    "content_en": "Book title: Youth does not delay Author: Ly Thuong Long Genre: Life skills Publisher: Literature Publishing House Year of publication: 2014 Introduction: Helps young people realize the value of time and act promptly."
+  },
+  {
+    "id": "BOOK_14",
+    "type": "book_meta",
+    "maSach": 14,
+    "content_vi": "Tựa sách: Dám nghĩ lớn    Tác giả: David Schwartz    Thể loại: Kỹ năng sống    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 1959    Giới thiệu: Sách kinh điển truyền cảm hứng hành động mạnh mẽ để đạt thành công.",
+    "content_en": "Book title: Dare to think big Author: David Schwartz Genre: Life skills Publisher: Tre Publishing House Year of publication: 1959 Introduction: Classic book that inspires strong action to achieve success."
+  },
+  {
+    "id": "BOOK_15",
+    "type": "book_meta",
+    "maSach": 15,
+    "content_vi": "Tựa sách: Đi tìm lẽ sống    Tác giả: Viktor Frankl    Thể loại: Tâm lý    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 1946    Giới thiệu: Tác phẩm nổi tiếng về ý nghĩa cuộc sống và sức mạnh tinh thần.",
+    "content_en": "Book title: Finding the meaning of life Author: Viktor Frankl Genre: Psychology Publisher: Literature Publishing House Year of publication: 1946 Introduction: Famous work about the meaning of life and spiritual strength."
+  },
+  {
+    "id": "BOOK_16",
+    "type": "book_meta",
+    "maSach": 16,
+    "content_vi": "Tựa sách: Không gia đình    Tác giả: Hector Malot    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 1878    Giới thiệu: Tiểu thuyết nổi tiếng của Hector Malot, kể về hành trình gian nan và nghị lực của cậu bé Remi.",
+    "content_en": "Book title: No Family Author: Hector Malot Genre: Literature Publisher: Literature Publishing House Year of publication: 1878 Introduction: Hector Malot's famous novel, tells about the arduous journey and determination of the boy Remi."
+  },
+  {
+    "id": "BOOK_17",
+    "type": "book_meta",
+    "maSach": 17,
+    "content_vi": "Tựa sách: Hiệu ứng chim mồi    Tác giả: Mark Tungate    Thể loại: Kinh tế    Nhà xuất bản: NXB Kinh Tế    Năm xuất bản: 2017    Giới thiệu: Sách về tư duy lựa chọn và tác động của tâm lý trong quyết định.",
+    "content_en": "Book title: The decoy effect Author: Mark Tungate Genre: Economics Publisher: Economics Publishing Year: 2017 Introduction: Book about choice thinking and the impact of psychology in decisions."
+  },
+  {
+    "id": "BOOK_18",
+    "type": "book_meta",
+    "maSach": 18,
+    "content_vi": "Tựa sách: Khởi nghiệp tinh gọn    Tác giả: Eric Ries    Thể loại: Kinh tế    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 2011    Giới thiệu: Cuốn sách hướng dẫn phương pháp khởi nghiệp tiết kiệm và hiệu quả.",
+    "content_en": "Book title: Lean Startup Author: Eric Ries Genre: Economics Publisher: Tre Publishing House Year of publication: 2011 Introduction: The book guides economical and effective startup methods."
+  },
+  {
+    "id": "BOOK_19",
+    "type": "book_meta",
+    "maSach": 19,
+    "content_vi": "Tựa sách: Tâm lý học thành công    Tác giả: Carol S. Dweck    Thể loại: Tâm lý    Nhà xuất bản: NXB Lao Động    Năm xuất bản: 2006    Giới thiệu: Nghiên cứu cách tư duy ảnh hưởng đến thành công của con người.",
+    "content_en": "Book title: Psychology of success Author: Carol S. Dweck Genre: Psychology Publisher: Labor Publishing House Year of publication: 2006 Introduction: Research how thinking affects human success."
+  },
+  {
+    "id": "BOOK_20",
+    "type": "book_meta",
+    "maSach": 20,
+    "content_vi": "Tựa sách: Dạy con làm giàu – Tập 1    Tác giả: Robert Kiyosaki    Thể loại: Kinh tế    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 1997    Giới thiệu: Tác phẩm nổi tiếng của Robert Kiyosaki về tư duy tài chính và đầu tư.",
+    "content_en": "Book title: Teach your children to be rich - Volume 1 Author: Robert Kiyosaki Genre: Economics Publisher: Tre Publishing House Year of publication: 1997 Introduction: Robert Kiyosaki's famous work on financial thinking and investment."
+  },
+  {
+    "id": "BOOK_21",
+    "type": "book_meta",
+    "maSach": 21,
+    "content_vi": "Tựa sách: Doraemon Tập 1    Tác giả: Fujiko F. Fujio    Thể loại: Thiếu nhi    Nhà xuất bản: NXB Kim Đồng    Năm xuất bản: 1992    Giới thiệu: Truyện tranh thiếu nhi nổi tiếng của Fujiko F. Fujio",
+    "content_en": "Book title: Doraemon Volume 1 Author: Fujiko F. Fujio Genre: Children's Publisher: Kim Dong Publishing House Year of publication: 1992 Introduction: Famous children's comic by Fujiko F. Fujio"
+  },
+  {
+    "id": "BOOK_22",
+    "type": "book_meta",
+    "maSach": 22,
+    "content_vi": "Tựa sách: Doraemon Tập 2    Tác giả: Fujiko F. Fujio    Thể loại: Thiếu nhi    Nhà xuất bản: NXB Kim Đồng    Năm xuất bản: 1993    Giới thiệu: Truyện tranh phiêu lưu hài hước cho trẻ em",
+    "content_en": "Book title: Doraemon Volume 2 Author: Fujiko F. Fujio Genre: Children's Publisher: Kim Dong Publishing House Year of publication: 1993 Introduction: Funny adventure comic for children"
+  },
+  {
+    "id": "BOOK_23",
+    "type": "book_meta",
+    "maSach": 23,
+    "content_vi": "Tựa sách: Tắt đèn    Tác giả: Ngô Tất Tố    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 1939    Giới thiệu: Tác phẩm hiện thực phê phán nổi tiếng của Ngô Tất Tố",
+    "content_en": "Book title: Turn off the lights Author: Ngo Tat To Genre: Literature Publisher: Literature Publishing House Year of publication: 1939 Introduction: Famous critical realist work by Ngo Tat To"
+  },
+  {
+    "id": "BOOK_24",
+    "type": "book_meta",
+    "maSach": 24,
+    "content_vi": "Tựa sách: Chí Phèo    Tác giả: Nam Cao    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 1941    Giới thiệu: Truyện ngắn nổi tiếng của Nam Cao",
+    "content_en": "Book title: Chi Pheo Author: Nam Cao Genre: Literature Publisher: Literature Publishing House Year of publication: 1941 Introduction: Famous short story by Nam Cao"
+  },
+  {
+    "id": "BOOK_25",
+    "type": "book_meta",
+    "maSach": 25,
+    "content_vi": "Tựa sách: Lược sử thời gian    Tác giả: Stephen Hawking    Thể loại: Khoa học    Nhà xuất bản: NXB Khoa Học    Năm xuất bản: 1988    Giới thiệu: Sách khoa học của Stephen Hawking",
+    "content_en": "Book title: A brief history of time Author: Stephen Hawking Genre: Science Publisher: Science Publishing House Year of publication: 1988 Introduction: Stephen Hawking's science book"
+  },
+  {
+    "id": "BOOK_26",
+    "type": "book_meta",
+    "maSach": 26,
+    "content_vi": "Tựa sách: Vũ trụ trong vỏ hạt dẻ    Tác giả: Stephen Hawking    Thể loại: Khoa học    Nhà xuất bản: NXB Khoa Học    Năm xuất bản: 2001    Giới thiệu: Tác phẩm tiếp nối của Stephen Hawking",
+    "content_en": "Book title: The universe in a chestnut shell Author: Stephen Hawking Genre: Science Publisher: Science Publishing House Year of publication: 2001 Introduction: Stephen Hawking's continuing work"
+  },
+  {
+    "id": "BOOK_27",
+    "type": "book_meta",
+    "maSach": 27,
+    "content_vi": "Tựa sách: Giải thuật và lập trình    Tác giả: Nguyễn Tấn Trần Minh Khang    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB Giáo dục    Năm xuất bản: 2010    Giới thiệu: Sách hướng dẫn về giải thuật và cấu trúc dữ liệu",
+    "content_en": "Book title: Algorithms and programming Author: Nguyen Tan Tran Minh Khang Genre: Information technology Publisher: Education Publishing House Year of publication: 2010 Introduction: Guidebook on algorithms and data structures"
+  },
+  {
+    "id": "BOOK_28",
+    "type": "book_meta",
+    "maSach": 28,
+    "content_vi": "Tựa sách: Truyền thuyết và lịch sử Việt Nam    Tác giả: Trần Quốc Vượng    Thể loại: Lịch sử    Nhà xuất bản: NXB Lịch sử    Năm xuất bản: 2005    Giới thiệu: Tài liệu tham khảo lịch sử Việt Nam",
+    "content_en": "Book title: Vietnamese legends and history Author: Tran Quoc Vuong Genre: History Publisher: History Publishing House Year of publication: 2005 Introduction: Reference materials on Vietnamese history"
+  },
+  {
+    "id": "BOOK_29",
+    "type": "book_meta",
+    "maSach": 29,
+    "content_vi": "Tựa sách: Chiến tranh và hòa bình    Tác giả: Lev Tolstoy    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học Nga    Năm xuất bản: 1869    Giới thiệu: Tiểu thuyết sử thi của Lev Tolstoy",
+    "content_en": "Book title: War and Peace Author: Lev Tolstoy Genre: Literature Publisher: Russian Literature Publishing House Year of publication: 1869 Introduction: Epic novel by Lev Tolstoy"
+  },
+  {
+    "id": "BOOK_30",
+    "type": "book_meta",
+    "maSach": 30,
+    "content_vi": "Tựa sách: Tư bản    Tác giả: Karl Marx    Thể loại: Kinh tế    Nhà xuất bản: NXB Chính trị Quốc gia    Năm xuất bản: 1867    Giới thiệu: Tác phẩm kinh điển của Karl Marx",
+    "content_en": "Book title: Capital Author: Karl Marx Genre: Economics Publisher: National Political Publishing House Year of publication: 1867 Introduction: Classic work of Karl Marx"
+  },
+  {
+    "id": "BOOK_31",
+    "type": "book_meta",
+    "maSach": 31,
+    "content_vi": "Tựa sách: Quốc gia khởi nghiệp    Tác giả: Dan Senor    Thể loại: Kinh tế    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 2009    Giới thiệu: Sách phân tích kinh tế và đổi mới của Israel",
+    "content_en": "Book title: Start-up Nation Author: Dan Senor Genre: Economics Publisher: Tre Publishing House Year of publication: 2009 Introduction: Book analyzing Israel's economy and innovation"
+  },
+  {
+    "id": "BOOK_32",
+    "type": "book_meta",
+    "maSach": 32,
+    "content_vi": "Tựa sách: Đắc nhân tâm    Tác giả: Dale Carnegie    Thể loại: Tâm lý    Nhà xuất bản: NXB Tổng Hợp    Năm xuất bản: 1936    Giới thiệu: Sách kỹ năng sống của Dale Carnegie",
+    "content_en": "Book title: How to Win Friends and Influence People Author: Dale Carnegie Genre: Psychology Publisher: General Publishing Year of publication: 1936 Introduction: Life skills book by Dale Carnegie"
+  },
+  {
+    "id": "BOOK_33",
+    "type": "book_meta",
+    "maSach": 33,
+    "content_vi": "Tựa sách: 7 thói quen của người thành đạt    Tác giả: Stephen R. Covey    Thể loại: Tâm lý    Nhà xuất bản: NXB Trẻ    Năm xuất bản: 1989    Giới thiệu: Sách phát triển bản thân của Stephen R. Covey",
+    "content_en": "Book title: 7 habits of successful people Author: Stephen R. Covey Genre: Psychology Publisher: Tre Publishing House Year of publication: 1989 Introduction: Personal development book by Stephen R. Covey"
+  },
+  {
+    "id": "BOOK_34",
+    "type": "book_meta",
+    "maSach": 34,
+    "content_vi": "Tựa sách: Tiếng gọi nơi hoang dã    Tác giả: Jack London    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 1903    Giới thiệu: Tiểu thuyết nổi tiếng của Jack London",
+    "content_en": "Book title: The Call of the Wild Author: Jack London Genre: Literature Publisher: Literature Publishing House Year of publication: 1903 Introduction: Famous novel by Jack London"
+  },
+  {
+    "id": "BOOK_35",
+    "type": "book_meta",
+    "maSach": 35,
+    "content_vi": "Tựa sách: Hoàng tử bé    Tác giả: Antoine de Saint-Exupéry    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 1943    Giới thiệu: Tác phẩm triết lý dành cho mọi lứa tuổi của Antoine de Saint-Exupéry",
+    "content_en": "Book title: The Little Prince Author: Antoine de Saint-Exupéry Genre: Literature Publisher: Literature Publishing House Year of publication: 1943 Introduction: A philosophical work for all ages by Antoine de Saint-Exupéry"
+  },
+  {
+    "id": "BOOK_36",
+    "type": "book_meta",
+    "maSach": 36,
+    "content_vi": "Tựa sách: Sherlock Holmes Toàn tập    Tác giả: Arthur Conan Doyle    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 1892    Giới thiệu: Truyện trinh thám của Arthur Conan Doyle",
+    "content_en": "Book title: Sherlock Holmes Complete Author: Arthur Conan Doyle Genre: Literature Publisher: Literature Publishing House Year of publication: 1892 Introduction: Detective stories by Arthur Conan Doyle"
+  },
+  {
+    "id": "BOOK_37",
+    "type": "book_meta",
+    "maSach": 37,
+    "content_vi": "Tựa sách: Câu truyện triết học    Tác giả: Will Durant    Thể loại: Khoa học    Nhà xuất bản: NXB Tri thức    Năm xuất bản: 2015    Giới thiệu: Sách nhập môn triết học đơn giản",
+    "content_en": "Book title: A philosophical story Author: Will Durant Genre: Science Publisher: Knowledge Publishing House Year of publication: 2015 Introduction: Simple introductory philosophy book"
+  },
+  {
+    "id": "BOOK_38",
+    "type": "book_meta",
+    "maSach": 38,
+    "content_vi": "Tựa sách: Kỹ thuật lập trình    Tác giả: Phạm Văn Ất    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB Giáo dục    Năm xuất bản: 2023    Giới thiệu: Sách lập trình cơ bản cho sinh viên CNTT",
+    "content_en": "Book title: Programming techniques Author: Pham Van At Genre: Information technology Publisher: Education Publishing House Year of publication: 2023 Introduction: Basic programming book for IT students"
+  },
+  {
+    "id": "BOOK_39",
+    "type": "book_meta",
+    "maSach": 39,
+    "content_vi": "Tựa sách: Lịch sử thế giới hiện đại    Tác giả: Nguyễn Hiến Lê    Thể loại: Lịch sử    Nhà xuất bản: NXB Lịch sử    Năm xuất bản: 2000    Giới thiệu: Tổng quan lịch sử thế giới từ thế kỷ 19 đến nay",
+    "content_en": "Book title: Modern world history Author: Nguyen Hien Le Genre: History Publisher: History Publishing House Year of publication: 2000 Introduction: Overview of world history from the 19th century to the present"
+  },
+  {
+    "id": "BOOK_40",
+    "type": "book_meta",
+    "maSach": 40,
+    "content_vi": "Tựa sách: Kinh tế học vĩ mô    Tác giả: N. Gregory Mankiw    Thể loại: Kinh tế    Nhà xuất bản: NXB Kinh tế Quốc dân    Năm xuất bản: 2018    Giới thiệu: Giáo trình về kinh tế học vĩ mô",
+    "content_en": "Book title: Macroeconomics Author: N. Gregory Mankiw Genre: Economics Publisher: National Economics Publishing House Year of publication: 2018 Introduction: Textbook on macroeconomics"
+  },
+  {
+    "id": "BOOK_41",
+    "type": "book_meta",
+    "maSach": 41,
+    "content_vi": "Tựa sách: Giáo dục kỹ năng sống    Tác giả: Huỳnh Lâm Anh Chương, Nguyễn Trí Hậu, Ngô Thị Phương Hiền    Thể loại: Tài liệu học tập    Nhà xuất bản: NXB ĐH Sư phạm TP HCM    Năm xuất bản: 2020    Giới thiệu: Sách hướng dẫn kỹ năng mềm, giao tiếp và quản lý thời gian.",
+    "content_en": "Book title: Life skills education Author: Huynh Lam Anh Chuong, Nguyen Tri Hau, Ngo Thi Phuong Hien Genre: Learning materials Publisher: Ho Chi Minh City University of Education Publishing House Year of publication: 2020 Introduction: Guidebook for soft skills, communication and time management."
+  },
+  {
+    "id": "BOOK_42",
+    "type": "book_meta",
+    "maSach": 42,
+    "content_vi": "Tựa sách: Python Cơ Bản    Tác giả: Bùi Việt Hà    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB ĐH Quốc gia Hà Nội    Năm xuất bản: 2020    Giới thiệu: Giới thiệu ngôn ngữ Python, cú pháp nền và ví dụ thực hành.",
+    "content_en": "Book title: Basic Python Author: Bui Viet Ha Genre: Information technology Publisher: Hanoi National University Publishing Year: 2020 Introduction: Introduction to Python language, basic syntax and practice examples."
+  },
+  {
+    "id": "BOOK_43",
+    "type": "book_meta",
+    "maSach": 43,
+    "content_vi": "Tựa sách: Truyện Kiều    Tác giả: Nguyễn Du    Thể loại: Văn học    Nhà xuất bản: NXB Văn Học    Năm xuất bản: 2008    Giới thiệu: Tác phẩm kinh điển của Nguyễn Du, kiệt tác văn học Việt Nam.",
+    "content_en": "Book title: The Tale of Kieu Author: Nguyen Du Genre: Literature Publisher: Literature Publishing House Year of publication: 2008 Introduction: A classic work by Nguyen Du, a masterpiece of Vietnamese literature."
+  },
+  {
+    "id": "BOOK_44",
+    "type": "book_meta",
+    "maSach": 44,
+    "content_vi": "Tựa sách: Cấu trúc dữ liệu và giải thuật    Tác giả: Đỗ Xuân Lợi    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB ĐH Quốc gia Hà Nội    Năm xuất bản: 2006    Giới thiệu: Cấu trúc dữ liệu và giải thuật cơ bản cho giảng dạy và tự học.",
+    "content_en": "Book title: Data structures and algorithms Author: Do Xuan Loi Genre: Information technology Publisher: Hanoi National University Publishing Year: 2006 Introduction: Basic data structures and algorithms for teaching and self-study."
+  },
+  {
+    "id": "BOOK_45",
+    "type": "book_meta",
+    "maSach": 45,
+    "content_vi": "Tựa sách: Cơ sở văn hóa Việt Nam    Tác giả: Trần Ngọc Thêm    Thể loại: Ngôn ngữ    Nhà xuất bản: NXB Giáo dục Việt Nam    Năm xuất bản: 2020    Giới thiệu: Tổng quan khái niệm, thiết chế và lịch sử văn hóa Việt Nam.",
+    "content_en": "Book title: Vietnamese cultural foundations Author: Tran Ngoc Them Genre: Language Publisher: Vietnam Education Publishing House Year of publication: 2020 Introduction: Overview of concepts, institutions and history of Vietnamese culture."
+  },
+  {
+    "id": "BOOK_46",
+    "type": "book_meta",
+    "maSach": 46,
+    "content_vi": "Tựa sách: Bài tập Toán Học Cao Cấp - Tập 1    Tác giả: Nguyễn Đình Trí, Nhóm tác giả ĐHBK Hà Nội    Thể loại: Khoa học    Nhà xuất bản: NXB Giáo dục Việt Nam    Năm xuất bản: 2017    Giới thiệu: Tuyển tập bài tập đại số và hình học giải tích.",
+    "content_en": "Book title: Advanced Mathematics Exercises - Volume 1 Author: Nguyen Dinh Tri, Hanoi University of Science and Technology Genre: Science Publisher: Vietnam Education Publishing House Year of publication: 2017 Introduction: Collection of algebra and analytic geometry exercises."
+  },
+  {
+    "id": "BOOK_47",
+    "type": "book_meta",
+    "maSach": 47,
+    "content_vi": "Tựa sách: Giáo Trình Phương Pháp Luận Nghiên Cứu Khoa Học    Tác giả: Nguyễn Văn Tuấn    Thể loại: Khoa học    Nhà xuất bản: NXB Giáo dục Việt Nam    Năm xuất bản: 2021    Giới thiệu: Hệ thống các bước nghiên cứu từ dữ liệu đến luận điểm.",
+    "content_en": "Book title: Scientific Research Methodology Textbook Author: Nguyen Van Tuan Genre: Science Publisher: Vietnam Education Publishing House Year of publication: 2021 Introduction: System of research steps from data to thesis."
+  },
+  {
+    "id": "BOOK_48",
+    "type": "book_meta",
+    "maSach": 48,
+    "content_vi": "Tựa sách: Thống kê và ứng dụng    Tác giả: Nguyễn Văn Tiến    Thể loại: Khoa học    Nhà xuất bản: NXB Giáo dục Việt Nam    Năm xuất bản: 2015    Giới thiệu: Xác suất, ước lượng, kiểm định, tương quan và hồi quy.",
+    "content_en": "Book title: Statistics and applications Author: Nguyen Van Tien Genre: Science Publisher: Vietnam Education Publishing House Year of publication: 2015 Introduction: Probability, estimation, testing, correlation and regression."
+  },
+  {
+    "id": "BOOK_49",
+    "type": "book_meta",
+    "maSach": 49,
+    "content_vi": "Tựa sách: Giáo Trình Đo lường điện    Tác giả: Đặng Văn Đào, Nhóm tác giả ĐHBK Hà Nội    Thể loại: Cơ khí - Điện tử    Nhà xuất bản: NXB Giáo dục Việt Nam    Năm xuất bản: 2010    Giới thiệu: Nguyên lý và kỹ thuật đo lường điện, thiết bị và ứng dụng.",
+    "content_en": "Book title: Electrical Measurement Textbook Author: Dang Van Dao, Hanoi University of Science and Technology Author group Genre: Mechanical - Electronics Publisher: Vietnam Education Publishing House Year of publication: 2010 Introduction: Principles and techniques of electrical measurement, equipment and applications."
+  },
+  {
+    "id": "BOOK_50",
+    "type": "book_meta",
+    "maSach": 50,
+    "content_vi": "Tựa sách: Sinh Học Campbell    Tác giả: Reece, Urry, Cain, Wasserman, Minorsky, Jackson    Thể loại: Khoa học    Nhà xuất bản: NXB Giáo dục Việt Nam    Năm xuất bản: 2008    Giới thiệu: Giáo trình sinh học đại cương, bản dịch dùng cho sinh viên năm đầu.",
+    "content_en": "Book title: Campbell Biology Author: Reece, Urry, Cain, Wasserman, Minorsky, Jackson Genre: Science Publisher: Vietnam Education Publishing House Year of publication: 2008 Introduction: General biology textbook, translation for first-year students."
+  },
+  {
+    "id": "BOOK_51",
+    "type": "book_meta",
+    "maSach": 51,
+    "content_vi": "Tựa sách: Engineering Mechanics STATICS    Tác giả: R.C. Hibbeler    Thể loại: Cơ khí - Điện tử    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2024    Giới thiệu: Tài liệu tĩnh học cho khối kỹ thuật.",
+    "content_en": "Title: Engineering Mechanics STATICS Author: R.C. Hibbeler Genre: Mechanical - Electronics Publisher: Hanoi Polytechnic Publishing House Year of publication: 2024 Introduction: Statics materials for engineering."
+  },
+  {
+    "id": "BOOK_52",
+    "type": "book_meta",
+    "maSach": 52,
+    "content_vi": "Tựa sách: Thiết kế máy công cụ    Tác giả: Nguyễn Trọng Hiệp    Thể loại: Cơ khí - Điện tử    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2024    Giới thiệu: Thiết kế máy công cụ cho ngành cơ khí chế tạo.",
+    "content_en": "Book title: Machine tool design Author: Nguyen Trong Hiep Genre: Mechanical - Electronics Publisher: Hanoi Polytechnic Publishing House Year of publication: 2024 Introduction: Machine tool design for the mechanical manufacturing industry."
+  },
+  {
+    "id": "BOOK_53",
+    "type": "book_meta",
+    "maSach": 53,
+    "content_vi": "Tựa sách: Bài giảng Giải tích I    Tác giả: Nguyễn Cảnh Toàn    Thể loại: Khoa học    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2025    Giới thiệu: Hàm một biến, tích phân và hàm nhiều biến.",
+    "content_en": "Book title: Lecture on Calculus I Author: Nguyen Canh Toan Genre: Science Publisher: Hanoi Polytechnic Publishing House Year of publication: 2025 Introduction: Functions of one variable, integrals and functions of many variables."
+  },
+  {
+    "id": "BOOK_54",
+    "type": "book_meta",
+    "maSach": 54,
+    "content_vi": "Tựa sách: Phương pháp tính Quyển 1    Tác giả: Nguyễn Đình Trí, Nhóm tác giả ĐHBK Hà Nội    Thể loại: Khoa học    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2024    Giới thiệu: Nhập môn các phương pháp tính.",
+    "content_en": "Book title: Calculation methods Book 1 Author: Nguyen Dinh Tri, Author group of Hanoi University of Science and Technology Genre: Science Publisher: Hanoi Polytechnic Publishing House Year of publication: 2024 Introduction: Introduction to calculation methods."
+  },
+  {
+    "id": "BOOK_55",
+    "type": "book_meta",
+    "maSach": 55,
+    "content_vi": "Tựa sách: Phương pháp tính Quyển 2    Tác giả: Nguyễn Đình Trí, Nhóm tác giả ĐHBK Hà Nội    Thể loại: Khoa học    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2024    Giới thiệu: Phương pháp tính nâng cao và kỹ thuật áp dụng.",
+    "content_en": "Book title: Calculation method Book 2 Author: Nguyen Dinh Tri, Author group of Hanoi University of Science and Technology Genre: Science Publisher: Hanoi Polytechnic Publishing House Year of publication: 2024 Introduction: Advanced calculation methods and applied techniques."
+  },
+  {
+    "id": "BOOK_56",
+    "type": "book_meta",
+    "maSach": 56,
+    "content_vi": "Tựa sách: Quản trị về an ninh mạng Quyển 1    Tác giả: Lê Văn Hưng    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2025    Giới thiệu: Khái niệm và chiến lược quản trị an ninh mạng.",
+    "content_en": "Book title: Network security management, Volume 1 Author: Le Van Hung Genre: Information technology Publisher: Hanoi Polytechnic Publishing House Year of publication: 2025 Introduction: Concepts and strategies for network security management."
+  },
+  {
+    "id": "BOOK_57",
+    "type": "book_meta",
+    "maSach": 57,
+    "content_vi": "Tựa sách: Quản trị về an ninh mạng Quyển 2    Tác giả: Lê Văn Hưng    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2025    Giới thiệu: Biện pháp bảo vệ, phân tích mối đe dọa và quản trị rủi ro.",
+    "content_en": "Book title: Cyber ​​security management Book 2 Author: Le Van Hung Genre: Information technology Publisher: Hanoi Polytechnic Publishing House Year of publication: 2025 Introduction: Protection measures, threat analysis and risk management."
+  },
+  {
+    "id": "BOOK_58",
+    "type": "book_meta",
+    "maSach": 58,
+    "content_vi": "Tựa sách: Học máy và ứng dụng thiên tai Quyển 1    Tác giả: Lê Văn Hưng, Phạm Văn Đồng    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2024    Giới thiệu: Giới thiệu học máy và ứng dụng cơ bản trong đánh giá nguy cơ thiên tai.",
+    "content_en": "Book title: Machine learning and natural disaster applications Volume 1 Author: Le Van Hung, Pham Van Dong Genre: Information technology Publisher: Hanoi Polytechnic Publishing House Year of publication: 2024 Introduction: Introducing machine learning and basic applications in natural disaster risk assessment."
+  },
+  {
+    "id": "BOOK_59",
+    "type": "book_meta",
+    "maSach": 59,
+    "content_vi": "Tựa sách: Học máy và ứng dụng thiên tai Quyển 2    Tác giả: Lê Văn Hưng, Phạm Văn Đồng    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2024    Giới thiệu: Thuật toán học máy và ví dụ cho cháy rừng, trượt lở đất.",
+    "content_en": "Book title: Machine learning and natural disaster applications Volume 2 Author: Le Van Hung, Pham Van Dong Genre: Information technology Publisher: Hanoi Polytechnic Publishing House Year of publication: 2024 Introduction: Machine learning algorithms and examples for forest fires and landslides."
+  },
+  {
+    "id": "BOOK_60",
+    "type": "book_meta",
+    "maSach": 60,
+    "content_vi": "Tựa sách: Lý thuyết ngôn ngữ và tính toán (Quyển 1)    Tác giả: Nguyễn Văn Ba    Thể loại: Công nghệ thông tin    Nhà xuất bản: NXB Bách Khoa Hà Nội    Năm xuất bản: 2023    Giới thiệu: Cơ sở ngôn ngữ hình thức và tính toán cho khoa học máy tính.",
+    "content_en": "Book title: Language theory and computation (Volume 1) Author: Nguyen Van Ba ​​Genre: Information technology Publisher: Hanoi Polytechnic Publishing House Year of publication: 2023 Introduction: Formal language and computational basis for computer science."
+  },
+  {
+    "id": "BOOK_61",
+    "type": "book_meta",
+    "maSach": 61,
+    "content_vi": "Tựa sách: Sách cờ tướng    Tác giả: Hồ Vinh Hoa    Thể loại: Trò chơi    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Chơi Cờ Tướng Như Thế Nào cung cấp cho các bạn mới chơi cờ những kiến thức cơ bản: Khai cuộc - Trung cuộc - Tàn cuộc.",
+    "content_en": "Title: Chinese chess book Author: Ho Vinh Hoa Genre: Game Publisher: Unknown Year of publication: Unknown Introduction: How to Play Chinese Chess provides new chess players with basic knowledge: Opening - Middle game - End game."
+  },
+  {
+    "id": "BOOK_62",
+    "type": "book_meta",
+    "maSach": 62,
+    "content_vi": "Tựa sách: Sách học bơi    Tác giả: Phi Trọng Hanh    Thể loại: Thể chất    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Tập bơi giúp rèn luyện cơ thể và củng cố lòng tin trước sông nước, phù hợp điều kiện tự nhiên ở Việt Nam.",
+    "content_en": "Book title: Learning to swim book Author: Phi Trong Hanh Genre: Physical fitness Publisher: Unknown Year of publication: Unknown Introduction: Practicing swimming helps train the body and strengthen confidence in the water, suitable for natural conditions in Vietnam."
+  },
+  {
+    "id": "BOOK_63",
+    "type": "book_meta",
+    "maSach": 63,
+    "content_vi": "Tựa sách: Sách cờ vua    Tác giả: Mai Luân    Thể loại: Trò chơi    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Tài liệu hướng dẫn cơ bản và nâng cao về chiến thuật, khai cuộc và tàn cuộc trong cờ vua.",
+    "content_en": "Title: Chess book Author: Mai Luan Genre: Game Publisher: Unknown Year of publication: Unknown Introduction: Basic and advanced guidance documents on tactics, openings and endgames in chess."
+  },
+  {
+    "id": "BOOK_64",
+    "type": "book_meta",
+    "maSach": 64,
+    "content_vi": "Tựa sách: Cầu lông    Tác giả: Hải Phong    Thể loại: Thể chất    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Sách cung cấp kiến thức cơ bản về kỹ thuật và chiến thuật chơi cầu lông.",
+    "content_en": "Book title: Badminton Author: Hai Phong Genre: Physical Education Publisher: Unknown Year of publication: Unknown Introduction: The book provides basic knowledge about techniques and tactics of playing badminton."
+  },
+  {
+    "id": "BOOK_65",
+    "type": "book_meta",
+    "maSach": 65,
+    "content_vi": "Tựa sách: Vẽ kĩ thuật cơ khí    Tác giả: Trần Hữu Quê    Thể loại: Cơ khí - Điện tử    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Tài liệu về các tiêu chuẩn, ký hiệu và phương pháp vẽ kỹ thuật trong cơ khí.",
+    "content_en": "Book title: Mechanical engineering drawing Author: Tran Huu Que Genre: Mechanical - Electronics Publisher: Unknown Year of publication: Unknown Introduction: Documents on standards, symbols and methods of technical drawing in mechanical engineering."
+  },
+  {
+    "id": "BOOK_66",
+    "type": "book_meta",
+    "maSach": 66,
+    "content_vi": "Tựa sách: Xử lý tín hiệu    Tác giả: Nguyễn Quốc Trung    Thể loại: Cơ khí - Điện tử    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Sách trình bày các nguyên lý và ứng dụng của xử lý tín hiệu số và tương tự.",
+    "content_en": "Book title: Signal Processing Author: Nguyen Quoc Trung Genre: Mechanical - Electronics Publisher: Unknown Year of publication: Unknown Introduction: The book presents the principles and applications of digital and analog signal processing."
+  },
+  {
+    "id": "BOOK_67",
+    "type": "book_meta",
+    "maSach": 67,
+    "content_vi": "Tựa sách: Tự động hóa hệ thống lạnh    Tác giả: Nguyễn Đức Lợi    Thể loại: Cơ khí - Điện tử    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Tài liệu nghiên cứu và ứng dụng tự động hóa trong hệ thống lạnh công nghiệp.",
+    "content_en": "Book title: Automation of refrigeration systems Author: Nguyen Duc Loi Genre: Mechanical - Electronics Publisher: Unknown Year of publication: Unknown Introduction: Research documents and applications of automation in industrial refrigeration systems."
+  },
+  {
+    "id": "BOOK_68",
+    "type": "book_meta",
+    "maSach": 68,
+    "content_vi": "Tựa sách: Kỹ thuật lập trình C    Tác giả: Phạm Văn Ất    Thể loại: Công nghệ thông tin    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Giáo trình giới thiệu cú pháp, cấu trúc và kỹ thuật lập trình ngôn ngữ C.",
+    "content_en": "Book title: C programming techniques Author: Pham Van At Genre: Information technology Publisher: Unknown Year of publication: Unknown Introduction: The textbook introduces the syntax, structure and programming techniques of the C language."
+  },
+  {
+    "id": "BOOK_69",
+    "type": "book_meta",
+    "maSach": 69,
+    "content_vi": "Tựa sách: Điện toán đám mây    Tác giả: Huỳnh Quyết Thắng    Thể loại: Công nghệ thông tin    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Tài liệu tổng quan và ứng dụng công nghệ điện toán đám mây trong CNTT.",
+    "content_en": "Book title: Cloud computing Author: Huynh Quyet Thang Genre: Information technology Publisher: Unknown Year of publication: Unknown Introduction: Overview document and application of cloud computing technology in IT."
+  },
+  {
+    "id": "BOOK_70",
+    "type": "book_meta",
+    "maSach": 70,
+    "content_vi": "Tựa sách: Code dạo ký sự    Tác giả: Huỳnh Quyết Thắng    Thể loại: Công nghệ thông tin    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Câu chuyện và trải nghiệm thực tế về ngành CNTT.",
+    "content_en": "Book title: Code for Memoirs Author: Huynh Quyet Thang Genre: Information Technology Publisher: Unknown Year of publication: Unknown Introduction: Stories and practical experiences about the IT industry."
+  },
+  {
+    "id": "BOOK_71",
+    "type": "book_meta",
+    "maSach": 71,
+    "content_vi": "Tựa sách: Giáo trình Quản trị Kinh doanh    Tác giả: Nguyễn Thành Đô    Thể loại: Kinh doanh    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Giáo trình cung cấp các kiến thức cơ bản về quản trị và điều hành doanh nghiệp.",
+    "content_en": "Book title: Business Administration Textbook Author: Nguyen Thanh Do Genre: Business Publisher: Unknown Year of publication: Unknown Introduction: The textbook provides basic knowledge about business management and operations."
+  },
+  {
+    "id": "BOOK_72",
+    "type": "book_meta",
+    "maSach": 72,
+    "content_vi": "Tựa sách: Kỹ năng quản lý hiệu quả    Tác giả: Managers Toolkit    Thể loại: Kinh doanh    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Sách kỹ năng dành cho nhà quản lý nhằm nâng cao hiệu suất công việc.",
+    "content_en": "Book title: Effective management skills Author: Managers Toolkit Genre: Business Publisher: Unknown Year of publication: Unknown Introduction: Skills book for managers to improve work performance."
+  },
+  {
+    "id": "BOOK_73",
+    "type": "book_meta",
+    "maSach": 73,
+    "content_vi": "Tựa sách: Tự học Tiếng Pháp trong 24h    Tác giả: Nguyễn Thanh Thúy    Thể loại: Ngôn ngữ    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Tài liệu tự học nhanh tiếng Pháp cho người mới bắt đầu.",
+    "content_en": "Book title: Self-study French in 24 hours Author: Nguyen Thanh Thuy Genre: Language Publisher: Unknown Year of publication: Unknown Introduction: Quick self-study French materials for beginners."
+  },
+  {
+    "id": "BOOK_74",
+    "type": "book_meta",
+    "maSach": 74,
+    "content_vi": "Tựa sách: Tiếng Đức cho người Việt    Tác giả: Nguyễn Thanh Thúy    Thể loại: Ngôn ngữ    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Giáo trình nhập môn tiếng Đức dành cho người Việt.",
+    "content_en": "Book title: German for Vietnamese Author: Nguyen Thanh Thuy Genre: Language Publisher: Unknown Year of publication: Unknown Introduction: Introductory German textbook for Vietnamese people."
+  },
+  {
+    "id": "BOOK_75",
+    "type": "book_meta",
+    "maSach": 75,
+    "content_vi": "Tựa sách: Tục ngữ Nga    Tác giả: Nguyễn Tùng Cương    Thể loại: Ngôn ngữ    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Tuyển tập tục ngữ Nga, có giải thích ý nghĩa và ngữ cảnh sử dụng.",
+    "content_en": "Book title: Russian proverbs Author: Nguyen Tung Cuong Genre: Language Publisher: Unknown Year of publication: Unknown Introduction: Collection of Russian proverbs, with meaning and context of use explained."
+  },
+  {
+    "id": "BOOK_76",
+    "type": "book_meta",
+    "maSach": 76,
+    "content_vi": "Tựa sách: Vật lý đại cương    Tác giả: Tạ Văn Tùng    Thể loại: Khoa học    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Giáo trình cơ bản về cơ học, nhiệt học, điện học và quang học.",
+    "content_en": "Book title: General Physics Author: Ta Van Tung Genre: Science Publisher: Unknown Year of publication: Unknown Introduction: Basic textbook on mechanics, heat, electricity and optics."
+  },
+  {
+    "id": "BOOK_77",
+    "type": "book_meta",
+    "maSach": 77,
+    "content_vi": "Tựa sách: Toán rời rạc    Tác giả: Đỗ Đức    Thể loại: Khoa học    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Sách học về logic toán, tập hợp, quan hệ, hàm và đồ thị.",
+    "content_en": "Book title: Discrete Mathematics Author: Do Duc Genre: Science Publisher: Unknown Year of publication: Unknown Introduction: A textbook on mathematical logic, sets, relations, functions and graphs."
+  },
+  {
+    "id": "BOOK_78",
+    "type": "book_meta",
+    "maSach": 78,
+    "content_vi": "Tựa sách: Luận án tiến sĩ Kinh tế    Tác giả: Đỗ Đức    Thể loại: Luận án    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Nghiên cứu chuyên sâu thuộc lĩnh vực kinh tế.",
+    "content_en": "Book title: Doctoral thesis in Economics Author: Do Duc Genre: Thesis Publisher: Unknown Year of publication: Unknown Introduction: In-depth research in the field of economics."
+  },
+  {
+    "id": "BOOK_79",
+    "type": "book_meta",
+    "maSach": 79,
+    "content_vi": "Tựa sách: Đồ án CNTT xây dựng wifi    Tác giả: Nguyễn Thanh Phong    Thể loại: Luận án    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Đồ án tốt nghiệp về thiết kế và triển khai hệ thống wifi.",
+    "content_en": "Book title: IT project to build wifi Author: Nguyen Thanh Phong Genre: Thesis Publisher: Unknown Year of publication: Unknown Introduction: Graduation project on designing and implementing wifi systems."
+  },
+  {
+    "id": "BOOK_80",
+    "type": "book_meta",
+    "maSach": 80,
+    "content_vi": "Tựa sách: Đồ án thiết kế hệ thống điều chỉnh nhiệt độ thiết bị sấy hoa quả    Tác giả: Trần Thị Nhung    Thể loại: Luận án    Nhà xuất bản: Không rõ    Năm xuất bản: Không rõ    Giới thiệu: Nghiên cứu và thiết kế hệ thống điều khiển nhiệt độ cho thiết bị sấy hoa quả.",
+    "content_en": "Book title: Design project of temperature regulation system for fruit drying equipment Author: Tran Thi Nhung Genre: Thesis Publisher: Unknown Year of publication: Unknown Introduction: Research and design of temperature control system for fruit drying equipment."
+  }
+]

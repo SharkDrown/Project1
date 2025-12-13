@@ -1,0 +1,137 @@
+{
+  "tieuDe": "Library Usage Regulations",
+  "chuong": [
+    {
+      "maChuong": "1",
+      "tenChuong": "Relevant Regulations",
+      "muc": [
+        {
+          "maMuc": "1.1",
+          "tenMuc": "General Regulations",
+          "dieu": [
+            {
+              "soDieu": 1,
+              "noiDung": "This document regulates the use of facilities and information resources under the management of the University's Information and Library Center to serve readers' learning and research needs."
+            },
+            {
+              "soDieu": 2,
+              "noiDung": "These regulations apply to all individuals and organizations using library services, as well as all staff and employees working at the Library."
+            }
+          ]
+        },
+        {
+          "maMuc": "1.2",
+          "tenMuc": "Use of the Traditional Library",
+          "dieu": [
+            {
+              "soDieu": 3,
+              "tenDieu": "Regulations on Library Cards and Their Use",
+              "khoan": [
+                {
+                  "soKhoan": 1,
+                  "noiDung": "Readers may use one of the following two types of cards to access library services.",
+                  "diem": [
+                    {
+                      "kyHieu": "a",
+                      "noiDung": "Student, trainee, or postgraduate cards issued by university units, integrated with library access functions."
+                    },
+                    {
+                      "kyHieu": "b",
+                      "noiDung": "Library-issued cards for readers who do not have multifunctional cards."
+                    }
+                  ]
+                },
+                {
+                  "soKhoan": 2,
+                  "noiDung": "Library cards must not be lent or used by others. Cardholders are responsible for all materials borrowed using their cards."
+                },
+                {
+                  "soKhoan": 3,
+                  "noiDung": "The validity of multifunctional cards corresponds to the learner’s study duration; library-issued cards are valid for 6 months and may be extended when necessary."
+                }
+              ]
+            },
+            {
+              "soDieu": 4,
+              "tenDieu": "Reading Room Regulations",
+              "khoan": [
+                { "soKhoan": 1, "noiDung": "Readers must present a valid card and store personal belongings before entering the reading room." },
+                { "soKhoan": 2, "noiDung": "Readers may retrieve materials from shelves themselves but must not take them out of the reading room." },
+                { "soKhoan": 3, "noiDung": "Readers must not change the position of materials or take more than two books or one type of newspaper or magazine at a time." },
+                { "soKhoan": 4, "noiDung": "Group discussions must be conducted at an appropriate volume without causing noise disturbance." },
+                { "soKhoan": 5, "noiDung": "Before leaving, readers must return the ticket and locker key and retrieve their library card." }
+              ]
+            },
+            {
+              "soDieu": 5,
+              "tenDieu": "Borrowing and Returning Regulations",
+              "khoan": [
+                { "soKhoan": 1, "noiDung": "Materials allowed for home borrowing include textbooks and reference materials." },
+                { "soKhoan": 2, "noiDung": "The maximum number of borrowed items depends on the reader category." },
+                { "soKhoan": 3, "noiDung": "Deposit policies are implemented in accordance with university regulations." },
+                { "soKhoan": 4, "noiDung": "Readers must check the condition of materials before borrowing." },
+                { "soKhoan": 5, "noiDung": "Extensions must be requested when needed; late returns or lost books are handled according to regulations." }
+              ]
+            },
+            {
+              "soDieu": 6,
+              "tenDieu": "Security, Safety, and Preservation",
+              "khoan": [
+                { "soKhoan": 1, "noiDung": "Prohibited substances and flammable or explosive materials are not allowed in the Library." },
+                { "soKhoan": 2, "noiDung": "Readers are not allowed to install or modify library computers without permission." },
+                { "soKhoan": 3, "noiDung": "Readers are responsible for preserving library materials and property and must comply with inspections when required." },
+                { "soKhoan": 4, "noiDung": "Before graduation, withdrawal, or job transfer, all borrowed materials must be returned and any penalties settled." }
+              ]
+            },
+            {
+              "soDieu": 7,
+              "tenDieu": "Intellectual Property Law",
+              "khoan": [
+                { "soKhoan": 1, "noiDung": "Readers must comply with intellectual property laws when using library materials." },
+                { "soKhoan": 2, "noiDung": "Unauthorized copying of library materials is prohibited." }
+              ]
+            },
+            {
+              "soDieu": 8,
+              "tenDieu": "Workplace Culture",
+              "khoan": [
+                { "soKhoan": 1, "noiDung": "Readers must maintain proper workplace culture, dress appropriately, and keep shared spaces clean." },
+                { "soKhoan": 2, "noiDung": "Accessing inappropriate or harmful online content is prohibited." },
+                { "soKhoan": 3, "noiDung": "Writing, drawing, or placing feet on tables and chairs is not allowed." }
+              ]
+            }
+          ]
+        },
+        {
+          "maMuc": "1.3",
+          "tenMuc": "Use of the Digital Library",
+          "dieu": [
+            { "soDieu": 9, "noiDung": "Readers may access available digital resources on the library website." },
+            { "soDieu": 10, "noiDung": "Readers must comply with copyright and intellectual property regulations when using digital resources." }
+          ]
+        },
+        {
+          "maMuc": "1.4",
+          "tenMuc": "Implementation Provisions",
+          "dieu": [
+            { "soDieu": 11, "noiDung": "The Library encourages and rewards readers who actively and responsibly use library services." },
+            {
+              "soDieu": 12,
+              "tenDieu": "Handling of Violations",
+              "khoan": [
+                { "soKhoan": 1, "noiDung": "Lending cards or removing materials from the reading room results in suspension of library services for one month." },
+                { "soKhoan": 2, "noiDung": "Causing noise or unsanitary conditions may result in suspension from one week to one month." },
+                { "soKhoan": 3, "noiDung": "Damaging library materials or property requires compensation in accordance with regulations." },
+                { "soKhoan": 4, "noiDung": "Serious violations are handled in accordance with institutional regulations and the law." }
+              ]
+            },
+            {
+              "soDieu": 13,
+              "noiDung": "These regulations take effect from the date of issuance and may be amended when necessary."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

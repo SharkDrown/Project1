@@ -366,7 +366,7 @@ namespace BackEnd.Controllers
         public async Task<IActionResult> GetBookCondition()
         {
             var tong = await _context.CuonSaches.CountAsync();
-            var tot = await _context.CuonSaches.CountAsync(s => s.TinhTrang == "Tot");
+            var tot = await _context.CuonSaches.CountAsync(s => s.TinhTrang == "Tot"||s.TinhTrang=="DangMuon");
             var hong = tong - tot;
 
             return Ok(new

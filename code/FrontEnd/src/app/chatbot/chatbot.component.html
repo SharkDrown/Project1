@@ -1,0 +1,26 @@
+<!-- Chat bubble -->
+<div class="chat-bubble" (click)="toggleChat()" *ngIf="!isOpen">
+  💬
+</div>
+
+<!-- Chat window -->
+<div class="chat-window" *ngIf="isOpen">
+  <div class="chat-header">
+    <span>📚 Thư viện AI</span>
+    <button (click)="toggleChat()">✖</button>
+  </div>
+
+  <div class="chat-body">
+    <div *ngFor="let msg of messages"
+         [ngClass]="msg.sender === 'user' ? 'user-msg' : 'ai-msg'">
+      {{ msg.text }}
+    </div>
+  </div>
+
+  <div class="chat-footer">
+    <input [(ngModel)]="userInput"
+           (keyup.enter)="sendMessage()"
+           placeholder="Hỏi về sách, quy định thư viện..." />
+    <button (click)="sendMessage()">➤</button>
+  </div>
+</div>
