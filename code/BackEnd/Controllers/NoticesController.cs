@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using BackEnd.Models;
+using System.Text.RegularExpressions;
 
 namespace BackEnd.Controllers
 {
@@ -43,11 +44,49 @@ namespace BackEnd.Controllers
                         maTb = tb.MaTb,
                         noiDung = tb.NoiDung,
                         ngayTb = tb.NgayTb.HasValue ? tb.NgayTb.Value.ToString("yyyy-MM-dd") : null,
-                        maTk = tb.MaTk
+                        maTk = tb.MaTk,
+
                     })
                     .ToListAsync();
+                var result = notices.Select(tb => {
 
-                return Ok(notices);
+                    string trangThai = "N/A"; // Mặc định cho thông báo thường
+                    int? maPp = null;
+
+                    // Kiểm tra xem đây có phải là Phiếu phạt không
+                    if (tb.noiDung != null && tb.noiDung.StartsWith("[PHAT] Mã PP:"))
+                    {
+                        // Sử dụng Regex để trích xuất MaPp từ NoiDung (Giống logic ở Frontend)
+                        var match = Regex.Match(tb.noiDung, @"\[PHAT\] Mã PP: (\d+).*");
+
+                        if (match.Success && int.TryParse(match.Groups[1].Value, out int fineId))
+                        {
+                            maPp = fineId;
+
+                            // Tra cứu trạng thái Phiếu phạt trong DB
+                            // Dùng .FirstOrDefault() (đồng bộ) vì nó nằm trong một khối Select, 
+                            // cách này là thực tế nhất khi không có FK giữa hai bảng
+                            var phieuPhat = _context.PhieuPhats.FirstOrDefault(pp => pp.MaPp == fineId);
+
+                            // Gán trạng thái đã tìm thấy, nếu không tìm thấy coi như Chưa đóng (hoặc N/A)
+                            trangThai = phieuPhat?.TrangThai ?? "ChuaDong";
+                        }
+                    }
+
+                    // Trả về một đối tượng ẩn danh (Anonymous Object) có thêm trường 'trangThai'
+                    return new
+                    {
+                        maTb = tb.maTb,
+                        noiDung = tb.noiDung,
+                        ngayTb = tb.ngayTb,
+                        maTk = tb.maTk,
+
+                        // ⭐️ THÊM TRẠNG THÁI VÀO JSON TRẢ VỀ CHO FRONTEND ⭐️
+                        trangThai = trangThai
+                    };
+                }).ToList();
+
+                return Ok(result);
             }
             catch (Exception ex)
             {

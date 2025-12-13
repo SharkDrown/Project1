@@ -14,8 +14,8 @@ import { SettingComponent } from './pages/info/setting/setting.component';
 import { ContentComponent } from './pages/info/content/content.component';
 import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
-import {LoginGuard} from './guards/login.guard'
-
+import {LoginGuard} from './guards/login.guard';
+import { PaymentReturnComponent } from './payment/payment-return.component';
 export const routes: Routes = [
   {
     path: '',
@@ -25,7 +25,7 @@ export const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'about', component: AboutComponent },
       { path: 'search', component: SearchComponent },
-       
+      { path: 'payment-return', component: PaymentReturnComponent },
       //  Trang chi tiết sách
       { 
        path: 'book-detail/:id', 

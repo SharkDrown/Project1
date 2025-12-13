@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BackEnd.Models;
 using System;
-using System.Security.Claims; // Thêm thư viện này để xử lý Claims
+using System.Security.Claims; 
 using System.Globalization;
+using Microsoft.AspNetCore.Authorization;
 namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
@@ -20,6 +21,7 @@ namespace BackEnd.Controllers
 
         // --- GET: Lấy Danh sách Phiếu Mượn (Hiển thị trang Trả) ---
         [HttpGet]
+        
         public async Task<IActionResult> GetAll()
         {
             var data = await _context.PhieuMuons
@@ -215,7 +217,14 @@ namespace BackEnd.Controllers
             {
                 _context.ChiTietPhieuMuons.RemoveRange(chiTietMuons);
             }
+            var phieuPhats = await _context.PhieuPhats
+                                   .Where(pp => pp.MaPm == id)
+                                   .ToListAsync();
 
+            if (phieuPhats.Any())
+            {
+                _context.PhieuPhats.RemoveRange(phieuPhats);
+            }
             // 5. Xóa Phiếu Mượn chính
             _context.PhieuMuons.Remove(phieuMuon);
 

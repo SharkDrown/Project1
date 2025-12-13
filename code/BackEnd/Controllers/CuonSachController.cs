@@ -38,18 +38,36 @@ namespace BackEnd.Controllers
         [HttpGet("trangthai")]
         public async Task<IActionResult> GetAllBookItemsWithStatus()
         {
+            //var query = from cs in _context.CuonSaches
+            //            join s in _context.Saches on cs.MaSach equals s.MaSach
+
+            //            join ctpm in _context.ChiTietPhieuMuons
+            //                .Where(ct => ct.NgayTraThucTe == null)
+            //            on cs.MaVach equals ctpm.MaVach into muontemp
+            //            from muon in muontemp.DefaultIfEmpty()
+
+            //            join pm in _context.PhieuMuons on muon.MaPm equals pm.MaPm into pmtmp
+            //            from pm in pmtmp.DefaultIfEmpty()
+
+            //            join dg in _context.DocGia on pm.MaDg equals dg.MaDg into dgtmp
+            //            from dg in dgtmp.DefaultIfEmpty()
             var query = from cs in _context.CuonSaches
                         join s in _context.Saches on cs.MaSach equals s.MaSach
 
-                        join ctpm in _context.ChiTietPhieuMuons
-                            .Where(ct => ct.NgayTraThucTe == null)
-                        on cs.MaVach equals ctpm.MaVach into muontemp
-                        from muon in muontemp.DefaultIfEmpty()
+                        // ⭐️ BƯỚC 1: XÁC ĐỊNH MAPM CUỐI CÙNG CHO CUỐN SÁCH
+                        join latestCtpm in _context.ChiTietPhieuMuons on cs.MaVach equals latestCtpm.MaVach into ctpmGroup
+                        from muon in ctpmGroup
+                            // Chọn bản ghi ChiTietPhieuMuon có MaPm lớn nhất (mới nhất)
+                            .OrderByDescending(ct => ct.MaPm)
+                            .Take(1)
+                            .DefaultIfEmpty() // Left Join ChiTietPhiếuMượn mới nhất
 
-                        join pm in _context.PhieuMuons on muon.MaPm equals pm.MaPm into pmtmp
+                            // BƯỚC 2: LEFT JOIN PHIEUMUON (pm)
+                        join p in _context.PhieuMuons on muon.MaPm equals p.MaPm into pmtmp
                         from pm in pmtmp.DefaultIfEmpty()
 
-                        join dg in _context.DocGia on pm.MaDg equals dg.MaDg into dgtmp
+                            // BƯỚC 3: LEFT JOIN DOCGIA (dg)
+                        join d in _context.DocGia on pm.MaDg equals d.MaDg into dgtmp
                         from dg in dgtmp.DefaultIfEmpty()
 
                         select new
@@ -57,11 +75,14 @@ namespace BackEnd.Controllers
                             MaVach = cs.MaVach,
                             MaSach = cs.MaSach,
                             TuaSach = s.TuaSach,
-                            TrangThai = muon != null ? "DangMuon" : cs.TinhTrang,
+                            MaPm = (int?)muon.MaPm,
+                            TrangThai = (muon == null) ? cs.TinhTrang :
+                            (muon.NgayTraThucTe == null ? "DangMuon" : cs.TinhTrang),
                             NgayMuon = pm != null ? pm.NgayMuon : (DateOnly?)null,
                             NgayTra = pm != null ? pm.NgayTra : (DateOnly?)null,
                             MaDg = (int?)pm.MaDg,
-                            TenDg = dg.HoTen
+                            TenDg = dg.HoTen,
+                            NgayTraThucTe = muon != null ? muon.NgayTraThucTe : (DateOnly?)null,
                         };
 
             var intermediateResult = await query.ToListAsync();
@@ -72,11 +93,13 @@ namespace BackEnd.Controllers
                 item.MaVach,
                 item.MaSach,
                 item.TuaSach,
+                item.MaPm,
                 TrangThai = item.TrangThai,
                 NgayMuon = item.NgayMuon?.ToString("dd-MM-yyyy"),
                 NgayTra = item.NgayTra?.ToString("dd-MM-yyyy"),
                 item.MaDg,
-                item.TenDg
+                item.TenDg,
+                NgayTraThucTe = item.NgayTraThucTe?.ToString("dd-MM-yyyy")
             });
             return Ok(finalResult);
         }

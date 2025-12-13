@@ -80,24 +80,26 @@
                         </tbody>
                     </table>
                 </div>
-            <div class="d-flex justify-content-center mt-3" >
-                <ul class="pagination">
-                    <li class="page-item" [class.disabled]="loanCurrentPage === 1">
-                        <a class="page-link" (click)="changeLoanPage(loanCurrentPage - 1)" style="cursor:pointer;">Previous</a> 
-                    </li>
-                    
-                    <li class="page-item" *ngFor="let page of getPageNumbers(loanCurrentPage, loanTotalPages)"
-                        [class.active]="loanCurrentPage === page">
-                        <a class="page-link" (click)="changeLoanPage(page)" style="cursor:pointer;">{{ page }}</a>
-                    </li>
+                <div class="d-flex justify-content-center mt-3">
+                    <ul class="pagination">
+                        <li class="page-item" [class.disabled]="loanCurrentPage === 1">
+                            <a class="page-link" (click)="changeLoanPage(loanCurrentPage - 1)"
+                                style="cursor:pointer;">Previous</a>
+                        </li>
 
-                    <li class="page-item" [class.disabled]="loanCurrentPage === loanTotalPages">
-                        <a class="page-link" (click)="changeLoanPage(loanCurrentPage + 1)" style="cursor:pointer;">Next</a>
-                    </li>
-                </ul>
-            </div>  
+                        <li class="page-item" *ngFor="let page of getPageNumbers(loanCurrentPage, loanTotalPages)"
+                            [class.active]="loanCurrentPage === page">
+                            <a class="page-link" (click)="changeLoanPage(page)" style="cursor:pointer;">{{ page }}</a>
+                        </li>
+
+                        <li class="page-item" [class.disabled]="loanCurrentPage === loanTotalPages">
+                            <a class="page-link" (click)="changeLoanPage(loanCurrentPage + 1)"
+                                style="cursor:pointer;">Next</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            
+
         </div>
     </div>
 
@@ -109,9 +111,13 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Tổng số: {{ filteredStatusData.length }} cuốn</h6>
+
+                <button class="btn btn-warning btn-sm" (click)="openFineModal()">
+                    <i class="fas fa-exclamation-triangle"></i> PHIẾU PHẠT
+                </button>
             </div>
             <div class="card-body">
-                <!-- ⭐️ KHỐI TÌM KIẾM MỚI CHO TRẠNG THÁI SÁCH -->
+                <!-- KHỐI TÌM KIẾM MỚI CHO TRẠNG THÁI SÁCH -->
                 <div class="mb-3">
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -138,10 +144,11 @@
                                 <th>Mã Sách</th>
                                 <th>Tên Sách</th>
                                 <th>Mã Vạch</th>
+                                <th>Mã phiếu mượn</th>
                                 <th>Ngày Mượn</th>
                                 <th>Ngày Trả DK</th>
                                 <th>Mã Độc Giả</th>
-                                <th>Trạng Thái/Cập nhật</th>
+                                <th>Tình trạng sách</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -150,9 +157,10 @@
                                 <td>{{ item.maSach }}</td>
                                 <td>{{ item.tuaSach }}</td>
                                 <td>{{ item.maVach }}</td>
-                                <td>{{ item.ngayMuon || '---' }}</td>
-                                <td>{{ item.ngayTra || '---' }}</td>
-                                <td>{{ item.maDg || '---' }}</td>
+                                <td>{{ getConditionalValue(item, item.maPm) }}</td>
+                                <td>{{ getConditionalValue(item, item.ngayMuon) }}</td>
+                                <td>{{ getConditionalValue(item, item.ngayTra) }}</td>
+                                <td>{{ getConditionalValue(item, item.maDg) }}</td>
 
                                 <td>
                                     <select class="form-control form-control-sm" #statusSelect
@@ -168,13 +176,14 @@
                                     </select>
 
                                     <small *ngIf="item.trangThai === 'DangMuon'" class="text-danger">
-                                        (Chọn Tot/Hong/Mat để Trả sách)
+                                        (Chọn Tốt/Hỏng/Mất để Trả sách)
                                     </small>
+
                                 </td>
 
                             </tr>
                             <tr *ngIf="paginatedStatusData.length === 0">
-                                <td colspan="7" class="text-center">Không tìm thấy dữ liệu hoặc cuốn sách nào.</td>
+                                <td colspan="8" class="text-center">Không tìm thấy dữ liệu hoặc cuốn sách nào.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -184,7 +193,8 @@
             <div class="d-flex justify-content-center mt-3" *ngIf="statusTotalPages > 1">
                 <ul class="pagination">
                     <li class="page-item" [class.disabled]="statusCurrentPage === 1">
-                        <a class="page-link" (click)="changeStatusPage(statusCurrentPage - 1)" style="cursor:pointer;">Previous</a>
+                        <a class="page-link" (click)="changeStatusPage(statusCurrentPage - 1)"
+                            style="cursor:pointer;">Previous</a>
                     </li>
 
                     <li class="page-item" *ngFor="let page of getPageNumbers(statusCurrentPage, statusTotalPages)"
@@ -193,9 +203,98 @@
                     </li>
 
                     <li class="page-item" [class.disabled]="statusCurrentPage === statusTotalPages">
-                        <a class="page-link" (click)="changeStatusPage(statusCurrentPage + 1)" style="cursor:pointer;">Next</a>
+                        <a class="page-link" (click)="changeStatusPage(statusCurrentPage + 1)"
+                            style="cursor:pointer;">Next</a>
                     </li>
                 </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Phiếu phạt-->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': isFineModalOpen ? 'block' : 'none'}" style="background-color: rgba(0,0,0,0.5);">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-file-invoice-dollar"></i> TẠO PHIẾU PHẠT
+                </h5>
+                <button type="button" class="close text-white" (click)="closeFineModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-group row">
+                    <label class="col-sm-5 col-form-label font-weight-bold">Nhập Mã Phiếu Mượn:</label>
+                    <div class="col-sm-5">
+                        <div class="input-group">
+                            <input type="number" class="form-control" 
+                                   [(ngModel)]="fineMaPm" 
+                                   placeholder="VD: 105"
+                                   (keyup.enter)="onCheckFine()">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button" (click)="onCheckFine()">
+                                    OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label class="font-weight-bold">Lý do phạt:</label>
+                    <textarea class="form-control" rows="6" 
+                              [(ngModel)]="fineReason" 
+                              
+                              style="background-color: #f8f9fa; font-family: monospace; font-size: 1.1em; color: #333;">
+                    </textarea>
+                </div>
+
+                <div class="d-flex justify-content-end align-items-center mt-3">
+                    <h4 class="font-weight-bold mr-2">Tổng tiền phạt:</h4>
+                    <h3 class="text-danger font-weight-bold">
+                        {{ fineTotalAmount | number:'1.0-0' }} đ
+                    </h3>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeFineModal()">
+                    <i class="fas fa-times"></i> Hủy
+                </button>
+                
+                <button type="button" class="btn btn-success" (click)="createFineTicket()" [disabled]="fineTotalAmount === 0">
+                    <i class="fas fa-check"></i> Tạo phiếu phạt
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal tạo phiếu phạt thành công-->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': isSuccessModalOpen ? 'block' : 'none'}" style="background-color: rgba(0,0,0,0.5);">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-check-circle"></i> THÀNH CÔNG
+                </h5>
+                <button type="button" class="close text-white" (click)="confirmFineTicketCreation()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <div class="modal-body text-center">
+                <p class="h5">Đã tạo Phiếu Phạt thành công!</p>
+                <p class="mt-3">Mã phiếu phạt: <strong class="text-danger">{{ newFineTicketCode }}</strong></p>
+            </div>
+
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-success" (click)="confirmFineTicketCreation()">
+                    OK Xác nhận
+                </button>
             </div>
         </div>
     </div>

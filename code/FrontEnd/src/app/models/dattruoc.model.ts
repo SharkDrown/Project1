@@ -6,6 +6,6 @@ export interface DatTruoc {
   ngayDat?: string; 
   trangThai?: 'Cho' | 'DaNhan' | 'Huy';
   soLuong: number;
-    // Mảng lưu mã vạch người dùng đã chọn (frontend)
+
   maVachChon?: string[];
 }

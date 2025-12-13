@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   visiblePages: (number | string)[] = [];
   averageRatings: { [maSach: number]: number } = {};
   loading = false;
-  private beBaseUrl = 'https://localhost:7299';
+  private beBaseUrl = 'https://3b39a38f9f08.ngrok-free.app';
   newsList: any[] = [];
   constructor(private http: HttpClient, private sachService: SachService, private danhGiaSachService: DanhGiaSachService) {}
 

@@ -14,7 +14,7 @@ export interface DanhGia {
 })
 
 export class DanhGiaSachService {
-  private apiUrl = 'https://localhost:7299/api/QuanLyThuVien'; 
+  private apiUrl = '/api/quanlythuvien'; 
 
   constructor(private http: HttpClient) {}
 

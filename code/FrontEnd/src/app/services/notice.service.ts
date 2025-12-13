@@ -20,6 +20,14 @@ export interface Account {
   hoTen?: string;
   vaiTro?: string;
 }
+export interface FineDetails {
+    isFine: boolean; // Cờ hiệu xác định có phải là thông báo phạt không
+    maPp: string;    // Mã Phiếu Phạt
+    trangThai?: string;
+    lyDo?: string;   // Lý do phạt
+    soTienFormatted?: string; // Số tiền đã được format (ví dụ: 50.000)
+    rawContent?: string; // Nội dung thô ban đầu (tùy chọn)
+}
 
 @Injectable({
   providedIn: 'root'

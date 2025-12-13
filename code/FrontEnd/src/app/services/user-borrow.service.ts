@@ -7,7 +7,7 @@ import { DatTruoc } from '../models/dattruoc.model';
 })
 export class UserBorrowService {
 
-  private apiUrl = 'https://localhost:7299/api/UserDatTruoc';
+  private apiUrl = '/api/UserDatTruoc';
 
   constructor(private http: HttpClient) { }
 

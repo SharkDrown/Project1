@@ -45,6 +45,11 @@
             </tr>
           </thead>
           <tbody>
+            <tr *ngIf="paginatedBorrows.length === 0">
+                <td colspan="7" class="text-center">
+                    Không tìm thấy yêu cầu mượn nào.
+                </td>
+            </tr>
             <tr *ngFor="let b of paginatedBorrows">
               <td>{{ b.maDat }}</td>
               <td>{{ b.maDg }}</td>
@@ -347,9 +352,7 @@
                 <p class="h5 text-success">
                     {{ successMessage }}
                 </p>
-                <!-- <p class="text-muted mt-3">
-                    Vui lòng kiểm tra lại chi tiết phiếu ở trang **Danh sách phiếu mượn**.
-                </p> -->
+               
             </div>
 
             <div class="modal-footer">

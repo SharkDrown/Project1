@@ -6,6 +6,8 @@ using System.Text;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.OpenApi.Models;
+using BackEnd.Services;
+using BackEnd.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -61,7 +63,8 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular", policy =>
     {
-        policy.WithOrigins("http://localhost:4200", "https://localhost:4200", "http://127.0.0.1:4200")
+        policy.WithOrigins("http://localhost:4200", "https://localhost:4200",
+            "http://127.0.0.1:4200", "https://3b39a38f9f08.ngrok-free.app")
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
@@ -134,13 +137,21 @@ options.Events = new JwtBearerEvents
     };
 });
 
+// Cần thiết để lấy IP address
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+// Đăng ký dịch vụ VNPAY
+builder.Services.AddScoped<VnpayService>();
+// Đăng ký PhieuPhatService
+builder.Services.AddScoped<IPhieuPhatService, PhieuPhatService>();
+
 // Đăng ký JwtService để sinh token
 builder.Services.AddScoped<JwtService>();
 
 
 var app = builder.Build();
 
-// ✅ Kiểm tra kết nối database khi khởi động
+// Kiểm tra kết nối database khi khởi động
 try
 {
     using (var scope = app.Services.CreateScope())
@@ -151,35 +162,35 @@ try
         var canConnect = context.Database.CanConnect();
         if (canConnect)
         {
-            Console.WriteLine("✅ Kết nối database thành công!");
+            Console.WriteLine(" Kết nối database thành công!");
             // Kiểm tra xem có dữ liệu sách không
             var bookCount = context.Saches.Count();
-            Console.WriteLine($"📚 Số lượng sách trong database: {bookCount}");
+            Console.WriteLine($"Số lượng sách trong database: {bookCount}");
         }
         else
         {
-            Console.WriteLine("⚠️ Cảnh báo: Không thể kết nối tới database!");
+            Console.WriteLine("Cảnh báo: Không thể kết nối tới database!");
         }
     }
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"❌ Lỗi kết nối database: {ex.Message}");
+    Console.WriteLine($"Lỗi kết nối database: {ex.Message}");
     Console.WriteLine($"Chi tiết: {ex.InnerException?.Message ?? ex.ToString()}");
-    Console.WriteLine("⚠️ Backend vẫn sẽ chạy nhưng có thể không truy cập được database!");
+    Console.WriteLine("Backend vẫn sẽ chạy nhưng có thể không truy cập được database!");
 }
 
-// Configure the HTTP request pipeline.
-// ✅ QUAN TRỌNG: UseCors phải được đặt TRƯỚC UseAuthentication và UseAuthorization
+
 app.UseCors("AllowAngular");
 
+             
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
@@ -187,3 +198,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+

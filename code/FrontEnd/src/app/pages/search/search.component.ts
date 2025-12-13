@@ -48,7 +48,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   loading = false;
   error: string | null = null;
   private destroy$ = new Subject<void>();
-  private beBaseUrl = 'https://localhost:7299';
+  private beBaseUrl = 'https://3b39a38f9f08.ngrok-free.app';
 
   constructor(private sachService: SachService, private danhGiaSachService: DanhGiaSachService) {}
 

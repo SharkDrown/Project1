@@ -272,7 +272,7 @@ namespace BackEnd.Controllers
 
         // Độc giả
         [HttpGet("stats/readers-per-month")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetReadersPerMonth()
         {
             var result = await _context.TaiKhoans
@@ -291,7 +291,7 @@ namespace BackEnd.Controllers
         // mượn
 
         [HttpGet("stats/borrow")]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetBorrowStats()
         {
             var result = await _context.PhieuMuons
@@ -311,7 +311,7 @@ namespace BackEnd.Controllers
         //trả
 
         [HttpGet("stats/return")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetReturnStats()
         {
             var result = await _context.ChiTietPhieuMuons
@@ -330,7 +330,7 @@ namespace BackEnd.Controllers
 
         //vi phạm
         [HttpGet("stats/violations-per-month")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetViolationStats()
         {
             var result = await _context.PhieuPhats
@@ -347,7 +347,7 @@ namespace BackEnd.Controllers
 
         // số sách tốt hỏng
         [HttpGet("stats/book-condition")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetBookCondition()
         {
             var tong = await _context.CuonSaches.CountAsync();
@@ -364,7 +364,7 @@ namespace BackEnd.Controllers
 
         // tổng quan 
         [HttpGet("stats/overview")]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetOverview()
         {
             var docs = await _context.DocGia.CountAsync();

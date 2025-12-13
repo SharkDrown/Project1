@@ -12,8 +12,8 @@ public partial class ChiTietPhieuMuon
     public string MaVach { get; set; } = null!;
 
     public DateOnly? NgayTraThucTe { get; set; }
-    [JsonIgnore]
-    [ForeignKey(nameof(MaPm))]
+   // [JsonIgnore]
+    //[ForeignKey(nameof(MaPm))]
     public virtual PhieuMuon? MaPmNavigation { get; set; } = null!;
     [JsonIgnore]
     [ForeignKey(nameof(MaVach))]

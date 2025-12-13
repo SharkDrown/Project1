@@ -528,7 +528,7 @@
                             <p>{{ dg.binhLuan }}</p>
                           </div>
 
-                          <div class="review-actions mt-2" *ngIf="dg.maDg === currentUserMaDg && isLoggedIn">
+                          <div class="review-actions mt-2" *ngIf="isOwnerOfReview(dg.maDg)">
                             <button class="btn btn-sm btn-outline-primary me-2" (click)="editReview(idx)">Sửa</button>
                             <button class="btn btn-sm btn-outline-danger" (click)="deleteReview(idx)">Xóa</button>
                           </div>

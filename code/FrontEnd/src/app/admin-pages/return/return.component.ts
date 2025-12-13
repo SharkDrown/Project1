@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { PhieuMuonService } from '../../services/phieumuon.service';
 import { PhieuMuonSharedService } from '../../services/phieumuonshared.service';
 import { AuthService } from '../../services/auth.service';
-
+import { FineService } from '../../services/fine.service';
+import { FineTicketDto } from '../../models/fineticket.model';
 
 export interface BookStatus {
   maVach: string;
@@ -12,11 +13,12 @@ export interface BookStatus {
   tuaSach: string;
   ngayMuon: string | null;
   ngayTra: string | null;
+  ngayTraThucTe: string | null;
   maDg: number | null;
   tenDg: string | null;
   trangThai: 'DangMuon' | 'Tot' | 'Hong' | 'Mat';
-  // ⭐️ Bổ sung mã Phiếu Mượn để liên kết trạng thái sách với phiếu mượn tương ứng
   maPm: number | null;
+
 }
 
 @Component({
@@ -44,9 +46,22 @@ export class ReturnComponent implements OnInit {
   statusCurrentPage: number = 1;
   // Mỗi trang 10 dữ liêu
   itemsPerPage: number = 10;
+  // Modal Phiếu phạt
+  isFineModalOpen: boolean = false;
+  fineMaPm: string = '';       // Mã phiếu mượn nhập vào
+  fineReason: string = '';     // Nội dung khung Text lý do
+  fineTotalAmount: number = 0; // Tổng tiền phạt
+  // Tiền phạt
+  readonly FINE_LATE = 50000;
+  readonly FINE_DAMAGED = 30000;
+  readonly FINE_LOST = 100000;
+  // Hiển thị modal tạo phạt thành công
+  isSuccessModalOpen: boolean = false;
+  newFineTicketCode: string = '';
   constructor(private phieuMuonService: PhieuMuonService,
     private phieuMuonSharedService: PhieuMuonSharedService,
-    private authService: AuthService
+    private authService: AuthService,
+    private fineService: FineService
   ) { }
 
   ngOnInit(): void {
@@ -150,10 +165,11 @@ export class ReturnComponent implements OnInit {
         // Chỉ Admin mới xem được tất cả, Nhân viên chỉ xem giao dịch của mình
         if (this.authService.getRole() === 'Admin') {
           this.phieuMuons = allRes;
-        } else if (this.currentMaNv !== null) {
-          // LỌC DỮ LIỆU GỐC THEO MaNv ĐANG ĐĂNG NHẬP
-          this.phieuMuons = allRes.filter((pm: any) => pm.maNv === this.currentMaNv);
-        } else {
+        } else if (this.authService.getRole() === 'NhanVien') {
+          // Gán thẳng kết quả API (vì API đã được sửa để trả về toàn bộ)
+          this.phieuMuons = allRes;
+        }
+        else {
           // Trường hợp Nhân viên không lấy được MaNv
           this.phieuMuons = [];
           console.error("Không tìm thấy Mã Nhân viên (MaNv) trong token.");
@@ -225,12 +241,6 @@ export class ReturnComponent implements OnInit {
 
   deletePhieu(maPM: number) {
     const maPmNumber = Number(maPM);
-    // if (!this.canDeletePhieu(maPmNumber)) {
-    //   const errorMsg = `Không thể xóa phiếu mượn ${maPmNumber} do vẫn còn sách đang mượn. Vui lòng kiểm tra và hoàn tất trả sách.`;
-    //   console.log("ALERT NÊN HIỂN THỊ ĐÃ CHẠY.");
-    //   alert(errorMsg);
-    //   return;
-    // }
 
     if (confirm(`Bạn có chắc muốn xóa phiếu mượn ${maPmNumber} này?`)) {
       this.phieuMuonService.delete(maPmNumber).subscribe({
@@ -268,10 +278,11 @@ export class ReturnComponent implements OnInit {
     this.phieuMuonService.getAllBookItemsWithStatus().subscribe({
       next: (data: any[]) => {
         this.dataSource = data as BookStatus[];
+        //this.updateFineStatusForData();
         this.applyStatusFilter();
         this.statusCurrentPage = 1;
       },
-      error: (err: any) => { // ⭐️ ĐÃ SỬA: Khắc phục TS7006
+      error: (err: any) => {
         console.error('Lỗi khi tải trạng thái sách:', err);
         // THAY THẾ alert bằng console.error
         console.error('Lỗi tải trạng thái sách. Vui lòng kiểm tra API /trangthai.');
@@ -312,16 +323,16 @@ export class ReturnComponent implements OnInit {
     let message = `Bạn có chắc muốn cập nhật trạng thái sách ${maVach} từ "${currentStatus}" thành "${newStatus}" không?`;
 
     if (currentStatus === 'DangMuon' && (newStatus === 'Tot' || newStatus === 'Hong' || newStatus === 'Mat')) {
-      message = `⚠️ SÁCH ĐANG MƯỢN ⚠️\nViệc chọn trạng thái vật lý này sẽ hoàn tất giao dịch và ghi nhận sách được TRẢ với tình trạng: ${newStatus}.\nBạn có chắc chắn muốn tiếp tục không?`;
+      message = `Thao tác này ghi nhận sách được TRẢ với tình trạng: ${newStatus}.\nBạn có chắc chắn muốn tiếp tục không?`;
     }
     else if (newStatus === 'DangMuon') {
-      // THAY THẾ alert bằng console.warn
-      console.warn("Không thể chuyển trạng thái sang Đang Mượn bằng tay. Vui lòng tạo Phiếu Mượn chính thức.");
+
+      console.warn("Không thể chuyển trạng thái sang Đang Mượn thủ công. Vui lòng tạo Phiếu Mượn.");
       selectElement.value = currentStatus;
       return;
     }
 
-    // ⭐️ SỬ DỤNG confirm() tạm thời cho xác nhận
+
     if (!confirm(message)) {
       selectElement.value = currentStatus;
       return;
@@ -332,7 +343,7 @@ export class ReturnComponent implements OnInit {
     if (index > -1) {
       const oldStatus = this.dataSource[index].trangThai;
 
-      // ⭐️ SỬ DỤNG this.phieuMuonService
+      // SỬ DỤNG this.phieuMuonService
       this.phieuMuonService.updateBookItemStatus(maVach, newStatus).subscribe({
         next: (response: any) => {
           // THAY THẾ alert bằng console.log
@@ -342,16 +353,208 @@ export class ReturnComponent implements OnInit {
           // Đồng thời tải lại phiếu mượn để cập nhật trạng thái nút xóa
           this.loadData();
         },
-        error: (err: any) => { // ⭐️ ĐÃ SỬA: Khắc phục TS7006
+        error: (err: any) => {
           console.error('Lỗi cập nhật trạng thái:', err);
           // THAY THẾ alert bằng console.error
           console.error(`Lỗi: ${err.error?.message || 'Không thể cập nhật trạng thái.'}`);
 
           // Rollback
           selectElement.value = oldStatus;
+
+          //this.updateFineStatusForData();
           this.applyStatusFilter();
         }
       });
     }
+  }
+  parseDateString(dateString: string | null): Date | null {
+    if (!dateString) return null;
+
+    // 1. Chuẩn hóa chuỗi gốc (Thay thế '-' bằng '/')
+    let normalizedDateString = dateString.trim().replace(/-/g, '/');
+    const parts = normalizedDateString.split('/');
+
+    if (parts.length === 3) {
+      // JS constructor: new Date(Năm, Tháng-1, Ngày)
+      const date = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
+      // Chuẩn hóa về midnight (loại bỏ thời gian) để so sánh chính xác
+      const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      return isNaN(dateOnly.getTime()) ? null : dateOnly;
+    }
+    return null;
+  }
+
+  getConditionalValue(item: BookStatus, value: any): any {
+    // 1. Trường hợp Sách đang mượn, Hỏng, Mất: LUÔN hiển thị thông tin giao dịch.
+    if (item.trangThai === 'DangMuon' || item.trangThai === 'Hong' || item.trangThai === 'Mat') {
+      return value || '---';
+    }
+
+    // 2. Trường hợp Sách TỐT (Tot)
+    if (item.trangThai === 'Tot') {
+
+      // --- LOGIC KIỂM TRA TRẢ MUỘN (Dùng parseDateString) ---
+      const expectedDate = this.parseDateString(item.ngayTra);
+      const actualDate = this.parseDateString(item.ngayTraThucTe);
+
+      if (!expectedDate || !actualDate) {
+        // Nếu thiếu ngày trả dự kiến/thực tế, không thể xác định trả muộn -> ẩn thông tin
+        return '---';
+      }
+
+      // So sánh: NgayTraThucTe > NgayTra (Dự kiến)
+      const isOverdue = actualDate.getTime() > expectedDate.getTime();
+
+      if (isOverdue) {
+        // Trường hợp 'Tot' và TRẢ MUỘN -> Giữ lại thông tin
+        return value || '---';
+      } else {
+        // Trường hợp 'Tot' và ĐÚNG HẠN -> Thay bằng ---
+        return '---';
+      }
+    }
+
+    return '---';
+  }
+  // --- 1. CÁC HÀM QUẢN LÝ MODAL ---
+  openFineModal() {
+    this.isFineModalOpen = true;
+    this.fineMaPm = '';
+    this.fineReason = '';
+    this.fineTotalAmount = 0;
+  }
+
+  closeFineModal() {
+    this.isFineModalOpen = false;
+  }
+
+  // --- 2. HÀM TÍNH TOÁN PHẠT (Logic cốt lõi) ---
+  onCheckFine() {
+    if (!this.fineMaPm) {
+      alert('Vui lòng nhập Mã Phiếu Mượn!');
+      return;
+    }
+
+    const searchMaPm = Number(this.fineMaPm);
+
+    // Lọc các cuốn sách thuộc Mã Phiếu Mượn này từ dữ liệu đã tải
+    const booksInLoan = this.dataSource.filter(b => b.maPm === searchMaPm);
+
+    if (booksInLoan.length === 0) {
+      this.fineReason = `Không tìm thấy sách nào thuộc phiếu mượn ${this.fineMaPm} trong danh sách hiện tại.`;
+      this.fineTotalAmount = 0;
+      return;
+    }
+
+    // Lấy thông tin độc giả từ cuốn sách đầu tiên tìm thấy
+    const firstBook = booksInLoan[0];
+    const maDg = firstBook.maDg || '---';
+    const tenDg = firstBook.tenDg || '---';
+
+    let reasonText = `${maDg} ${tenDg} vi phạm:\n`;
+    let totalFine = 0;
+    let hasViolation = false;
+
+    // Duyệt qua từng cuốn sách để tính lỗi
+    booksInLoan.forEach(book => {
+      let bookFine = 0;
+      let errors: string[] = [];
+
+      // A. Kiểm tra Trả Muộn
+      // Logic: So sánh NgayTraThucTe (hoặc hiện tại) với NgayTra (Dự kiến)
+      let isLate = false;
+      const expectedDate = this.parseDateString(book.ngayTra);
+      // Nếu đã trả thì dùng ngày thực tế, chưa trả thì dùng ngày hiện tại để xét
+      const actualDateString = book.ngayTraThucTe
+        ? book.ngayTraThucTe
+        : new Date().toLocaleDateString('en-GB'); // dd/mm/yyyy format
+
+      const actualDate = this.parseDateString(actualDateString);
+
+      if (expectedDate && actualDate) {
+        // So sánh midnight
+        const expectedTime = new Date(expectedDate.getFullYear(), expectedDate.getMonth(), expectedDate.getDate()).getTime();
+        const actualTime = new Date(actualDate.getFullYear(), actualDate.getMonth(), actualDate.getDate()).getTime();
+
+        if (actualTime > expectedTime) {
+          isLate = true;
+        }
+      }
+
+      // Cộng tiền phạt muộn
+      if (isLate) {
+        bookFine += this.FINE_LATE;
+        errors.push("Trả muộn");
+      }
+
+      // B. Kiểm tra Hỏng / Mất
+      if (book.trangThai === 'Hong') {
+        bookFine += this.FINE_DAMAGED;
+        errors.push("Hỏng");
+      } else if (book.trangThai === 'Mat') {
+        bookFine += this.FINE_LOST;
+        errors.push("Mất");
+      }
+
+      // C. Tổng hợp dòng phạt cho cuốn sách này
+      if (bookFine > 0) {
+        hasViolation = true;
+        // Format lỗi: "Trả muộn Hỏng" hoặc "Trả muộn"
+        const errorString = errors.join(' ');
+        reasonText += `- ${errorString} sách mã ${book.maVach}: ${bookFine.toLocaleString('vi-VN')} đ\n`;
+        totalFine += bookFine;
+      }
+    });
+
+    if (!hasViolation) {
+      this.fineReason = `${maDg} ${tenDg}: Không có vi phạm nào cho phiếu mượn này.`;
+      this.fineTotalAmount = 0;
+    } else {
+      this.fineReason = reasonText;
+      this.fineTotalAmount = totalFine;
+    }
+  }
+
+  // --- 3. HÀM XỬ LÝ NÚT TẠO / HỦY (Chưa có chức năng backend) ---
+  createFineTicket() {
+    if (this.fineTotalAmount === 0) {
+      
+      return;
+    }
+
+    // 1. Đóng Modal hiện tại
+    this.closeFineModal();
+
+    // Dữ liệu cần gửi lên API
+    const fineData: FineTicketDto = {
+      maPm: Number(this.fineMaPm),
+      lyDo: this.fineReason,
+      soTien: this.fineTotalAmount,
+    };
+
+    // 2. Gọi API để tạo Phiếu Phạt
+    this.fineService.createFineTicket(fineData).subscribe({
+      next: (response) => {
+        // 3. Lưu Mã PP và mở Modal Thành công
+        this.newFineTicketCode = response.maPp.toString();
+        this.isSuccessModalOpen = true;
+      },
+      error: (errorMessage) => {
+        console.error('Lỗi khi tạo phiếu phạt:', errorMessage);
+        alert(`Lỗi: ${errorMessage}`);
+        // Nếu lỗi, mở lại modal để người dùng xem lại thông báo
+        this.openFineModal();
+      }
+    });
+  }
+  // Dóng modal tạo phiếu phạt và cập nhật SQL
+  confirmFineTicketCreation() {
+    // 1. Đóng Modal Thông báo
+    this.isSuccessModalOpen = false;
+
+    // 2. Cập nhật dữ liệu trên lưới (tùy chọn)
+    this.loadBookStatusData(); // Giả sử hàm này tải lại dữ liệu sách
+    // Hoặc chỉ tải lại dữ liệu liên quan đến phiếu mượn nếu cần thiết
+    console.log(`Đã xác nhận Phiếu Phạt ${this.newFineTicketCode} và đóng modal.`);
   }
 }

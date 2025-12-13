@@ -21,11 +21,11 @@ declare var GLightbox: any;
 export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
   sach: Sach | null = null;
   danhSachDanhGia: DanhGia[] = [];
-  currentPage = 1;           
-  pageSize = 5;               
+  currentPage = 1;
+  pageSize = 5;
   pagedReviews: DanhGia[] = []; // Danh sách hiển thị cho trang hiện tại
   totalPages = 0;
-  pages: number[] = [];  
+  pages: number[] = [];
   visiblePages: (number | string)[] = [];
   quantity: number = 1;
   isReviewActive = false;
@@ -56,14 +56,14 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
   totalReviews: number = 0;
   ratingCounts = [0, 0, 0, 0, 0];
   private routeSub?: Subscription;
-  private beBaseUrl = 'https://localhost:7299';
+  private beBaseUrl = 'https://3b39a38f9f08.ngrok-free.app'; // link ngrok hiện thời
 
   constructor(
     private route: ActivatedRoute,
     private sachService: SachService,
     private danhGiaService: DanhGiaSachService,
     private userBorrowService: UserBorrowService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     AOS.init({ duration: 1000, once: true });
@@ -74,9 +74,9 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
     this.currentUserMaDg = Number(localStorage.getItem('maDg'));
     this.currentUserHoTen = localStorage.getItem('hoTen') || 'Khách';
     //Kiểm tra đăng nhập
-    this.isLoggedIn = !!localStorage.getItem('access_token'); 
+    this.isLoggedIn = !!localStorage.getItem('access_token');
     console.log('currentUserMaDg initialized =', this.currentUserMaDg);
-     this.loadBookDetail();
+    this.loadBookDetail();
   }
 
   ngAfterViewInit(): void {
@@ -88,7 +88,19 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.routeSub?.unsubscribe();
   }
+  isOwnerOfReview(reviewMaDg: number | undefined): boolean {
+    // 1. Kiểm tra:
+    // a) MaDg của đánh giá có tồn tại không
+    // b) Người dùng có đang đăng nhập không (isLoggedIn)
+    // c) MaDg của người dùng đang đăng nhập có tồn tại không (currentUserMaDg)
+    if (reviewMaDg === undefined || reviewMaDg === null || !this.isLoggedIn || this.currentUserMaDg === null) {
+      return false;
+    }
 
+    // 2. So sánh hai mã độc giả.
+    // Đảm bảo cả hai đều là kiểu Number để so sánh chính xác.
+    return Number(reviewMaDg) === this.currentUserMaDg;
+  }
   /** Lấy mã độc giả từ localStorage hoặc JWT */
   private getMaDocGiaFromStorage(): void {
     const storedmaDg = localStorage.getItem('maDg');
@@ -108,9 +120,9 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   // Phân trang
   changePage(page: number): void {
-      if (page < 1 || page > this.totalPages) return;
-      this.currentPage = page;
-      this.updatePagedReviews();
+    if (page < 1 || page > this.totalPages) return;
+    this.currentPage = page;
+    this.updatePagedReviews();
   }
 
   private updatePagedReviews(): void {
@@ -216,13 +228,13 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.danhGiaService.getDanhGiaTheoSach(this.sach.maSach).subscribe({
       next: (res: any[]) => {
-        this.danhSachDanhGia = res.map((r: any) => ({ 
+        this.danhSachDanhGia = res.map((r: any) => ({
           maDg: Number(r.MaDg ?? r.maDg ?? r.maDG ?? 0),
           maSach: Number(this.sach!.maSach),
-          hoTen: r.hoTen,      
-          soSao: r.soSao,      
+          hoTen: r.hoTen,
+          soSao: r.soSao,
           binhLuan: r.binhLuan,
-          ngayDg: r.ngayDg     
+          ngayDg: r.ngayDg
         }));
         this.calculateRatingStats();
         this.updatePagedReviews();
@@ -246,7 +258,7 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     //const hoTenLocal = localStorage.getItem('hoTen') ||  'Bạn';
     const review: DanhGia = {
-      maDg: this.currentUserMaDg!, 
+      maDg: this.currentUserMaDg!,
       maSach: this.sach.maSach,
       hoTen: this.currentUserHoTen!,
       soSao: this.reviewRating,
@@ -255,37 +267,38 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
     };
 
     this.danhGiaService.themDanhGia(review).subscribe({
-      next: (res:any) => {
-         const newReview = res.data || review;
+      next: (res: any) => {
+        const newReview = res.data || review;
 
-      // Gán thông tin người dùng hiện tại
-      newReview.maDg = this.currentUserMaDg!;
-      newReview.hoTen = this.currentUserHoTen!;
+        // Gán thông tin người dùng hiện tại
+        newReview.maDg = this.currentUserMaDg!;
+        newReview.hoTen = this.currentUserHoTen!;
 
-      // Kiểm tra xem người này đã có bình luận chưa
-      const existingIndex = this.danhSachDanhGia.findIndex(r => r.maDg === this.currentUserMaDg);
+        // Kiểm tra xem người này đã có bình luận chưa
+        const existingIndex = this.danhSachDanhGia.findIndex(r => r.maDg === this.currentUserMaDg);
 
-      if (existingIndex !== -1) {
-        // Cập nhật bình luận cũ
-        this.danhSachDanhGia[existingIndex] = newReview;
-        alert('Bình luận đã được cập nhật!');
-      } else {
-        //  Thêm bình luận mới
-        this.danhSachDanhGia.unshift(newReview);
-        alert('Cảm ơn bạn đã gửi đánh giá!');
+        if (existingIndex !== -1) {
+          // Cập nhật bình luận cũ
+          this.danhSachDanhGia[existingIndex] = newReview;
+          alert('Bình luận đã được cập nhật!');
+        } else {
+          //  Thêm bình luận mới
+          this.danhSachDanhGia.unshift(newReview);
+          alert('Cảm ơn bạn đã gửi đánh giá!');
+        }
+
+        // Cập nhật thống kê và phân trang ngay
+        this.calculateRatingStats();
+        this.updatePagedReviews();
+
+        // Reset form
+        this.resetForm();
+        this.showWriteReview = false;
+      },
+      error: err => {
+        console.error(err);
+        alert('Không thể gửi đánh giá.');
       }
-
-      // Cập nhật thống kê và phân trang ngay
-      this.calculateRatingStats();
-      this.updatePagedReviews();
-
-      // Reset form
-      this.resetForm();
-      this.showWriteReview = false;
-    },
-    error: err => {
-      console.error(err);
-      alert('Không thể gửi đánh giá.'); }
     });
   }
 
@@ -303,40 +316,40 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** Xóa bình luận */
   deleteReview(index: number): void {
-  const review = this.danhSachDanhGia[index];
-   console.log('Deleting review:', review, 'currentUserMaDg=', this.currentUserMaDg);
-  if (!review) return;
+    const review = this.danhSachDanhGia[index];
+    console.log('Deleting review:', review, 'currentUserMaDg=', this.currentUserMaDg);
+    if (!review) return;
 
-  if (!review.maDg || !review.maSach) {
-    console.error('Thiếu maDg hoặc maSach trong review:', review);
-    alert('Không thể xác định bình luận để xóa.');
-    return;
-  }
-
-  if (!confirm('Bạn có chắc chắn muốn xóa bình luận này?')) return;
-
-  this.danhGiaService.deleteDanhGia(review.maSach, review.maDg).subscribe({
-    next: () => {
-      this.danhSachDanhGia.splice(index, 1);
-      alert('Bình luận đã được xóa!');
-      this.calculateRatingStats();
-      this.updatePagedReviews();
-    },
-    error: err => {
-      console.error('Lỗi khi xóa bình luận:', err);
-      alert('Không thể xóa bình luận.');
+    if (!review.maDg || !review.maSach) {
+      console.error('Thiếu maDg hoặc maSach trong review:', review);
+      alert('Không thể xác định bình luận để xóa.');
+      return;
     }
-  });
-}
+
+    if (!confirm('Bạn có chắc chắn muốn xóa bình luận này?')) return;
+
+    this.danhGiaService.deleteDanhGia(review.maSach, review.maDg).subscribe({
+      next: () => {
+        this.danhSachDanhGia.splice(index, 1);
+        alert('Bình luận đã được xóa!');
+        this.calculateRatingStats();
+        this.updatePagedReviews();
+      },
+      error: err => {
+        console.error('Lỗi khi xóa bình luận:', err);
+        alert('Không thể xóa bình luận.');
+      }
+    });
+  }
 
 
   toggleEmojiPicker(event?: MouseEvent): void {
-   this.showEmojiPicker = !this.showEmojiPicker;
+    this.showEmojiPicker = !this.showEmojiPicker;
     if (!this.showEmojiPicker && event && event.currentTarget) {
       try {
         const btn = event.currentTarget as HTMLElement;
         const rect = btn.getBoundingClientRect();
-        
+
         this.emojiPopupStyle = {
           position: 'fixed',
           top: `${Math.round(rect.bottom + 8)}px`,
@@ -344,64 +357,64 @@ export class BookDetailComponent implements OnInit, AfterViewInit, OnDestroy {
           zIndex: 999999,
         };
       } catch (e) {
-       
+
         this.emojiPopupStyle = { position: 'fixed', bottom: '6rem', right: '2rem', zIndex: 999999 };
       }
     }
-    
 
-   
-     else {
-       this.emojiPopupStyle = {};
-     }
+
+
+    else {
+      this.emojiPopupStyle = {};
+    }
   }
   addEmoji(event: any): void { this.reviewText += event.emoji?.native || event.emoji || ''; }
 
   /** Giải mã JWT để lấy maDg */
   decodeJWT(token: string): any {
-    try { return JSON.parse(atob(token.split('.')[1])); } 
+    try { return JSON.parse(atob(token.split('.')[1])); }
     catch { return null; }
   }
   private calculateRatingStats() {
-        const reviews = this.danhSachDanhGia;
-        if (!reviews || reviews.length === 0) {
-          this.averageRating = 0;
-          this.totalReviews = 0;
-          this.ratingCounts = [0, 0, 0, 0, 0];
-          return;
-        }
+    const reviews = this.danhSachDanhGia;
+    if (!reviews || reviews.length === 0) {
+      this.averageRating = 0;
+      this.totalReviews = 0;
+      this.ratingCounts = [0, 0, 0, 0, 0];
+      return;
+    }
 
-        this.totalReviews = reviews.length;
-        this.ratingCounts = [0, 0, 0, 0, 0];
+    this.totalReviews = reviews.length;
+    this.ratingCounts = [0, 0, 0, 0, 0];
 
-        let totalStars = 0;
-        for (const r of reviews) {
-          const stars = r.soSao || 0;
-          totalStars += stars;
-          if (stars >= 1 && stars <= 5) this.ratingCounts[stars - 1]++;
-        }
+    let totalStars = 0;
+    for (const r of reviews) {
+      const stars = r.soSao || 0;
+      totalStars += stars;
+      if (stars >= 1 && stars <= 5) this.ratingCounts[stars - 1]++;
+    }
 
-        this.averageRating = +(totalStars / reviews.length).toFixed(1);
-       
+    this.averageRating = +(totalStars / reviews.length).toFixed(1);
+
   }
-  
-  placeOrder() {
-  if (!this.sach || this.quantity <= 0) return;
 
-  this.userBorrowService.createBorrow(this.sach.maSach, this.quantity)
-    .subscribe({
-      next: borrow => {
-        alert('Đặt sách thành công!');
-        // Giảm số lượng sách còn lại
-        this.sach!.soLuong = (this.sach!.soLuong ?? 0) - this.quantity;
-        // Reset số lượng đặt về 1
-        this.quantity = 1;
-      },
-      error: err => {
-        const msg = err.error?.message || 'Đặt sách thất bại!';
-        alert(msg);
-      }
-    });
-}
+  placeOrder() {
+    if (!this.sach || this.quantity <= 0) return;
+
+    this.userBorrowService.createBorrow(this.sach.maSach, this.quantity)
+      .subscribe({
+        next: borrow => {
+          alert('Đặt sách thành công!');
+          // Giảm số lượng sách còn lại
+          this.sach!.soLuong = (this.sach!.soLuong ?? 0) - this.quantity;
+          // Reset số lượng đặt về 1
+          this.quantity = 1;
+        },
+        error: err => {
+          const msg = err.error?.message || 'Đặt sách thất bại!';
+          alert(msg);
+        }
+      });
+  }
 
 }
